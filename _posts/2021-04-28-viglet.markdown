@@ -1,0 +1,12 @@
+---
+layout: default
+modal-id: 1
+date: 2021-04-28
+img: viglet.png
+alt: Viglet
+project-date: January 2017
+client: Viglet
+category: Product
+description: We look at the new challenges as a great opportunity to find solutions that are scalable and persistent.
+site: https://viglet.org
+---

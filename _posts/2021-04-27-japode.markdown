@@ -1,0 +1,12 @@
+---
+layout: default
+modal-id: 2
+date: 2021-04-27
+img: japode.png
+alt: Japode
+project-date: June 2021
+client: Spotify, Deezer, Youtube Music
+category: Podcast
+description: Technology podcast with philosophy.
+site: https://japode.com
+---

@@ -3,8 +3,8 @@ title: Alexandre Oliveira
 email: opensource@viglet.com
 url: https://github.com/jeromelachaud/freelancer-theme
 description: "I love to develop projects that can be useful in everyday life. I like technology, because it allows us to always create something innovative."
-keywords: "your keywords, separated by commas"
-skills: "A resilient guy who likes tech and philosophy"
+keywords: "alegauss, ia, developer, viglet, japode, podcast"
+skills: "A resilient guy who likes tech and philosophy."
 meta_author: Oliveira Alexandre
 
 # Google webmaster tools
@@ -52,11 +52,10 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: opensource@viglet.com
-  - line: alegauss
+  - line: Tupi or not tupi, that's the question.
 
 # Credits content
-credits: 'Lets talk more about technology.'
+credits: Let's talk more about technology.
 
 # Build settings
 markdown: kramdown
