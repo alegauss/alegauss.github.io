@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ site.title }}</title>
+
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="{{ site.description }}">
     <meta name="keywords" content="{{ site.keywords }}" />
@@ -9,30 +10,34 @@
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:url" content="https://alegauss.com">
     <meta property="og:image" content="https://alegauss.com/img/facebook.png" />
-    <meta property="og:description"
-      content="{{ site.description }}">
+    <meta property="og:description" content="{{ site.description }}">
     <meta name="twitter:image:src" content="https://alegauss.com/img/facebook.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="https://alegauss.com">
     <meta name="twitter:creator" content="@alegauss">
     <meta name="twitter:title" content="{{site.title }}">
-    <meta name="twitter:description"
-      content="{{ site.description }}">
-    {% if site.meta_author %}<meta name="author" content="{{ site.meta_author }}">{% endif %}
+    <meta name="twitter:description" content="{{ site.description }}">
+    {% if site.meta_author %}
+    <meta name="author" content="{{ site.meta_author }}">{% endif %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link rel="stylesheet" href="{{ "/style.css" }}">
+    <link rel="stylesheet" href="{{ " /style.css" }}">
 
     <!-- Google verification -->
-    {% if site.google_verify %}<meta name="google-site-verification" content="{{ site.google_verify }}">{% endif %}
+    {% if site.google_verify %}
+    <meta name="google-site-verification" content="{{ site.google_verify }}">{% endif %}
 
     <!-- Bing Verification -->
-    {% if site.bing_verify %}<meta name="msvalidate.01" content="{{ site.bing_verify }}">{% endif %}
+    {% if site.bing_verify %}
+    <meta name="msvalidate.01" content="{{ site.bing_verify }}">{% endif %}
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{{ "/css/font-awesome/css/font-awesome.min.css" }}">
+    <link rel="stylesheet" href="{{ " /css/font-awesome/css/font-awesome.min.css" }}">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
