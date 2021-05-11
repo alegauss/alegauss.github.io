@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: alegauss.com
+Token: 739b2c04d160079af0054ba56160794fbabf78158328b113c466d67eec1deb28
