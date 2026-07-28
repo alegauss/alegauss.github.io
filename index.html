@@ -1,14 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting…</title>
-  <link rel="canonical" href="https://alegauss.github.io/claude-tray">
-  <meta http-equiv="refresh" content="0; url=https://alegauss.github.io/claude-tray">
-  <script>window.location.replace("https://alegauss.github.io/claude-tray");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>alegauss — small developer tools that get out of your way</title>
+<meta name="description" content="Open-source developer tools by Alexandre Oliveira: commitclerk writes your git commit messages from the staged diff, and Claude Code Tray keeps your Claude usage in the Windows tray.">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="alegauss — developer tools">
+<meta property="og:description" content="Two small, open-source tools: commitclerk (better git commit messages in one command) and Claude Code Tray (Claude usage in your Windows tray).">
+<meta property="og:url" content="https://alegauss.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://alegauss.github.io/">
+
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* neutral warm base — bridges commitclerk's amber and claude-tray's clay */
+    --clay:#D97757;
+    --clay-bright:#E89070;
+    --amber:#E9A33A;
+    --amber-bright:#F7BE63;
+    --bg:#15100C;
+    --bg-2:#1c1510;
+    --panel:#221a14;
+    --panel-2:#2b2119;
+    --line:#3a2d23;
+    --text:#f4ece4;
+    --muted:#b6a596;
+    --muted-2:#8a7868;
+    --teal:#2FB894;
+    --radius:18px;
+    --maxw:1120px;
+    /* per-card accent, overridden on each project card */
+    --a:var(--clay);
+    --a-bright:var(--clay-bright);
+    --a-rgb:217,119,87;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  code,kbd{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .accent{color:var(--clay)}
+  /* grid/flex children must be allowed to shrink, or wide content
+     pushes the whole page past the viewport on phones */
+  .projects>*,.grid>*{min-width:0}
+
+  /* ambient background glow — one warm source per project accent */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 82% -5%, rgba(233,163,58,.16), transparent 60%),
+      radial-gradient(760px 560px at -8% 18%, rgba(217,119,87,.18), transparent 58%),
+      linear-gradient(180deg,var(--bg),var(--bg-2));
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+    background:rgba(21,16,12,.74);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+  .brand img{width:32px;height:32px;border-radius:9px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a:not(.btn){color:var(--muted);font-weight:500;font-size:.95rem;transition:color .2s}
+  .nav-links a:not(.btn):hover{color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:11px 20px;border-radius:11px;font-weight:600;font-size:.95rem;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--a),rgba(var(--a-rgb),.62));
+    color:#1a120c;box-shadow:0 8px 24px -8px rgba(var(--a-rgb),.65);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(var(--a-rgb),.8)}
+  .btn-ghost{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--panel-2);transform:translateY(-2px)}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:84px 0 56px;text-align:center;position:relative}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:7px 15px;border-radius:999px;
+    background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.35);
+    color:var(--clay-bright);font-size:.82rem;font-weight:600;letter-spacing:.01em;
+    margin-bottom:28px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--clay-bright);box-shadow:0 0 10px var(--clay);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{
+    font-size:clamp(2.5rem,6.2vw,4.5rem);line-height:1.04;font-weight:900;letter-spacing:-.035em;
+    margin-bottom:22px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(120deg,var(--clay-bright),var(--clay) 45%,var(--amber));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.sub{
+    font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);
+    max-width:690px;margin:0 auto 34px;line-height:1.55;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+  .hero-icon{
+    width:92px;height:92px;border-radius:22px;margin:0 auto 30px;display:block;
+    box-shadow:0 24px 60px -18px rgba(217,119,87,.5);animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+  .pill{
+    padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);
+    font-size:.82rem;color:var(--muted);font-weight:500;
+  }
+  .pill b{color:var(--text)}
+
+  /* ---------- section ---------- */
+  section{padding:66px 0;position:relative}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 46px}
+  .eyebrow{color:var(--clay);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ---------- project cards ---------- */
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:860px){.projects{grid-template-columns:1fr}}
+  .proj-card{
+    display:flex;flex-direction:column;
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px;position:relative;overflow:hidden;
+    transition:transform .2s ease,border-color .2s,box-shadow .25s;
+  }
+  .proj-card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(420px 220px at 88% -12%, rgba(var(--a-rgb),.18), transparent 62%);
+  }
+  .proj-card:hover{
+    transform:translateY(-4px);border-color:rgba(var(--a-rgb),.5);
+    box-shadow:0 20px 46px -24px rgba(var(--a-rgb),.55);
+  }
+  .proj-card.amber{--a:var(--amber);--a-bright:var(--amber-bright);--a-rgb:233,163,58}
+  .proj-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative}
+  .proj-head img{width:52px;height:52px;border-radius:13px;flex:0 0 auto}
+  .proj-head h3{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .proj-head .kind{color:var(--a-bright);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .proj-card p.lead{color:var(--muted);font-size:.98rem;margin-bottom:20px;position:relative}
+  .feat-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:24px;position:relative}
+  .feat-list li{display:flex;gap:12px;align-items:flex-start;font-size:.94rem}
+  .feat-list .chk{
+    flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+    background:rgba(var(--a-rgb),.16);color:var(--a-bright);font-size:.75rem;font-weight:800;margin-top:2px;
+  }
+  .feat-list b{color:var(--text)}
+  .feat-list span{color:var(--muted)}
+  .feat-list code{color:var(--a-bright);font-size:.88em}
+  .proj-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;position:relative}
+  .proj-meta .tag{
+    padding:6px 11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);
+    font-size:.78rem;color:var(--muted);font-weight:500;
+  }
+  .proj-meta .tag b{color:var(--text)}
+  .proj-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;position:relative}
+
+  /* ---------- about ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+    transition:transform .2s ease,border-color .2s;
+  }
+  .card:hover{transform:translateY(-3px);border-color:rgba(217,119,87,.4)}
+  .card .ico{
+    width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(217,119,87,.14);border:1px solid rgba(217,119,87,.3);
+    font-size:1.4rem;margin-bottom:18px;
+  }
+  .card h3{font-size:1.1rem;font-weight:700;margin-bottom:9px;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:.93rem;line-height:1.6}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:46px 0 38px;margin-top:30px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot-brand{display:flex;align-items:center;gap:12px;font-weight:800}
+  .foot-brand img{width:30px;height:30px;border-radius:8px}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);font-size:.9rem;transition:color .2s}
+  .foot-links a:hover{color:var(--clay)}
+  .disclaimer{color:var(--muted-2);font-size:.8rem;margin-top:22px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
 </head>
 <body>
-  <p>Redirecting to <a href="https://alegauss.github.io/claude-tray">https://alegauss.github.io/claude-tray</a>…</p>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.svg" alt="">alegauss</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="commitclerk/">commitclerk</a>
+      <a href="claude-tray/">Claude Code Tray</a>
+      <a class="btn btn-primary" href="https://github.com/alegauss">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <img class="hero-icon" src="logo.svg" alt="alegauss logo">
+    <div class="badge"><span class="dot"></span> Open source · Two tools · Zero config</div>
+    <h1>Small developer tools<br><span class="grad">that get out of your way.</span></h1>
+    <p class="sub">
+      I build tiny, focused utilities for the parts of the workflow that quietly waste your
+      attention — writing commit messages and watching your Claude usage. Both are free,
+      open source, and installable in a minute.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">Browse the projects</a>
+      <a class="btn btn-ghost" href="https://github.com/alegauss">⌘ GitHub profile</a>
+    </div>
+    <div class="pills">
+      <span class="pill"><b>commitclerk</b> · git + LLM</span>
+      <span class="pill"><b>Claude Code Tray</b> · Windows</span>
+      <span class="pill">MIT · Apache 2.0</span>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Projects</div>
+      <h2>Two tools, one idea: less friction.</h2>
+      <p>Each has its own site with screenshots, install steps, and full documentation.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- commitclerk -->
+      <article class="proj-card amber reveal">
+        <div class="proj-head">
+          <img src="commitclerk/logo.png" alt="commitclerk logo">
+          <div>
+            <div class="kind">Git · CLI</div>
+            <h3>commitclerk</h3>
+          </div>
+        </div>
+        <p class="lead">
+          Better git commit messages in one command. It reads your staged diff, asks an LLM for a
+          Conventional Commits message, shows it to you, and commits.
+        </p>
+        <ul class="feat-list">
+          <li><span class="chk">✓</span><span><b>Conventional Commits 1.0.0</b> — written from the diff, not from your memory.</span></li>
+          <li><span class="chk">✓</span><span><b>One Python file</b>, zero dependencies — drop it on your <code>PATH</code> and go.</span></li>
+          <li><span class="chk">✓</span><span><b>Doc-aware</b> — knows a docs-only change isn't a new feature.</span></li>
+        </ul>
+        <div class="proj-meta">
+          <span class="tag"><b>~230 lines</b> · one file</span>
+          <span class="tag">Any <b>OpenAI</b> chat model</span>
+          <span class="tag">MIT</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn btn-primary" href="commitclerk/">Visit site →</a>
+          <a class="btn btn-ghost" href="https://github.com/alegauss/commitclerk">GitHub</a>
+        </div>
+      </article>
+
+      <!-- claude-tray -->
+      <article class="proj-card reveal">
+        <div class="proj-head">
+          <img src="claude-tray/logo.png" alt="Claude Code Tray logo">
+          <div>
+            <div class="kind">Windows · Tray app</div>
+            <h3>Claude Code Tray</h3>
+          </div>
+        </div>
+        <p class="lead">
+          Your Claude Code usage, always in the tray. A native Windows monitor that shows your
+          rate-limit percentage as a crisp, DPI-aware icon.
+        </p>
+        <ul class="feat-list">
+          <li><span class="chk">✓</span><span><b>Smart projection</b> — burn rate tells you if you'll hit the limit before the reset.</span></li>
+          <li><span class="chk">✓</span><span><b>24h breakdown</b> — statistics and insights, computed on your own machine.</span></li>
+          <li><span class="chk">✓</span><span><b>Privacy-first, zero config</b> — reads only the usage data Claude Code already writes locally.</span></li>
+        </ul>
+        <div class="proj-meta">
+          <span class="tag"><b>.NET 10</b> · WinForms</span>
+          <span class="tag">Windows <b>10 / 11</b></span>
+          <span class="tag">Apache 2.0</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn btn-primary" href="claude-tray/">Visit site →</a>
+          <a class="btn btn-ghost" href="https://github.com/alegauss/claude-tray">GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">About</div>
+      <h2>How these are built</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="ico">🎯</div>
+        <h3>One job each</h3>
+        <p>No dashboards, no accounts, no background services you didn't ask for. A tool should do
+          the one thing its name promises.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico">🔒</div>
+        <h3>Your machine, your data</h3>
+        <p>Nothing is collected or phoned home. What runs locally stays local — the only network
+          call is the one you configure yourself.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico">📖</div>
+        <h3>Open source</h3>
+        <p>Source, issues, and releases are all on GitHub under permissive licenses. Read it, fork
+          it, ship your own version.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a class="foot-brand" href="#top"><img src="logo.svg" alt="">alegauss</a>
+      <div class="foot-links">
+        <a href="commitclerk/">commitclerk</a>
+        <a href="claude-tray/">Claude Code Tray</a>
+        <a href="https://github.com/alegauss">GitHub</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      Personal / community projects — not affiliated with, endorsed by, or sponsored by Anthropic
+      or OpenAI. “Claude” and “Claude Code” are trademarks of Anthropic. © 2026 Alexandre Oliveira.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // reveal-on-scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
