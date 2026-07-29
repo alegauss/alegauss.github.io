@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>alegauss — small developer tools that get out of your way</title>
-<meta name="description" content="Open-source developer tools by Alexandre Oliveira: commitclerk writes your git commit messages from the staged diff, and Claude Code Tray keeps your Claude usage in the Windows tray.">
+<meta name="description" content="Open-source developer tools by Alexandre Oliveira: commitclerk writes your git commit messages from the staged diff, roadkeep enforces your ROADMAP and CHANGELOG format at the write path, and Claude Code Tray keeps your Claude usage in the Windows tray.">
 
 <!-- Open Graph / social -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="alegauss — developer tools">
-<meta property="og:description" content="Two small, open-source tools: commitclerk (better git commit messages in one command) and Claude Code Tray (Claude usage in your Windows tray).">
+<meta property="og:description" content="Three small, open-source tools: commitclerk (better git commit messages in one command), roadkeep (your docs format as a schema, not a convention) and Claude Code Tray (Claude usage in your Windows tray).">
 <meta property="og:url" content="https://alegauss.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://alegauss.github.io/">
@@ -161,8 +161,14 @@
     box-shadow:0 20px 46px -24px rgba(var(--a-rgb),.55);
   }
   .proj-card.amber{--a:var(--amber);--a-bright:var(--amber-bright);--a-rgb:233,163,58}
+  /* roadkeep's own palette is navy + slate + amber; slate keeps it from
+     reading as a second commitclerk card */
+  .proj-card.slate{--a:#94a3b8;--a-bright:#cbd5e1;--a-rgb:148,163,184}
+  /* three cards in a two-column grid: the newest spans the full row */
+  .proj-card.wide{grid-column:1/-1}
   .proj-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative}
-  .proj-head img{width:52px;height:52px;border-radius:13px;flex:0 0 auto}
+  .proj-head img,.proj-head .mark{width:52px;height:52px;border-radius:13px;flex:0 0 auto}
+  .proj-head .mark{background:#0b1220;border:1px solid var(--line)}
   .proj-head h3{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2}
   .proj-head .kind{color:var(--a-bright);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
   .proj-card p.lead{color:var(--muted);font-size:.98rem;margin-bottom:20px;position:relative}
@@ -223,6 +229,7 @@
     <div class="nav-links">
       <a href="#projects">Projects</a>
       <a href="commitclerk/">commitclerk</a>
+      <a href="roadkeep/">roadkeep</a>
       <a href="claude-tray/">Claude Code Tray</a>
       <a class="btn btn-primary" href="https://github.com/alegauss">GitHub</a>
     </div>
@@ -233,12 +240,12 @@
 <header class="hero" id="top">
   <div class="wrap">
     <img class="hero-icon" src="logo.svg" alt="alegauss logo">
-    <div class="badge"><span class="dot"></span> Open source · Two tools · Zero config</div>
+    <div class="badge"><span class="dot"></span> Open source · Three focused tools</div>
     <h1>Small developer tools<br><span class="grad">that get out of your way.</span></h1>
     <p class="sub">
       I build tiny, focused utilities for the parts of the workflow that quietly waste your
-      attention — writing commit messages and watching your Claude usage. Both are free,
-      open source, and installable in a minute.
+      attention — writing commit messages, keeping a roadmap honest, and watching your Claude
+      usage. All free, open source, and installable in a minute.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Browse the projects</a>
@@ -246,8 +253,8 @@
     </div>
     <div class="pills">
       <span class="pill"><b>commitclerk</b> · git + LLM</span>
+      <span class="pill"><b>roadkeep</b> · docs as a schema</span>
       <span class="pill"><b>Claude Code Tray</b> · Windows</span>
-      <span class="pill">MIT · Apache 2.0</span>
     </div>
   </div>
 </header>
@@ -257,11 +264,48 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">Projects</div>
-      <h2>Two tools, one idea: less friction.</h2>
+      <h2>Three tools, one idea: less friction.</h2>
       <p>Each has its own site with screenshots, install steps, and full documentation.</p>
     </div>
 
     <div class="projects">
+
+      <!-- roadkeep -->
+      <article class="proj-card slate wide reveal">
+        <div class="proj-head">
+          <svg class="mark" viewBox="0 0 160 160" role="img" aria-label="roadkeep logo">
+            <rect fill="#cbd5e1" x="24" y="34"  width="46" height="12" rx="6"/>
+            <rect fill="#cbd5e1" x="24" y="62"  width="72" height="12" rx="6"/>
+            <rect fill="#cbd5e1" x="24" y="90"  width="58" height="12" rx="6"/>
+            <rect fill="#cbd5e1" x="24" y="118" width="90" height="12" rx="6"/>
+            <rect fill="#f59e0b" x="120" y="22" width="8" height="116" rx="4"/>
+            <rect fill="#cbd5e1" opacity=".26" x="136" y="118" width="30" height="12" rx="6"/>
+          </svg>
+          <div>
+            <div class="kind">Docs · CLI · Claude Code plugin</div>
+            <h3>roadkeep</h3>
+          </div>
+        </div>
+        <p class="lead">
+          A CLI that owns the writes to your <code>ROADMAP.md</code>, <code>CHANGELOG.md</code> and
+          <code>IMPROVEMENTS.md</code>, so the format is a schema at the point of insertion instead
+          of a convention the author is asked to remember.
+        </p>
+        <ul class="feat-list">
+          <li><span class="chk">✓</span><span><b>Refused at the write path</b> — a field with a length limit declines before the prose exists; a linter only reports after the tokens are spent.</span></li>
+          <li><span class="chk">✓</span><span><b>Round-trip or don't write</b> — parse → render → byte-identical, or it declines to touch your hand-edited file at all.</span></li>
+          <li><span class="chk">✓</span><span><b>Query instead of read</b> — <code>next-id</code>, <code>deps</code> and <code>origin</code> answer with <code>--json</code> provenance, so a question costs no context.</span></li>
+        </ul>
+        <div class="proj-meta">
+          <span class="tag"><b>Python ≥3.11</b> · zero runtime deps</span>
+          <span class="tag">Ships as a <b>Claude Code plugin</b></span>
+          <span class="tag">Early · <b>8 of 36</b> tasks shipped</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn btn-primary" href="roadkeep/">Visit site →</a>
+          <a class="btn btn-ghost" href="https://github.com/alegauss/roadkeep">GitHub</a>
+        </div>
+      </article>
 
       <!-- commitclerk -->
       <article class="proj-card amber reveal">
@@ -361,6 +405,7 @@
       <a class="foot-brand" href="#top"><img src="logo.svg" alt="">alegauss</a>
       <div class="foot-links">
         <a href="commitclerk/">commitclerk</a>
+        <a href="roadkeep/">roadkeep</a>
         <a href="claude-tray/">Claude Code Tray</a>
         <a href="https://github.com/alegauss">GitHub</a>
       </div>
