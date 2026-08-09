@@ -320,63 +320,10 @@
 
 <script>
   /* ---------------------------------------------------------------
-     Single source of truth. Adding a tool is one entry here — the
-     cards and the footer links both come from this array, and the
-     grid reflows on its own.
+     Projects live in projects.json — that file is the single source
+     of truth. Adding a tool is one entry there; the cards and the
+     footer links both come from it, and the grid reflows on its own.
      --------------------------------------------------------------- */
-  const PROJECTS = [
-    {
-      name: 'usage simulator',
-      kind: 'Web · Cost model',
-      blurb: 'What a Claude Code task really costs, and how far each plan carries you — every coefficient measured from real session transcripts instead of assumed.',
-      tags: ['One HTML file', 'Runs offline', 'Apache 2.0'],
-      site: 'claude-code-usage/',
-      repo: 'https://github.com/alegauss/claude-code-usage',
-      accent: { rgb: '42,120,214', bright: '#5598e7' },
-      mark: `<svg viewBox="0 0 160 160" aria-hidden="true">
-               <rect fill="#2a78d6" x="30" y="86" width="24" height="46" rx="7"/>
-               <rect fill="#5598e7" x="68" y="56" width="24" height="76" rx="7"/>
-               <rect fill="#9ec5f4" x="106" y="26" width="24" height="106" rx="7"/>
-             </svg>`
-    },
-    {
-      name: 'roadkeep',
-      kind: 'Docs · CLI',
-      blurb: 'Owns the writes to your ROADMAP, CHANGELOG and IMPROVEMENTS, so the format is a schema at the point of insertion instead of a convention you have to remember.',
-      tags: ['Python ≥3.11', 'Claude Code plugin', 'Zero deps'],
-      site: 'roadkeep/',
-      repo: 'https://github.com/alegauss/roadkeep',
-      accent: { rgb: '148,163,184', bright: '#cbd5e1' },
-      mark: `<svg viewBox="0 0 160 160" aria-hidden="true">
-               <rect fill="#cbd5e1" x="24" y="34" width="46" height="12" rx="6"/>
-               <rect fill="#cbd5e1" x="24" y="62" width="72" height="12" rx="6"/>
-               <rect fill="#cbd5e1" x="24" y="90" width="58" height="12" rx="6"/>
-               <rect fill="#cbd5e1" x="24" y="118" width="90" height="12" rx="6"/>
-               <rect fill="#f59e0b" x="120" y="22" width="8" height="116" rx="4"/>
-             </svg>`
-    },
-    {
-      name: 'commitclerk',
-      kind: 'Git · CLI',
-      blurb: 'Better git commit messages in one command. It reads your staged diff, asks an LLM for a Conventional Commits message, shows it to you, and commits.',
-      tags: ['~230 lines', 'One file', 'MIT'],
-      site: 'commitclerk/',
-      repo: 'https://github.com/alegauss/commitclerk',
-      accent: { rgb: '233,163,58', bright: '#F7BE63' },
-      logo: 'commitclerk/logo.png'
-    },
-    {
-      name: 'Claude Code Tray',
-      kind: 'Windows · Tray app',
-      blurb: 'Your Claude Code usage, always in the tray. A native Windows monitor that shows your rate-limit percentage as a crisp, DPI-aware icon.',
-      tags: ['.NET 10', 'Windows 10 / 11', 'Apache 2.0'],
-      site: 'claude-tray/',
-      repo: 'https://github.com/alegauss/claude-tray',
-      accent: { rgb: '217,119,87', bright: '#E89070' },
-      logo: 'claude-tray/logo.png'
-    }
-  ];
-
   const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                    <path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
@@ -405,17 +352,38 @@
       </div>
     </article>`;
 
-  document.getElementById('projects-grid').innerHTML = PROJECTS.map(card).join('');
-  document.getElementById('foot-links').insertAdjacentHTML(
-    'afterbegin',
-    PROJECTS.map(p => `<a href="${p.site}">${p.name}</a>`).join('')
-  );
+  const grid = document.getElementById('projects-grid');
+  // in a JS-enabled browser <noscript> is parsed as text, so this hands us the
+  // plain link list as markup — reused if the fetch fails for any reason
+  const fallback = grid.querySelector('noscript')?.textContent ?? '';
 
-  // reveal-on-scroll — runs after the cards exist
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const revealOn = root => {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    },{threshold:.12});
+    root.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  };
+
+  // an async IIFE, not top-level await: that would need type="module", and
+  // module scripts are blocked over file://, taking the fallback down with them
+  (async () => {
+    try {
+      const res = await fetch('projects.json');
+      if (!res.ok) throw new Error(`projects.json: HTTP ${res.status}`);
+      const projects = await res.json();
+
+      grid.innerHTML = projects.map(card).join('');
+      document.getElementById('foot-links').insertAdjacentHTML(
+        'afterbegin',
+        projects.map(p => `<a href="${p.site}">${p.name}</a>`).join('')
+      );
+    } catch (err) {
+      // opening index.html over file:// trips CORS here; the links still work
+      console.error('Falling back to the static project list —', err);
+      grid.innerHTML = fallback;
+    }
+    revealOn(document);  // after the cards exist, so they animate in too
+  })();
 </script>
 </body>
 </html>
