@@ -9,7 +9,7 @@
 <!-- Open Graph / social -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="alegauss — developer tools">
-<meta property="og:description" content="Four small, open-source tools: commitclerk (better git commit messages in one command), roadkeep (your docs format as a schema, not a convention), Claude Code Tray (Claude usage in your Windows tray) and a usage simulator calibrated on real session transcripts.">
+<meta property="og:description" content="Small, open-source developer tools: commitclerk (better git commit messages in one command), roadkeep (your docs format as a schema, not a convention), Claude Code Tray (Claude usage in your Windows tray) and a usage simulator calibrated on real session transcripts.">
 <meta property="og:url" content="https://alegauss.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://alegauss.github.io/">
@@ -21,11 +21,11 @@
 
 <style>
   :root{
-    /* neutral warm base — bridges commitclerk's amber and claude-tray's clay */
+    /* warm base — clay is the single brand accent for all page chrome.
+       Per-project colour lives only on the card's icon tile and hover ring. */
     --clay:#D97757;
     --clay-bright:#E89070;
     --amber:#E9A33A;
-    --amber-bright:#F7BE63;
     --bg:#15100C;
     --bg-2:#1c1510;
     --panel:#221a14;
@@ -34,13 +34,11 @@
     --text:#f4ece4;
     --muted:#b6a596;
     --muted-2:#8a7868;
-    --teal:#2FB894;
     --radius:18px;
     --maxw:1120px;
-    /* per-card accent, overridden on each project card */
-    --a:var(--clay);
-    --a-bright:var(--clay-bright);
+    /* per-card accent; every card overrides these two inline */
     --a-rgb:217,119,87;
+    --a-bright:var(--clay-bright);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -55,17 +53,17 @@
   a{color:inherit;text-decoration:none}
   code,kbd{font-family:'JetBrains Mono',monospace}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .accent{color:var(--clay)}
   /* grid/flex children must be allowed to shrink, or wide content
      pushes the whole page past the viewport on phones */
   .projects>*,.grid>*{min-width:0}
 
-  /* ambient background glow — one warm source per project accent */
+  /* ambient background glow — the page ground, independent of how many
+     projects exist or what colours they carry */
   body::before{
     content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
-      radial-gradient(900px 500px at 82% -5%, rgba(233,163,58,.16), transparent 60%),
-      radial-gradient(760px 560px at -8% 18%, rgba(217,119,87,.18), transparent 58%),
+      radial-gradient(900px 500px at 82% -5%, rgba(233,163,58,.14), transparent 60%),
+      radial-gradient(760px 560px at -8% 18%, rgba(217,119,87,.17), transparent 58%),
       linear-gradient(180deg,var(--bg),var(--bg-2));
   }
 
@@ -90,16 +88,16 @@
     white-space:nowrap;
   }
   .btn-primary{
-    background:linear-gradient(135deg,var(--a),rgba(var(--a-rgb),.62));
-    color:#1a120c;box-shadow:0 8px 24px -8px rgba(var(--a-rgb),.65);
+    background:linear-gradient(135deg,var(--clay),rgba(217,119,87,.62));
+    color:#1a120c;box-shadow:0 8px 24px -8px rgba(217,119,87,.65);
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(var(--a-rgb),.8)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(217,119,87,.8)}
   .btn-ghost{background:var(--panel);color:var(--text);border:1px solid var(--line)}
   .btn-ghost:hover{background:var(--panel-2);transform:translateY(-2px)}
   @media(max-width:760px){.nav-links a:not(.btn){display:none}}
 
   /* ---------- hero ---------- */
-  .hero{padding:84px 0 56px;text-align:center;position:relative}
+  .hero{padding:84px 0 40px;text-align:center;position:relative}
   .badge{
     display:inline-flex;align-items:center;gap:8px;
     padding:7px 15px;border-radius:999px;
@@ -119,82 +117,74 @@
   }
   .hero p.sub{
     font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);
-    max-width:690px;margin:0 auto 34px;line-height:1.55;
+    max-width:660px;margin:0 auto 34px;line-height:1.55;
   }
-  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .hero-icon{
     width:92px;height:92px;border-radius:22px;margin:0 auto 30px;display:block;
     box-shadow:0 24px 60px -18px rgba(217,119,87,.5);animation:float 5s ease-in-out infinite;
   }
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
-  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-  .pill{
-    padding:8px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);
-    font-size:.82rem;color:var(--muted);font-weight:500;
-  }
-  .pill b{color:var(--text)}
-
   /* ---------- section ---------- */
-  section{padding:66px 0;position:relative}
-  .sec-head{text-align:center;max-width:660px;margin:0 auto 46px}
+  section{padding:60px 0;position:relative}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 40px}
   .eyebrow{color:var(--clay);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
   .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-bottom:16px}
   .sec-head p{color:var(--muted);font-size:1.05rem}
 
-  /* ---------- project cards ---------- */
-  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-  @media(max-width:860px){.projects{grid-template-columns:1fr}}
-  .proj-card{
-    display:flex;flex-direction:column;
+  /* ---------- project cards ----------
+     A directory entry, not a landing page: the depth lives on each project's
+     own site. auto-fill means a fifth or ninth tool needs no layout change. */
+  /* min(400px,100%) — a bare 400px floor would force a 400px track on a
+     390px phone and push the page sideways */
+  .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(400px,100%),1fr));gap:18px}
+  .proj{
+    position:relative;display:flex;flex-direction:column;
     background:linear-gradient(180deg,var(--panel),var(--bg-2));
     border:1px solid var(--line);border-radius:var(--radius);
-    padding:30px;position:relative;overflow:hidden;
+    padding:24px;
     transition:transform .2s ease,border-color .2s,box-shadow .25s;
   }
-  .proj-card::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(420px 220px at 88% -12%, rgba(var(--a-rgb),.18), transparent 62%);
-  }
-  .proj-card:hover{
+  .proj:hover,.proj:focus-within{
     transform:translateY(-4px);border-color:rgba(var(--a-rgb),.5);
-    box-shadow:0 20px 46px -24px rgba(var(--a-rgb),.55);
+    box-shadow:0 18px 42px -24px rgba(var(--a-rgb),.6);
   }
-  .proj-card.amber{--a:var(--amber);--a-bright:var(--amber-bright);--a-rgb:233,163,58}
-  /* roadkeep's own palette is navy + slate + amber; slate keeps it from
-     reading as a second commitclerk card */
-  .proj-card.slate{--a:#94a3b8;--a-bright:#cbd5e1;--a-rgb:148,163,184}
-  /* the simulator's plan ramp is a single blue hue; this is its darkest step */
-  .proj-card.blue{--a:#2a78d6;--a-bright:#5598e7;--a-rgb:42,120,214}
-  /* .wide was the fix for an odd card count. With four the grid is even again,
-     so nothing spans — bring it back only if a fifth tool lands. */
-  .proj-card.wide{grid-column:1/-1}
-  .proj-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative}
-  .proj-head img,.proj-head .mark{width:52px;height:52px;border-radius:13px;flex:0 0 auto}
-  .proj-head .mark{background:#0b1220;border:1px solid var(--line)}
-  .proj-head h3{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2}
-  .proj-head .kind{color:var(--a-bright);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-  .proj-card p.lead{color:var(--muted);font-size:.98rem;margin-bottom:20px;position:relative}
-  .feat-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:24px;position:relative}
-  .feat-list li{display:flex;gap:12px;align-items:flex-start;font-size:.94rem}
-  .feat-list .chk{
-    flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
-    background:rgba(var(--a-rgb),.16);color:var(--a-bright);font-size:.75rem;font-weight:800;margin-top:2px;
+  .proj-head{display:flex;align-items:center;gap:13px;margin-bottom:15px}
+  .tile{
+    flex:0 0 auto;width:46px;height:46px;border-radius:12px;overflow:hidden;
+    display:grid;place-items:center;
+    background:rgba(var(--a-rgb),.13);border:1px solid rgba(var(--a-rgb),.32);
   }
-  .feat-list b{color:var(--text)}
-  .feat-list span{color:var(--muted)}
-  .feat-list code{color:var(--a-bright);font-size:.88em}
-  .proj-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;position:relative}
-  .proj-meta .tag{
-    padding:6px 11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);
-    font-size:.78rem;color:var(--muted);font-weight:500;
+  .tile img,.tile svg{width:100%;height:100%;display:block;border-radius:11px}
+  .kind{color:var(--a-bright);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .proj h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+  /* the card is the link: the title anchor is stretched over the whole card,
+     so the GitHub link below has to sit above it */
+  .proj h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+  .proj p{color:var(--muted);font-size:.94rem;line-height:1.58;margin-bottom:16px}
+  .tags{list-style:none;display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+  .tags li{
+    padding:5px 10px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);
+    font-size:.75rem;color:var(--muted);font-weight:500;
   }
-  .proj-meta .tag b{color:var(--text)}
-  .proj-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;position:relative}
+  .proj-foot{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:auto;padding-top:15px;border-top:1px solid var(--line);
+    font-size:.86rem;font-weight:600;
+  }
+  .go{display:inline-flex;align-items:center;gap:7px;color:var(--a-bright)}
+  .go svg{width:13px;height:13px;transition:transform .2s ease}
+  .proj:hover .go svg,.proj:focus-within .go svg{transform:translateX(4px)}
+  .repo{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;color:var(--muted-2);transition:color .2s}
+  .repo:hover{color:var(--text)}
+  .repo svg{width:15px;height:15px;fill:currentColor}
+  /* no-JS fallback list */
+  .fallback{list-style:none;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .fallback a{padding:10px 16px;border-radius:11px;background:var(--panel);border:1px solid var(--line);font-weight:600}
 
   /* ---------- about ---------- */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
   .card{
     background:linear-gradient(180deg,var(--panel),var(--bg-2));
     border:1px solid var(--line);border-radius:var(--radius);padding:26px;
@@ -222,6 +212,12 @@
   /* reveal on scroll */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .hero-icon,.dot{animation:none}
+    .proj:hover,.card:hover,.btn:hover{transform:none}
+  }
 </style>
 </head>
 <body>
@@ -240,23 +236,15 @@
 <header class="hero" id="top">
   <div class="wrap">
     <img class="hero-icon" src="logo.svg" alt="alegauss logo">
-    <div class="badge"><span class="dot"></span> Open source · Four focused tools</div>
+    <div class="badge"><span class="dot"></span> Open source · free · no tracking</div>
     <h1>Small developer tools<br><span class="grad">that get out of your way.</span></h1>
     <p class="sub">
       I build tiny, focused utilities for the parts of the workflow that quietly waste your
-      attention — writing commit messages, keeping a roadmap honest, watching your Claude
-      usage, and knowing what that usage actually costs. All free, open source, and
-      installable in a minute.
+      attention. All free, open source, and installable in a minute.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Browse the projects</a>
       <a class="btn btn-ghost" href="https://github.com/alegauss">⌘ GitHub profile</a>
-    </div>
-    <div class="pills">
-      <span class="pill"><b>commitclerk</b> · git + LLM</span>
-      <span class="pill"><b>roadkeep</b> · docs as a schema</span>
-      <span class="pill"><b>Claude Code Tray</b> · Windows</span>
-      <span class="pill"><b>usage simulator</b> · measured, not guessed</span>
     </div>
   </div>
 </header>
@@ -266,140 +254,19 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">Projects</div>
-      <h2>Four tools, one idea: less friction.</h2>
+      <h2>Small tools, one idea: less friction.</h2>
       <p>Each has its own site with screenshots, install steps, and full documentation.</p>
     </div>
 
-    <div class="projects">
-
-      <!-- claude-code-usage -->
-      <article class="proj-card blue reveal">
-        <div class="proj-head">
-          <svg class="mark" viewBox="0 0 160 160" role="img" aria-label="usage simulator logo">
-            <rect fill="#2a78d6" x="30" y="86"  width="24" height="46" rx="7"/>
-            <rect fill="#5598e7" x="68" y="56"  width="24" height="76" rx="7"/>
-            <rect fill="#9ec5f4" x="106" y="26" width="24" height="106" rx="7"/>
-          </svg>
-          <div>
-            <div class="kind">Web · Cost model</div>
-            <h3>usage simulator</h3>
-          </div>
-        </div>
-        <p class="lead">
-          What a Claude Code task really costs, and how far each plan carries you — with every
-          coefficient measured from real session transcripts instead of assumed.
-        </p>
-        <ul class="feat-list">
-          <li><span class="chk">✓</span><span><b>Calibrated, not invented</b> — 79,377 requests across 1,864 tasks set the cache factor, the calls per task and the fan-out shares.</span></li>
-          <li><span class="chk">✓</span><span><b>The five-hour window</b> — the limit that actually stops your afternoon, not a monthly average that never bites.</span></li>
-          <li><span class="chk">✓</span><span><b>Says what it does not know</b> — the plan budgets are labelled as estimates, because nothing published states one.</span></li>
+    <div class="projects" id="projects-grid">
+      <noscript>
+        <ul class="fallback">
+          <li><a href="claude-code-usage/">usage simulator</a></li>
+          <li><a href="roadkeep/">roadkeep</a></li>
+          <li><a href="commitclerk/">commitclerk</a></li>
+          <li><a href="claude-tray/">Claude Code Tray</a></li>
         </ul>
-        <div class="proj-meta">
-          <span class="tag"><b>One HTML file</b> · no build</span>
-          <span class="tag">No tracking · <b>runs offline</b></span>
-          <span class="tag">Apache 2.0</span>
-        </div>
-        <div class="proj-cta">
-          <a class="btn btn-primary" href="claude-code-usage/">Visit site →</a>
-          <a class="btn btn-ghost" href="https://github.com/alegauss/claude-code-usage">GitHub</a>
-        </div>
-      </article>
-
-      <!-- roadkeep -->
-      <article class="proj-card slate reveal">
-        <div class="proj-head">
-          <svg class="mark" viewBox="0 0 160 160" role="img" aria-label="roadkeep logo">
-            <rect fill="#cbd5e1" x="24" y="34"  width="46" height="12" rx="6"/>
-            <rect fill="#cbd5e1" x="24" y="62"  width="72" height="12" rx="6"/>
-            <rect fill="#cbd5e1" x="24" y="90"  width="58" height="12" rx="6"/>
-            <rect fill="#cbd5e1" x="24" y="118" width="90" height="12" rx="6"/>
-            <rect fill="#f59e0b" x="120" y="22" width="8" height="116" rx="4"/>
-            <rect fill="#cbd5e1" opacity=".26" x="136" y="118" width="30" height="12" rx="6"/>
-          </svg>
-          <div>
-            <div class="kind">Docs · CLI · Claude Code plugin</div>
-            <h3>roadkeep</h3>
-          </div>
-        </div>
-        <p class="lead">
-          A CLI that owns the writes to your <code>ROADMAP.md</code>, <code>CHANGELOG.md</code> and
-          <code>IMPROVEMENTS.md</code>, so the format is a schema at the point of insertion instead
-          of a convention the author is asked to remember.
-        </p>
-        <ul class="feat-list">
-          <li><span class="chk">✓</span><span><b>Refused at the write path</b> — a field with a length limit declines before the prose exists; a linter only reports after the tokens are spent.</span></li>
-          <li><span class="chk">✓</span><span><b>Round-trip or don't write</b> — parse → render → byte-identical, or it declines to touch your hand-edited file at all.</span></li>
-          <li><span class="chk">✓</span><span><b>Query instead of read</b> — <code>next-id</code>, <code>deps</code> and <code>origin</code> answer with <code>--json</code> provenance, so a question costs no context.</span></li>
-        </ul>
-        <div class="proj-meta">
-          <span class="tag"><b>Python ≥3.11</b> · zero runtime deps</span>
-          <span class="tag">Ships as a <b>Claude Code plugin</b></span>
-          <span class="tag">Early · <b>8 of 36</b> tasks shipped</span>
-        </div>
-        <div class="proj-cta">
-          <a class="btn btn-primary" href="roadkeep/">Visit site →</a>
-          <a class="btn btn-ghost" href="https://github.com/alegauss/roadkeep">GitHub</a>
-        </div>
-      </article>
-
-      <!-- commitclerk -->
-      <article class="proj-card amber reveal">
-        <div class="proj-head">
-          <img src="commitclerk/logo.png" alt="commitclerk logo">
-          <div>
-            <div class="kind">Git · CLI</div>
-            <h3>commitclerk</h3>
-          </div>
-        </div>
-        <p class="lead">
-          Better git commit messages in one command. It reads your staged diff, asks an LLM for a
-          Conventional Commits message, shows it to you, and commits.
-        </p>
-        <ul class="feat-list">
-          <li><span class="chk">✓</span><span><b>Conventional Commits 1.0.0</b> — written from the diff, not from your memory.</span></li>
-          <li><span class="chk">✓</span><span><b>One Python file</b>, zero dependencies — drop it on your <code>PATH</code> and go.</span></li>
-          <li><span class="chk">✓</span><span><b>Doc-aware</b> — knows a docs-only change isn't a new feature.</span></li>
-        </ul>
-        <div class="proj-meta">
-          <span class="tag"><b>~230 lines</b> · one file</span>
-          <span class="tag">Any <b>OpenAI</b> chat model</span>
-          <span class="tag">MIT</span>
-        </div>
-        <div class="proj-cta">
-          <a class="btn btn-primary" href="commitclerk/">Visit site →</a>
-          <a class="btn btn-ghost" href="https://github.com/alegauss/commitclerk">GitHub</a>
-        </div>
-      </article>
-
-      <!-- claude-tray -->
-      <article class="proj-card reveal">
-        <div class="proj-head">
-          <img src="claude-tray/logo.png" alt="Claude Code Tray logo">
-          <div>
-            <div class="kind">Windows · Tray app</div>
-            <h3>Claude Code Tray</h3>
-          </div>
-        </div>
-        <p class="lead">
-          Your Claude Code usage, always in the tray. A native Windows monitor that shows your
-          rate-limit percentage as a crisp, DPI-aware icon.
-        </p>
-        <ul class="feat-list">
-          <li><span class="chk">✓</span><span><b>Smart projection</b> — burn rate tells you if you'll hit the limit before the reset.</span></li>
-          <li><span class="chk">✓</span><span><b>24h breakdown</b> — statistics and insights, computed on your own machine.</span></li>
-          <li><span class="chk">✓</span><span><b>Privacy-first, zero config</b> — reads only the usage data Claude Code already writes locally.</span></li>
-        </ul>
-        <div class="proj-meta">
-          <span class="tag"><b>.NET 10</b> · WinForms</span>
-          <span class="tag">Windows <b>10 / 11</b></span>
-          <span class="tag">Apache 2.0</span>
-        </div>
-        <div class="proj-cta">
-          <a class="btn btn-primary" href="claude-tray/">Visit site →</a>
-          <a class="btn btn-ghost" href="https://github.com/alegauss/claude-tray">GitHub</a>
-        </div>
-      </article>
-
+      </noscript>
     </div>
   </div>
 </section>
@@ -438,11 +305,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <a class="foot-brand" href="#top"><img src="logo.svg" alt="">alegauss</a>
-      <div class="foot-links">
-        <a href="commitclerk/">commitclerk</a>
-        <a href="roadkeep/">roadkeep</a>
-        <a href="claude-tray/">Claude Code Tray</a>
-        <a href="claude-code-usage/">usage simulator</a>
+      <!-- project links are injected here from PROJECTS; the fat footer is the
+           full site index, unlike the nav which only points at the section -->
+      <div class="foot-links" id="foot-links">
         <a href="https://github.com/alegauss">GitHub</a>
       </div>
     </div>
@@ -454,7 +319,99 @@
 </footer>
 
 <script>
-  // reveal-on-scroll
+  /* ---------------------------------------------------------------
+     Single source of truth. Adding a tool is one entry here — the
+     cards and the footer links both come from this array, and the
+     grid reflows on its own.
+     --------------------------------------------------------------- */
+  const PROJECTS = [
+    {
+      name: 'usage simulator',
+      kind: 'Web · Cost model',
+      blurb: 'What a Claude Code task really costs, and how far each plan carries you — every coefficient measured from real session transcripts instead of assumed.',
+      tags: ['One HTML file', 'Runs offline', 'Apache 2.0'],
+      site: 'claude-code-usage/',
+      repo: 'https://github.com/alegauss/claude-code-usage',
+      accent: { rgb: '42,120,214', bright: '#5598e7' },
+      mark: `<svg viewBox="0 0 160 160" aria-hidden="true">
+               <rect fill="#2a78d6" x="30" y="86" width="24" height="46" rx="7"/>
+               <rect fill="#5598e7" x="68" y="56" width="24" height="76" rx="7"/>
+               <rect fill="#9ec5f4" x="106" y="26" width="24" height="106" rx="7"/>
+             </svg>`
+    },
+    {
+      name: 'roadkeep',
+      kind: 'Docs · CLI',
+      blurb: 'Owns the writes to your ROADMAP, CHANGELOG and IMPROVEMENTS, so the format is a schema at the point of insertion instead of a convention you have to remember.',
+      tags: ['Python ≥3.11', 'Claude Code plugin', 'Zero deps'],
+      site: 'roadkeep/',
+      repo: 'https://github.com/alegauss/roadkeep',
+      accent: { rgb: '148,163,184', bright: '#cbd5e1' },
+      mark: `<svg viewBox="0 0 160 160" aria-hidden="true">
+               <rect fill="#cbd5e1" x="24" y="34" width="46" height="12" rx="6"/>
+               <rect fill="#cbd5e1" x="24" y="62" width="72" height="12" rx="6"/>
+               <rect fill="#cbd5e1" x="24" y="90" width="58" height="12" rx="6"/>
+               <rect fill="#cbd5e1" x="24" y="118" width="90" height="12" rx="6"/>
+               <rect fill="#f59e0b" x="120" y="22" width="8" height="116" rx="4"/>
+             </svg>`
+    },
+    {
+      name: 'commitclerk',
+      kind: 'Git · CLI',
+      blurb: 'Better git commit messages in one command. It reads your staged diff, asks an LLM for a Conventional Commits message, shows it to you, and commits.',
+      tags: ['~230 lines', 'One file', 'MIT'],
+      site: 'commitclerk/',
+      repo: 'https://github.com/alegauss/commitclerk',
+      accent: { rgb: '233,163,58', bright: '#F7BE63' },
+      logo: 'commitclerk/logo.png'
+    },
+    {
+      name: 'Claude Code Tray',
+      kind: 'Windows · Tray app',
+      blurb: 'Your Claude Code usage, always in the tray. A native Windows monitor that shows your rate-limit percentage as a crisp, DPI-aware icon.',
+      tags: ['.NET 10', 'Windows 10 / 11', 'Apache 2.0'],
+      site: 'claude-tray/',
+      repo: 'https://github.com/alegauss/claude-tray',
+      accent: { rgb: '217,119,87', bright: '#E89070' },
+      logo: 'claude-tray/logo.png'
+    }
+  ];
+
+  const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                   <path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+  const GH = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29
+                6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01
+                1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+                0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0
+                1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87
+                3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16
+                8c0-4.42-3.58-8-8-8z"/></svg>`;
+
+  const card = p => `
+    <article class="proj reveal" style="--a-rgb:${p.accent.rgb};--a-bright:${p.accent.bright}">
+      <div class="proj-head">
+        <span class="tile">${p.logo ? `<img src="${p.logo}" alt="">` : p.mark}</span>
+        <div>
+          <div class="kind">${p.kind}</div>
+          <h3><a href="${p.site}">${p.name}</a></h3>
+        </div>
+      </div>
+      <p>${p.blurb}</p>
+      <ul class="tags">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+      <div class="proj-foot">
+        <span class="go">Open site ${ARROW}</span>
+        <a class="repo" href="${p.repo}" aria-label="${p.name} on GitHub">${GH} GitHub</a>
+      </div>
+    </article>`;
+
+  document.getElementById('projects-grid').innerHTML = PROJECTS.map(card).join('');
+  document.getElementById('foot-links').insertAdjacentHTML(
+    'afterbegin',
+    PROJECTS.map(p => `<a href="${p.site}">${p.name}</a>`).join('')
+  );
+
+  // reveal-on-scroll — runs after the cards exist
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
   },{threshold:.12});
