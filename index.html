@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>alegauss — small developer tools that get out of your way</title>
-<meta name="description" content="Open-source developer tools by Alexandre Oliveira: commitclerk writes your git commit messages from the staged diff, roadkeep enforces your ROADMAP and CHANGELOG format at the write path, and Claude Code Tray keeps your Claude usage in the Windows tray.">
+<meta name="description" content="Open-source developer tools by Alexandre Oliveira: commitclerk writes your git commit messages from the staged diff, roadkeep enforces your ROADMAP and CHANGELOG format at the write path, Claude Code Tray keeps your Claude usage in the Windows tray, and the usage simulator models what a Claude Code task really costs.">
 
 <!-- Open Graph / social -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="alegauss — developer tools">
-<meta property="og:description" content="Three small, open-source tools: commitclerk (better git commit messages in one command), roadkeep (your docs format as a schema, not a convention) and Claude Code Tray (Claude usage in your Windows tray).">
+<meta property="og:description" content="Four small, open-source tools: commitclerk (better git commit messages in one command), roadkeep (your docs format as a schema, not a convention), Claude Code Tray (Claude usage in your Windows tray) and a usage simulator calibrated on real session transcripts.">
 <meta property="og:url" content="https://alegauss.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://alegauss.github.io/">
@@ -164,7 +164,10 @@
   /* roadkeep's own palette is navy + slate + amber; slate keeps it from
      reading as a second commitclerk card */
   .proj-card.slate{--a:#94a3b8;--a-bright:#cbd5e1;--a-rgb:148,163,184}
-  /* three cards in a two-column grid: the newest spans the full row */
+  /* the simulator's plan ramp is a single blue hue; this is its darkest step */
+  .proj-card.blue{--a:#2a78d6;--a-bright:#5598e7;--a-rgb:42,120,214}
+  /* .wide was the fix for an odd card count. With four the grid is even again,
+     so nothing spans — bring it back only if a fifth tool lands. */
   .proj-card.wide{grid-column:1/-1}
   .proj-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative}
   .proj-head img,.proj-head .mark{width:52px;height:52px;border-radius:13px;flex:0 0 auto}
@@ -231,6 +234,7 @@
       <a href="commitclerk/">commitclerk</a>
       <a href="roadkeep/">roadkeep</a>
       <a href="claude-tray/">Claude Code Tray</a>
+      <a href="claude-code-usage/">usage simulator</a>
       <a class="btn btn-primary" href="https://github.com/alegauss">GitHub</a>
     </div>
   </div>
@@ -240,12 +244,13 @@
 <header class="hero" id="top">
   <div class="wrap">
     <img class="hero-icon" src="logo.svg" alt="alegauss logo">
-    <div class="badge"><span class="dot"></span> Open source · Three focused tools</div>
+    <div class="badge"><span class="dot"></span> Open source · Four focused tools</div>
     <h1>Small developer tools<br><span class="grad">that get out of your way.</span></h1>
     <p class="sub">
       I build tiny, focused utilities for the parts of the workflow that quietly waste your
-      attention — writing commit messages, keeping a roadmap honest, and watching your Claude
-      usage. All free, open source, and installable in a minute.
+      attention — writing commit messages, keeping a roadmap honest, watching your Claude
+      usage, and knowing what that usage actually costs. All free, open source, and
+      installable in a minute.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Browse the projects</a>
@@ -255,6 +260,7 @@
       <span class="pill"><b>commitclerk</b> · git + LLM</span>
       <span class="pill"><b>roadkeep</b> · docs as a schema</span>
       <span class="pill"><b>Claude Code Tray</b> · Windows</span>
+      <span class="pill"><b>usage simulator</b> · measured, not guessed</span>
     </div>
   </div>
 </header>
@@ -264,14 +270,47 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">Projects</div>
-      <h2>Three tools, one idea: less friction.</h2>
+      <h2>Four tools, one idea: less friction.</h2>
       <p>Each has its own site with screenshots, install steps, and full documentation.</p>
     </div>
 
     <div class="projects">
 
+      <!-- claude-code-usage -->
+      <article class="proj-card blue reveal">
+        <div class="proj-head">
+          <svg class="mark" viewBox="0 0 160 160" role="img" aria-label="usage simulator logo">
+            <rect fill="#2a78d6" x="30" y="86"  width="24" height="46" rx="7"/>
+            <rect fill="#5598e7" x="68" y="56"  width="24" height="76" rx="7"/>
+            <rect fill="#9ec5f4" x="106" y="26" width="24" height="106" rx="7"/>
+          </svg>
+          <div>
+            <div class="kind">Web · Cost model</div>
+            <h3>usage simulator</h3>
+          </div>
+        </div>
+        <p class="lead">
+          What a Claude Code task really costs, and how far each plan carries you — with every
+          coefficient measured from real session transcripts instead of assumed.
+        </p>
+        <ul class="feat-list">
+          <li><span class="chk">✓</span><span><b>Calibrated, not invented</b> — 79,377 requests across 1,864 tasks set the cache factor, the calls per task and the fan-out shares.</span></li>
+          <li><span class="chk">✓</span><span><b>The five-hour window</b> — the limit that actually stops your afternoon, not a monthly average that never bites.</span></li>
+          <li><span class="chk">✓</span><span><b>Says what it does not know</b> — the plan budgets are labelled as estimates, because nothing published states one.</span></li>
+        </ul>
+        <div class="proj-meta">
+          <span class="tag"><b>One HTML file</b> · no build</span>
+          <span class="tag">No tracking · <b>runs offline</b></span>
+          <span class="tag">Apache 2.0</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn btn-primary" href="claude-code-usage/">Visit site →</a>
+          <a class="btn btn-ghost" href="https://github.com/alegauss/claude-code-usage">GitHub</a>
+        </div>
+      </article>
+
       <!-- roadkeep -->
-      <article class="proj-card slate wide reveal">
+      <article class="proj-card slate reveal">
         <div class="proj-head">
           <svg class="mark" viewBox="0 0 160 160" role="img" aria-label="roadkeep logo">
             <rect fill="#cbd5e1" x="24" y="34"  width="46" height="12" rx="6"/>
@@ -407,6 +446,7 @@
         <a href="commitclerk/">commitclerk</a>
         <a href="roadkeep/">roadkeep</a>
         <a href="claude-tray/">Claude Code Tray</a>
+        <a href="claude-code-usage/">usage simulator</a>
         <a href="https://github.com/alegauss">GitHub</a>
       </div>
     </div>
