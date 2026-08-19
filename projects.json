@@ -10,6 +10,17 @@
     "mark": "<svg viewBox=\"0 0 160 160\" aria-hidden=\"true\"><rect fill=\"#2a78d6\" x=\"30\" y=\"86\" width=\"24\" height=\"46\" rx=\"7\"/><rect fill=\"#5598e7\" x=\"68\" y=\"56\" width=\"24\" height=\"76\" rx=\"7\"/><rect fill=\"#9ec5f4\" x=\"106\" y=\"26\" width=\"24\" height=\"106\" rx=\"7\"/></svg>"
   },
   {
+    "name": "time study",
+    "kind": "Report · Time analysis",
+    "blurb": "Where the hours actually went on an AI-assisted project. Every hour is attributed from session records and git history, and the counterfactual is shown as two adjustable models rather than asserted as a number.",
+    "tags": ["Session logs + git", "One developer", "Assumptions visible"],
+    "site": "claude-code-time-study/",
+    "repo": "https://github.com/alegauss/claude-code-time-study",
+    "cta": "Read the report",
+    "accent": { "rgb": "47,184,148", "bright": "#5BD4B4" },
+    "mark": "<svg viewBox=\"0 0 160 160\" aria-hidden=\"true\"><circle cx=\"80\" cy=\"80\" r=\"50\" fill=\"none\" stroke=\"#5BD4B4\" stroke-width=\"12\"/><path d=\"M80 48 V82 H106\" fill=\"none\" stroke=\"#2FB894\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+  },
+  {
     "name": "roadkeep",
     "kind": "Docs · CLI",
     "blurb": "Owns the writes to your ROADMAP, CHANGELOG and IMPROVEMENTS, so the format is a schema at the point of insertion instead of a convention you have to remember.",
@@ -38,5 +49,15 @@
     "repo": "https://github.com/alegauss/claude-tray",
     "accent": { "rgb": "217,119,87", "bright": "#E89070" },
     "logo": "claude-tray/logo.png"
+  },
+  {
+    "name": "FreeWilly",
+    "kind": "Windows · Desktop app",
+    "blurb": "Docker on Windows without Docker Desktop: upstream Moby in a WSL2 distro it owns, the docker_engine pipe your tools already look for, and one window of containers.",
+    "tags": [".NET 10", "In development", "No licence fee"],
+    "site": "freewilly/",
+    "repo": "https://github.com/alegauss/freewilly",
+    "accent": { "rgb": "46,155,214", "bright": "#67C3F2" },
+    "logo": "freewilly/logo.svg"
   }
 ]
