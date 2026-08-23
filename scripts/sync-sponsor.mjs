@@ -78,8 +78,8 @@ function renderBlock(assetPrefix) {
       <span class="sponsor-label">${esc(sponsor.label)}</span>
       <a class="sponsor-name" href="${esc(sponsor.url)}" target="_blank" rel="noopener">${esc(sponsor.name)}</a>
       <p>
-        ${esc(sponsor.summary)} Both Apache 2.0 and self-hostable, on
-        <a href="${esc(sponsor.github)}" target="_blank" rel="noopener">github.com/openviglet</a>.
+        ${esc(sponsor.summary)} More at
+        <a href="${esc(sponsor.url)}" target="_blank" rel="noopener">${esc(sponsor.siteLabel)}</a>.
       </p>
       <div class="sponsor-products">
 ${products}
