@@ -1,0 +1,93 @@
+{
+  "$comment": [
+    "Canonical sponsor declaration for the alegauss projects — the single source of truth,",
+    "in the same spirit as projects.json.",
+    "",
+    "HOW IT IS CONSUMED: not by a runtime fetch. Each site carries the sponsor as STATIC",
+    "markup between `<!-- sponsor:start -->` and `<!-- sponsor:end -->`, generated from this",
+    "file by scripts/sync-sponsor.mjs. That is deliberate: the point of naming a sponsor is",
+    "to be read by search engines and LLMs, and content injected by JavaScript after load is",
+    "largely invisible to them. Fetching this file at runtime would move the sponsor out of",
+    "the indexable HTML and defeat the purpose.",
+    "",
+    "TO UPDATE: edit this file, then run `node scripts/sync-sponsor.mjs` (add --check in CI",
+    "to fail when a site has drifted). Repos outside GitHub Pages keep their own copy of the",
+    "same text — cursarei, for instance, holds it in src/lib/viglet.ts."
+  ],
+  "sponsor": {
+    "name": "Viglet",
+    "url": "https://www.viglet.org",
+    "github": "https://github.com/openviglet",
+    "logo": "viglet/viglet-logo.png",
+    "label": "Sponsored by",
+    "summary": "Open source software for search and content."
+  },
+  "products": [
+    {
+      "id": "turing",
+      "name": "Viglet Turing ES",
+      "url": "https://turing.viglet.org",
+      "docs": "https://docs.viglet.org/turing/",
+      "github": "https://github.com/openviglet/turing-ce",
+      "logo": "viglet/turing-logo.png",
+      "tagline": "Open source enterprise search with generative AI",
+      "description": "Enterprise search with semantic navigation, faceted browsing, hybrid retrieval (vector + BM25), RAG and AI agents grounded in indexed content, with a pluggable engine (Apache Solr, Elasticsearch or Lucene). Apache 2.0, self-hostable.",
+      "license": "Apache-2.0",
+      "inline": "enterprise search with semantic navigation, hybrid retrieval (vector + BM25) and generative AI (RAG)"
+    },
+    {
+      "id": "shio",
+      "name": "Viglet Shio CMS",
+      "url": "https://shio.viglet.org",
+      "docs": "https://docs.viglet.org/shio/",
+      "github": "https://github.com/openviglet/shio-ce",
+      "logo": "viglet/shio-logo.png",
+      "tagline": "The open source headless CMS built for coding agents",
+      "description": "Headless CMS whose primary operator is a coding agent: authoring over MCP and content as files, curator approval in a React console, and delivery through a Content Delivery API (REST and GraphQL, with TypeScript SDKs). Apache 2.0, self-hostable.",
+      "license": "Apache-2.0",
+      "inline": "the headless CMS built for coding agents"
+    },
+    {
+      "id": "dumont",
+      "name": "Viglet Dumont",
+      "url": "https://github.com/openviglet/dumont",
+      "github": "https://github.com/openviglet/dumont-ce",
+      "logo": "viglet/dumont-logo.png",
+      "tagline": "Content connectors for Viglet Turing ES",
+      "description": "The connector layer of the Viglet ecosystem: collects content from websites, databases, file systems and CMSs, and publishes it into the Viglet Turing ES index. Apache 2.0, self-hostable.",
+      "license": "Apache-2.0",
+      "inline": "content connectors that feed the Turing index"
+    }
+  ],
+  "targets": [
+    {
+      "repo": "alegauss.github.io",
+      "file": "index.html",
+      "assetPrefix": "viglet/"
+    },
+    {
+      "repo": "claude-code-usage",
+      "file": "index.html",
+      "assetPrefix": "viglet/"
+    },
+    {
+      "repo": "claude-tray",
+      "file": "docs/index.html",
+      "assetPrefix": "viglet/"
+    },
+    {
+      "repo": "roadkeep",
+      "file": "docs/index.html",
+      "assetPrefix": "viglet/"
+    },
+    {
+      "repo": "development-time",
+      "file": "build_report.py",
+      "assetPrefix": "viglet/"
+    }
+  ],
+  "inlineProducts": [
+    "turing",
+    "shio"
+  ]
+}
