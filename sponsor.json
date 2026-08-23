@@ -86,6 +86,11 @@
       "repo": "development-time",
       "file": "build_report.py",
       "assetPrefix": "viglet/"
+    },
+    {
+      "repo": "ai-commit",
+      "file": "docs/index.html",
+      "assetPrefix": "viglet/"
     }
   ],
   "inlineProducts": [
