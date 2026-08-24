@@ -59,5 +59,15 @@
     "repo": "https://github.com/alegauss/freewilly",
     "accent": { "rgb": "46,155,214", "bright": "#67C3F2" },
     "logo": "freewilly/logo.svg"
+  },
+  {
+    "name": "winwright",
+    "kind": "Windows · Test framework",
+    "blurb": "Drive a Windows desktop app from a test and report what was actually observed. Four verdicts rather than two, so a check that never ran is never reported as one that passed.",
+    "tags": [".NET 10", "Windows only", "Zero deps"],
+    "site": "winwright/",
+    "repo": "https://github.com/alegauss/winwright",
+    "accent": { "rgb": "111,92,240", "bright": "#a396ff" },
+    "logo": "winwright/logo.svg"
   }
 ]
