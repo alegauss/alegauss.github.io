@@ -8,6 +8,7 @@ Sitemap: https://alegauss.github.io/sitemap.xml
 Sitemap: https://alegauss.github.io/mini-gpt/sitemap.xml
 Sitemap: https://alegauss.github.io/claude-code-usage/sitemap.xml
 Sitemap: https://alegauss.github.io/roadkeep/sitemap.xml
+Sitemap: https://alegauss.github.io/commitclerk/sitemap.xml
 Sitemap: https://alegauss.github.io/claude-tray/sitemap.xml
 Sitemap: https://alegauss.github.io/freewilly/sitemap.xml
 Sitemap: https://alegauss.github.io/winwright/sitemap.xml
