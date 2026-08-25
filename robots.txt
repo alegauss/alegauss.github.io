@@ -1,9 +1,9 @@
 User-agent: *
 Allow: /
 
-# robots.txt so vale na raiz do host, entao os sitemaps dos sub-sites
-# (alegauss.github.io/<projeto>/sitemap.xml) precisam ser listados aqui —
-# um Sitemap: dentro de /projeto/robots.txt e ignorado pelos crawlers.
+# robots.txt is only read at the host root, so each sub-site's sitemap
+# (alegauss.github.io/<project>/sitemap.xml) has to be listed here — a
+# Sitemap: line inside /project/robots.txt is ignored by crawlers.
 Sitemap: https://alegauss.github.io/sitemap.xml
 Sitemap: https://alegauss.github.io/mini-gpt/sitemap.xml
 Sitemap: https://alegauss.github.io/claude-code-usage/sitemap.xml
