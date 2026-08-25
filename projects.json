@@ -1,5 +1,15 @@
 [
   {
+    "name": "mini-gpt",
+    "kind": "Java · Teaching project",
+    "blurb": "A character-level GPT written from scratch in plain Java, with no ML library at all: counting bigrams, then backpropagation derived by hand, then a small transformer. The site teaches it in Portuguese, with the maths on screen and four demos that run in the browser.",
+    "tags": ["Java 21", "No ML libraries", "In Portuguese"],
+    "site": "mini-gpt/",
+    "repo": "https://github.com/alegauss/mini-gpt",
+    "accent": { "rgb": "109,74,255", "bright": "#8b6bff" },
+    "logo": "mini-gpt/logo.svg"
+  },
+  {
     "name": "usage simulator",
     "kind": "Web · Cost model",
     "blurb": "What a Claude Code task really costs, and how far each plan carries you — every coefficient measured from real session transcripts instead of assumed.",

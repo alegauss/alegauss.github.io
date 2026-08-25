@@ -1,8 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(NODE_PATH=\"C:/Users/alexa/AppData/Local/npm-cache/_npx/db89d7302a373f10/node_modules\" node shot2.js \"C:/Users/alexa/AppData/Local/Temp/claude/d--Git-alegauss-alegauss-github-io/0f4ff988-3093-4636-9d0f-4c52feba36a2/scratchpad\")",
-      "Bash(curl -s \"https://alegauss.github.io/freewilly/logo.svg\")"
+      "Bash(*)"
     ]
   }
 }
