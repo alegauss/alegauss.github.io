@@ -1,5 +1,15 @@
 [
   {
+    "name": "PPortal",
+    "kind": "Windows · Desktop app",
+    "blurb": "PlayStation Remote Play as a Windows app: WPF on the system Fluent theme, ten-bit colour composed by DirectComposition, and hardware decode on the card the machine already has. It reads the consoles and pairings you set up before, so the first run is not a setup.",
+    "tags": [".NET 10", "Windows 10 / 11", "AGPL-3.0"],
+    "site": "pportal/",
+    "repo": "https://github.com/alegauss/pportal",
+    "accent": { "rgb": "91,108,249", "bright": "#8f9dff" },
+    "logo": "pportal/logo.svg"
+  },
+  {
     "name": "mini-gpt",
     "kind": "Java · Teaching project",
     "blurb": "A character-level GPT written from scratch in plain Java, with no ML library at all: counting bigrams, then backpropagation derived by hand, then a small transformer. The site teaches it in Portuguese, with the maths on screen and four demos that run in the browser.",

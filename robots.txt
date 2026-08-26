@@ -5,6 +5,7 @@ Allow: /
 # (alegauss.github.io/<project>/sitemap.xml) has to be listed here — a
 # Sitemap: line inside /project/robots.txt is ignored by crawlers.
 Sitemap: https://alegauss.github.io/sitemap.xml
+Sitemap: https://alegauss.github.io/pportal/sitemap.xml
 Sitemap: https://alegauss.github.io/mini-gpt/sitemap.xml
 Sitemap: https://alegauss.github.io/claude-code-usage/sitemap.xml
 Sitemap: https://alegauss.github.io/roadkeep/sitemap.xml
