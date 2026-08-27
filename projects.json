@@ -1,17 +1,16 @@
 [
   {
-    "name": "PPortal",
+    "name": "Claude Code Tray",
     "group": "apps",
-    "kind": "Windows · Desktop app",
-    "blurb": "PlayStation Remote Play as a real Windows app — ten-bit colour, hardware decode on the card you already have, and no setup on first run.",
-    "pitch": "Sony ships Remote Play for Windows as an afterthought. This is what it should have been: WPF on the system Fluent theme, ten-bit colour composed by DirectComposition, and hardware decode on the card the machine already has. It reads the consoles and pairings you set up before, so the first run is not a setup.",
-    "shot": "pportal/og.png",
-    "cta": "Open the site",
-    "tags": [".NET 10", "Windows 10 / 11", "AGPL-3.0"],
-    "site": "pportal/",
-    "repo": "https://github.com/alegauss/pportal",
-    "accent": { "rgb": "91,108,249", "bright": "#8f9dff" },
-    "logo": "pportal/logo.svg"
+    "kind": "Windows · Tray app",
+    "blurb": "Your Claude Code rate-limit percentage, always in the tray, as a crisp DPI-aware icon.",
+    "pitch": "Claude Code will tell you your rate-limit percentage if you stop and ask it. This puts the number where you already glance: a native tray icon that redraws itself crisply at any DPI and updates on its own. It reads the session files already on your disk, so there is no account and no service.",
+    "shot": "claude-tray/og.png",
+    "tags": [".NET 10", "Windows 10 / 11", "Apache 2.0"],
+    "site": "claude-tray/",
+    "repo": "https://github.com/alegauss/claude-tray",
+    "accent": { "rgb": "217,119,87", "bright": "#E89070" },
+    "logo": "claude-tray/logo.png"
   },
   {
     "name": "FreeWilly",
@@ -27,17 +26,18 @@
     "logo": "freewilly/logo.svg"
   },
   {
-    "name": "Claude Code Tray",
+    "name": "PPortal",
     "group": "apps",
-    "kind": "Windows · Tray app",
-    "blurb": "Your Claude Code rate-limit percentage, always in the tray, as a crisp DPI-aware icon.",
-    "pitch": "Claude Code will tell you your rate-limit percentage if you stop and ask it. This puts the number where you already glance: a native tray icon that redraws itself crisply at any DPI and updates on its own. It reads the session files already on your disk, so there is no account and no service.",
-    "shot": "claude-tray/og.png",
-    "tags": [".NET 10", "Windows 10 / 11", "Apache 2.0"],
-    "site": "claude-tray/",
-    "repo": "https://github.com/alegauss/claude-tray",
-    "accent": { "rgb": "217,119,87", "bright": "#E89070" },
-    "logo": "claude-tray/logo.png"
+    "kind": "Windows · Desktop app",
+    "blurb": "PlayStation Remote Play as a real Windows app — ten-bit colour, hardware decode on the card you already have, and no setup on first run.",
+    "pitch": "Sony ships Remote Play for Windows as an afterthought. This is what it should have been: WPF on the system Fluent theme, ten-bit colour composed by DirectComposition, and hardware decode on the card the machine already has. It reads the consoles and pairings you set up before, so the first run is not a setup.",
+    "shot": "pportal/og.png",
+    "cta": "Open the site",
+    "tags": [".NET 10", "Windows 10 / 11", "AGPL-3.0"],
+    "site": "pportal/",
+    "repo": "https://github.com/alegauss/pportal",
+    "accent": { "rgb": "91,108,249", "bright": "#8f9dff" },
+    "logo": "pportal/logo.svg"
   },
   {
     "name": "roadkeep",
@@ -45,7 +45,7 @@
     "kind": "Docs · CLI",
     "blurb": "Owns the writes to your ROADMAP, CHANGELOG and IMPROVEMENTS, so the format is a schema at insertion instead of a convention you remember.",
     "pitch": "A ROADMAP and a CHANGELOG are formats held together by convention, so they drift the moment someone is in a hurry — or the moment an agent writes to them. roadkeep owns the writes: an entry goes in through a command that checks its shape at the point of insertion, which makes the file a schema rather than a habit.",
-    "shot": "",
+    "shot": "roadkeep/assets/og.png",
     "tags": ["Python ≥3.11", "Claude Code plugin", "Zero deps"],
     "site": "roadkeep/",
     "repo": "https://github.com/alegauss/roadkeep",
@@ -58,7 +58,7 @@
     "kind": "Git · CLI",
     "blurb": "Reads your staged diff, asks an LLM for a Conventional Commits message, shows it to you, and commits.",
     "pitch": "One command between your staged diff and a commit. It reads the diff, asks an LLM for a Conventional Commits message, shows it to you, and commits once you agree. About 230 lines in a single file, so you can read the whole thing before trusting it with your history.",
-    "shot": "",
+    "shot": "commitclerk/og.png",
     "tags": ["~230 lines", "One file", "MIT"],
     "site": "commitclerk/",
     "repo": "https://github.com/alegauss/commitclerk",
@@ -77,6 +77,20 @@
     "repo": "https://github.com/alegauss/winwright",
     "accent": { "rgb": "111,92,240", "bright": "#a396ff" },
     "logo": "winwright/logo.svg"
+  },
+  {
+    "name": "Mini GPT",
+    "group": "measured",
+    "kind": "Java · Teaching project",
+    "blurb": "A character-level GPT written from scratch in plain Java with no ML library at all — bigrams, then backprop by hand, then a small transformer.",
+    "pitch": "A character-level GPT written from scratch in plain Java, with no ML library at all: counting bigrams first, then backpropagation derived by hand, then a small transformer. The course is in Portuguese, with the maths on screen and four demos that run in the browser.",
+    "shot": "mini-gpt/og.png",
+    "cta": "Start the course",
+    "tags": ["Java 21", "No ML libraries", "In Portuguese"],
+    "site": "mini-gpt/",
+    "repo": "https://github.com/alegauss/mini-gpt",
+    "accent": { "rgb": "109,74,255", "bright": "#8b6bff" },
+    "logo": "mini-gpt/logo.svg"
   },
   {
     "name": "Usage Simulator",
@@ -98,26 +112,12 @@
     "kind": "Report · Time analysis",
     "blurb": "Where the hours actually went on an AI-assisted project, attributed from session records and git history rather than recalled.",
     "pitch": "Everyone has an opinion about how much time AI-assisted development saves, and almost nobody kept records. This attributes every hour of one project from session logs and git history, then shows the counterfactual as two adjustable models instead of asserting a single figure you would have to take on trust.",
-    "shot": "",
+    "shot": "claude-code-time-study/og.png",
     "cta": "Read the report",
     "tags": ["Logs + git", "One developer", "Assumptions shown"],
     "site": "claude-code-time-study/",
     "repo": "https://github.com/alegauss/claude-code-time-study",
     "accent": { "rgb": "47,184,148", "bright": "#5BD4B4" },
     "mark": "<svg viewBox=\"0 0 160 160\" aria-hidden=\"true\"><circle cx=\"80\" cy=\"80\" r=\"50\" fill=\"none\" stroke=\"#5BD4B4\" stroke-width=\"12\"/><path d=\"M80 48 V82 H106\" fill=\"none\" stroke=\"#2FB894\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
-  },
-  {
-    "name": "Mini GPT",
-    "group": "measured",
-    "kind": "Java · Teaching project",
-    "blurb": "A character-level GPT written from scratch in plain Java with no ML library at all — bigrams, then backprop by hand, then a small transformer.",
-    "pitch": "A character-level GPT written from scratch in plain Java, with no ML library at all: counting bigrams first, then backpropagation derived by hand, then a small transformer. The course is in Portuguese, with the maths on screen and four demos that run in the browser.",
-    "shot": "mini-gpt/og.png",
-    "cta": "Start the course",
-    "tags": ["Java 21", "No ML libraries", "In Portuguese"],
-    "site": "mini-gpt/",
-    "repo": "https://github.com/alegauss/mini-gpt",
-    "accent": { "rgb": "109,74,255", "bright": "#8b6bff" },
-    "logo": "mini-gpt/logo.svg"
   }
 ]
