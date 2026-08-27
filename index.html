@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>alegauss — small developer tools that get out of your way</title>
-<!-- deliberately not a list of the tools: an enumeration here goes stale every
-     time a project is added, renamed or retired -->
-<meta name="description" content="Open-source developer tools and write-ups by Alexandre Oliveira — small, focused utilities for git, docs, Docker on Windows and Claude Code usage, plus a measured study of where development time actually goes.">
+<title>alegauss — software that shows its work</title>
+<!-- deliberately not a list of the projects: an enumeration here goes stale every
+     time one is added, renamed or retired. It describes the three kinds instead. -->
+<meta name="description" content="Open-source Windows apps, command-line tools and measured write-ups by Alexandre Oliveira — the small thing the platform should have shipped, plus numbers taken from records rather than guessed at.">
 
 <!-- Open Graph / social -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="alegauss — developer tools">
-<meta property="og:description" content="Small, open-source developer tools for git, docs, Docker on Windows and Claude Code usage — plus a report on where development time actually goes, measured from session records rather than guessed.">
+<meta property="og:title" content="alegauss — software that shows its work">
+<meta property="og:description" content="Windows desktop apps, terminal tools and measured write-ups — free and open source. Built on one idea: you should be able to see what the software is doing, and check the numbers yourself.">
 <meta property="og:url" content="https://alegauss.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://alegauss.github.io/">
@@ -135,9 +135,80 @@
   .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-bottom:16px}
   .sec-head p{color:var(--muted);font-size:1.05rem}
 
+  /* ---------- featured spotlight ----------
+     One project, chosen by hand in projects.json, given the weight a card
+     cannot carry. Deliberately NOT a carousel: a rotating panel shows one
+     project in the space where the grid below already shows all nine, and the
+     slides past the first go close to unread. Static means the second-best
+     project is a scroll away rather than behind a click nobody makes. */
+  .spot{
+    position:relative;display:grid;grid-template-columns:1.02fr .98fr;
+    gap:36px;align-items:center;
+    background:
+      radial-gradient(680px 400px at 100% 0%, rgba(var(--a-rgb),.20), transparent 64%),
+      linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid rgba(var(--a-rgb),.34);
+    border-radius:24px;padding:38px;margin-bottom:48px;overflow:hidden;
+  }
+  .spot-label{
+    color:var(--a-bright);font-weight:700;font-size:.74rem;
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;
+  }
+  .spot-head{display:flex;align-items:center;gap:15px;margin-bottom:16px}
+  .spot-head .tile{width:54px;height:54px;border-radius:14px}
+  .spot h3{font-size:clamp(1.6rem,3.2vw,2.15rem);font-weight:900;letter-spacing:-.03em;line-height:1.12}
+  .spot h3 a:hover{color:var(--a-bright)}
+  .spot p{color:var(--muted);font-size:1rem;line-height:1.62;margin-bottom:18px;max-width:54ch}
+  .spot .meta{font-size:.79rem;margin-bottom:24px}
+  .spot-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .btn-spot{
+    background:linear-gradient(135deg,rgb(var(--a-rgb)),rgba(var(--a-rgb),.6));
+    color:#14100c;box-shadow:0 8px 24px -8px rgba(var(--a-rgb),.6);
+  }
+  .btn-spot:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(var(--a-rgb),.8)}
+  /* the visual: the project's own image when `shot` is set, otherwise an accent
+     plate carrying its mark — a missing image must not leave a hole in the
+     layout, nor advertise itself as missing. 1200/630 is the Open Graph frame
+     the projects already generate, so `cover` crops nothing off a banner; the
+     plate uses the same box, keeping the panel one height either way. */
+  .shot{
+    position:relative;aspect-ratio:1200/630;border-radius:16px;overflow:hidden;
+    border:1px solid rgba(var(--a-rgb),.3);
+    /* the radial sits behind the mark so a low-chroma accent — roadkeep's slate,
+       for one — still reads as a lit plate rather than as an empty rectangle */
+    background:
+      radial-gradient(60% 80% at 50% 46%, rgba(var(--a-rgb),.30), transparent 70%),
+      linear-gradient(150deg,rgba(var(--a-rgb),.22),rgba(var(--a-rgb),.05));
+    display:grid;place-items:center;
+  }
+  .shot img.real{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .ph{width:32%;max-width:120px;height:auto;opacity:.92;filter:drop-shadow(0 14px 34px rgba(0,0,0,.55))}
+  .shot .ph svg{width:100%;height:auto;display:block}
+  @media(max-width:860px){
+    .spot{grid-template-columns:1fr;gap:26px;padding:26px;margin-bottom:38px}
+    .spot p{max-width:none}
+  }
+
+  /* ---------- project bands ----------
+     Three tracks, in the order someone scans them: things you install and run,
+     things you type, things you read. A band's own header carries the promise so
+     the cards below it don't each have to repeat it — that is what lets the card
+     stay at one line of blurb, and what keeps nine of them shorter than the five
+     long cards this page used to carry. */
+  .band{
+    display:flex;align-items:baseline;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;
+    margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--line);
+  }
+  .band h3{
+    color:var(--clay);font-weight:700;font-size:.82rem;
+    letter-spacing:.12em;text-transform:uppercase;
+  }
+  .band span{color:var(--muted-2);font-size:.87rem}
+  .track + .track{margin-top:38px}
+
   /* ---------- project cards ----------
      A directory entry, not a landing page: the depth lives on each project's
-     own site. auto-fill means a fifth or ninth tool needs no layout change. */
+     own site. auto-fill means a tenth project needs no layout change. */
   /* min(330px,100%) — a bare 330px floor would force a 330px track on a
      narrow phone and push the page sideways. 330 lands on three columns at
      full width, two on a tablet, one on a phone. */
@@ -146,16 +217,16 @@
     position:relative;display:flex;flex-direction:column;
     background:linear-gradient(180deg,var(--panel),var(--bg-2));
     border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px;
+    padding:22px;
     transition:transform .2s ease,border-color .2s,box-shadow .25s;
   }
   .proj:hover,.proj:focus-within{
     transform:translateY(-4px);border-color:rgba(var(--a-rgb),.5);
     box-shadow:0 18px 42px -24px rgba(var(--a-rgb),.6);
   }
-  .proj-head{display:flex;align-items:center;gap:13px;margin-bottom:15px}
+  .proj-head{display:flex;align-items:center;gap:13px;margin-bottom:13px}
   .tile{
-    flex:0 0 auto;width:46px;height:46px;border-radius:12px;overflow:hidden;
+    flex:0 0 auto;width:44px;height:44px;border-radius:12px;overflow:hidden;
     display:grid;place-items:center;
     background:rgba(var(--a-rgb),.13);border:1px solid rgba(var(--a-rgb),.32);
   }
@@ -165,15 +236,17 @@
   /* the card is the link: the title anchor is stretched over the whole card,
      so the GitHub link below has to sit above it */
   .proj h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
-  .proj p{color:var(--muted);font-size:.94rem;line-height:1.58;margin-bottom:16px}
-  .tags{list-style:none;display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-  .tags li{
-    padding:5px 10px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);
-    font-size:.75rem;color:var(--muted);font-weight:500;
+  .proj p{color:var(--muted);font-size:.93rem;line-height:1.55;margin-bottom:12px}
+  /* dot-separated rather than pills: nine cards of pill rows read as noise, and
+     the row costs about twice the height for the same three facts */
+  .meta{
+    list-style:none;display:flex;flex-wrap:wrap;
+    font-size:.76rem;color:var(--muted-2);font-weight:500;margin-bottom:14px;
   }
+  .meta li + li::before{content:"·";margin:0 7px;opacity:.6}
   .proj-foot{
     display:flex;align-items:center;justify-content:space-between;gap:12px;
-    margin-top:auto;padding-top:15px;border-top:1px solid var(--line);
+    margin-top:auto;padding-top:14px;border-top:1px solid var(--line);
     font-size:.86rem;font-weight:600;
   }
   .go{display:inline-flex;align-items:center;gap:7px;color:var(--a-bright)}
@@ -270,11 +343,11 @@
   <div class="wrap">
     <img class="hero-icon" src="logo.svg" alt="alegauss logo">
     <div class="badge"><span class="dot"></span> Open source · free · no tracking</div>
-    <h1>Small developer tools<br><span class="grad">that get out of your way.</span></h1>
+    <h1>Software that shows you<br><span class="grad">what it's actually doing.</span></h1>
     <p class="sub">
-      I build tiny, focused utilities for the parts of the workflow that quietly waste your
-      attention — and every so often I measure what they are actually worth. All free, all
-      open source, all honest about what they don't know.
+      I build the small thing the platform should have shipped, and I measure what everyone
+      else guesses at. Windows apps, terminal tools, and a few write-ups where the numbers
+      come from records rather than recollection.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">Browse the projects</a>
@@ -288,22 +361,24 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">Projects</div>
-      <h2>One idea, repeated: less friction.</h2>
-      <p>Each tool has its own site with screenshots, install steps and full documentation.
-        One entry here is a report rather than a download.</p>
+      <h2>Three kinds of the same idea.</h2>
+      <p>Something to install, something to type, something to read. Each one has its own
+        site with screenshots, install steps and full documentation.</p>
     </div>
 
-    <div class="projects" id="projects-grid">
+    <div id="projects-grid">
+      <!-- a flat list, so it is alphabetical like the footer index rather than
+           editorial like the tracks it stands in for -->
       <noscript>
         <ul class="fallback">
-          <li><a href="pportal/">PPortal</a></li>
-          <li><a href="mini-gpt/">mini-gpt</a></li>
-          <li><a href="claude-code-usage/">usage simulator</a></li>
-          <li><a href="claude-code-time-study/">time study</a></li>
-          <li><a href="roadkeep/">roadkeep</a></li>
-          <li><a href="commitclerk/">commitclerk</a></li>
           <li><a href="claude-tray/">Claude Code Tray</a></li>
+          <li><a href="commitclerk/">commitclerk</a></li>
           <li><a href="freewilly/">FreeWilly</a></li>
+          <li><a href="mini-gpt/">Mini GPT</a></li>
+          <li><a href="pportal/">PPortal</a></li>
+          <li><a href="roadkeep/">roadkeep</a></li>
+          <li><a href="claude-code-time-study/">Time Study</a></li>
+          <li><a href="claude-code-usage/">Usage Simulator</a></li>
           <li><a href="winwright/">winwright</a></li>
         </ul>
       </noscript>
@@ -332,10 +407,10 @@
           call is the one you configure yourself.</p>
       </div>
       <div class="card reveal">
-        <div class="ico">📖</div>
-        <h3>Open source</h3>
-        <p>Source, issues, and releases are all on GitHub under permissive licenses. Read it, fork
-          it, ship your own version.</p>
+        <div class="ico">📐</div>
+        <h3>Assumptions on screen</h3>
+        <p>Where there are numbers, the inputs are yours to change and the method is written
+          down. A model you can argue with beats a figure you have to trust.</p>
       </div>
     </div>
   </div>
@@ -397,9 +472,36 @@
 <script>
   /* ---------------------------------------------------------------
      Projects live in projects.json — that file is the single source
-     of truth. Adding a tool is one entry there; the cards and the
+     of truth. Adding a project is one entry there; the cards and the
      footer links both come from it, and the grid reflows on its own.
+
+     Two rules that entry has to follow:
+
+     1. `group` is one of the TRACKS keys below. An unknown or missing
+        group would silently drop the card, so it falls into the last
+        track instead and is visible while wrong.
+     2. Casing of `name` is decided by the project, not by house style.
+        Lower case is reserved for a name you literally invoke — in a
+        shell or a csproj — and it is then spelled exactly as invoked:
+        roadkeep, commitclerk, winwright. `Roadkeep` would be wrong,
+        because nobody types that. Everything else is Title Case, and
+        matches the name on the project's own site: PPortal, FreeWilly,
+        Claude Code Tray, Usage Simulator, Time Study, Mini GPT.
+
+     Order inside a track is editorial, not alphabetical: the first card
+     of the first band is the most-read spot on the page and is worth
+     spending deliberately. The footer index sorts itself instead — see
+     below — because a flat list of every project is for scanning.
      --------------------------------------------------------------- */
+  const TRACKS = [
+    { key:'apps',     label:'Apps you run',
+      note:'Native Windows desktop. No background service you did not ask for.' },
+    { key:'cli',      label:'Tools you type',
+      note:'One command, one job, and it is gone by the time you look up.' },
+    { key:'measured', label:'Work you read',
+      note:'Numbers taken from records, and a black box taken apart on screen.' },
+  ];
+
   const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                    <path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
@@ -421,12 +523,95 @@
         </div>
       </div>
       <p>${p.blurb}</p>
-      <ul class="tags">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+      <ul class="meta">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>
       <div class="proj-foot">
         <span class="go">${p.cta ?? 'Open site'} ${ARROW}</span>
         <a class="repo" href="${p.repo}" aria-label="${p.name} on GitHub">${GH} GitHub</a>
       </div>
     </article>`;
+
+  /* The spotlight reads four optional fields on a project:
+       pitch            — the long version; the card's `blurb` is compressed for
+                          a 330px column, and the panel has room for the argument.
+                          Falls back to `blurb`, which reads thin at this size.
+       shot             — path to a 1200×630 image, normally the project's own
+                          og.png. Empty or absent falls back to the accent plate,
+                          so the panel is never broken while an image is missing.
+                          Use og.png and not og.svg: those SVGs set their text in
+                          DejaVu Sans with no @font-face, and an SVG inside <img>
+                          cannot load a font, so the banner reflows on any machine
+                          without that font — which is every Windows and Mac.
+       shotAlt          — describe the image only if it shows something the panel
+                          does not already say. An og.png repeats the name and
+                          tagline printed beside it, so it defaults to alt="" and
+                          is skipped by a screen reader rather than read twice.
+       featured: true   — pins this project instead of drawing one. An editorial
+                          override for a launch week; the first wins if several
+                          are set. Remove it to go back to rotating.
+       spotlight        — draw weight, default 1. Set 0 to keep a project out of
+                          the panel while leaving its card in the grid.
+     The chosen project also keeps its card in the grid below: the panel is a
+     call-out, not a promotion out of the index. */
+  const LAST_KEY = 'alegauss:spotlight';
+  const weight = p => p.spotlight ?? 1;
+
+  const pickSpotlight = projects => {
+    const pinned = projects.find(p => p.featured);
+    if (pinned) return pinned;
+
+    const pool = projects.filter(p => weight(p) > 0);
+    if (!pool.length) return null;
+
+    // a reload that lands on the same project reads as a bug rather than as
+    // rotation, so the previous pick sits out this draw
+    let last = null;
+    try { last = localStorage.getItem(LAST_KEY); } catch { /* private mode */ }
+    const fresh = pool.filter(p => p.name !== last);
+    const from = fresh.length ? fresh : pool;   // one eligible project ⇒ it repeats
+
+    let r = Math.random() * from.reduce((n, p) => n + weight(p), 0);
+    // the ?? guards the float rounding that can leave r just above the last step
+    const chosen = from.find(p => (r -= weight(p)) < 0) ?? from[from.length - 1];
+
+    try { localStorage.setItem(LAST_KEY, chosen.name); } catch { /* ignore */ }
+    return chosen;
+  };
+
+  const plate = p => p.logo
+    ? `<img class="ph" src="${p.logo}" alt="" width="120" height="120">`
+    : `<span class="ph">${p.mark}</span>`;
+
+  const visual = p => p.shot
+    ? `<img class="real" src="${p.shot}" alt="${p.shotAlt ?? ''}" width="1200" height="630"
+            loading="lazy" decoding="async">`
+    : plate(p);
+
+  const spotlight = p => `
+    <article class="spot reveal" style="--a-rgb:${p.accent.rgb};--a-bright:${p.accent.bright}">
+      <div>
+        <div class="spot-label">In the spotlight</div>
+        <div class="spot-head">
+          <span class="tile">${p.logo ? `<img src="${p.logo}" alt="">` : p.mark}</span>
+          <div>
+            <div class="kind">${p.kind}</div>
+            <h3><a href="${p.site}">${p.name}</a></h3>
+          </div>
+        </div>
+        <p>${p.pitch ?? p.blurb}</p>
+        <ul class="meta">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+        <div class="spot-cta">
+          <a class="btn btn-spot" href="${p.site}">${p.cta ?? 'Open site'} ${ARROW}</a>
+          <a class="repo" href="${p.repo}" aria-label="${p.name} on GitHub">${GH} GitHub</a>
+        </div>
+      </div>
+      <div class="shot">${visual(p)}</div>
+    </article>`;
+
+  const track = (t, items) => `
+    <div class="track">
+      <div class="band reveal"><h3>${t.label}</h3><span>${t.note}</span></div>
+      <div class="projects">${items.map(card).join('')}</div>
+    </div>`;
 
   const grid = document.getElementById('projects-grid');
   // in a JS-enabled browser <noscript> is parsed as text, so this hands us the
@@ -448,10 +633,28 @@
       if (!res.ok) throw new Error(`projects.json: HTTP ${res.status}`);
       const projects = await res.json();
 
-      grid.innerHTML = projects.map(card).join('');
+      // a project whose group is missing or misspelled lands in the last track
+      // rather than vanishing — a card in the wrong band gets noticed and fixed
+      const last = TRACKS[TRACKS.length - 1].key;
+      const known = new Set(TRACKS.map(t => t.key));
+      const bucket = p => known.has(p.group) ? p.group : last;
+
+      const hero = pickSpotlight(projects);   // null ⇒ no panel, tracks alone
+
+      grid.innerHTML = (hero ? spotlight(hero) : '') + TRACKS
+        .map(t => [t, projects.filter(p => bucket(p) === t.key)])
+        .filter(([, items]) => items.length)   // an empty track prints no header
+        .map(([t, items]) => track(t, items))
+        .join('');
+
+      // the footer is the flat index of the whole site, so it sorts by name —
+      // localeCompare with sensitivity:'base' keeps `commitclerk` filed under C
+      // instead of after every Title Case name
       document.getElementById('foot-links').insertAdjacentHTML(
         'afterbegin',
-        projects.map(p => `<a href="${p.site}">${p.name}</a>`).join('')
+        [...projects]
+          .sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity:'base' }))
+          .map(p => `<a href="${p.site}">${p.name}</a>`).join('')
       );
     } catch (err) {
       // opening index.html over file:// trips CORS here; the links still work
