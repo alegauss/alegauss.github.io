@@ -2,8 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(*)",
-      "PowerShell(*)",
-      "Bash(git -C \"d:/Git/alegauss/roadkeep\" show --stat --oneline HEAD)"
+      "PowerShell(*)"
     ]
   }
 }
