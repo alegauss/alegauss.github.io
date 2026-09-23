@@ -13,3 +13,5 @@ Sitemap: https://alegauss.github.io/commitclerk/sitemap.xml
 Sitemap: https://alegauss.github.io/claude-tray/sitemap.xml
 Sitemap: https://alegauss.github.io/freewilly/sitemap.xml
 Sitemap: https://alegauss.github.io/winwright/sitemap.xml
+Sitemap: https://alegauss.github.io/quickshell/sitemap.xml
+Sitemap: https://alegauss.github.io/polyweave/sitemap.xml

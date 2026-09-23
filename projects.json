@@ -40,6 +40,32 @@
     "logo": "pportal/logo.svg"
   },
   {
+    "name": "Quickshell",
+    "group": "apps",
+    "kind": "Windows · SSH client",
+    "blurb": "SSH on Windows without the suite around it: the terminal grid drawn on the GPU, and a live prompt in under 400 ms.",
+    "pitch": "A native Windows SSH client that draws the terminal grid on the GPU: one instanced draw call per frame, none at all while nothing changes, and a cold start to a live prompt in under 400 ms. Sessions, keys, SFTP and port forwards, with your own known_hosts and OpenSSH agent, and nothing bolted on beside them.",
+    "shot": "quickshell/og.png",
+    "tags": [".NET 10", "In development", "Windows 10 / 11"],
+    "site": "quickshell/",
+    "repo": "https://github.com/alegauss/quickshell",
+    "accent": { "rgb": "124,92,245", "bright": "#a78bfa" },
+    "logo": "quickshell/logo.svg"
+  },
+  {
+    "name": "Piano",
+    "group": "apps",
+    "kind": "Music · Desktop app",
+    "blurb": "A piano Claude Code can write scores for, play and teach from: the notes fall onto the keys and you learn to play them.",
+    "pitch": "A desktop piano built to be driven from Claude Code. Its plugin brings an MCP server that writes, checks and keeps scores, then opens the app to play them: the notes fall onto the keyboard, and practice mode waits for you on MIDI or the computer keys, loops a bar and says how each one went.",
+    "cta": "See the source",
+    "tags": ["Electron", "In development", "Claude Code plugin"],
+    "site": "https://github.com/alegauss/piano",
+    "repo": "https://github.com/alegauss/piano",
+    "accent": { "rgb": "53,182,240", "bright": "#7fd0f5" },
+    "logo": "logos/piano.png"
+  },
+  {
     "name": "roadkeep",
     "group": "cli",
     "kind": "Docs · CLI",
@@ -77,6 +103,19 @@
     "repo": "https://github.com/alegauss/winwright",
     "accent": { "rgb": "111,92,240", "bright": "#a396ff" },
     "logo": "winwright/logo.svg"
+  },
+  {
+    "name": "polyweave",
+    "group": "cli",
+    "kind": "3D · Claude Code plugin",
+    "blurb": "Makes 3D assets by declaring what they must satisfy and searching for the parameters that do, on Blender, Godot and a mesh service.",
+    "pitch": "Asking for a 3D asset usually means tweaking sliders until it looks right. polyweave has you declare what the asset has to satisfy instead, then searches for the parameters that satisfy it, on top of Blender, Godot and a generative mesh service. Every render asserts its own output and records what made it, and it all runs on your machine, against files in your own repository.",
+    "shot": "polyweave/og.png",
+    "tags": ["Python ≥3.11", "Claude Code plugin", "Blender · Godot"],
+    "site": "polyweave/",
+    "repo": "https://github.com/alegauss/polyweave",
+    "accent": { "rgb": "33,193,166", "bright": "#5fe0c9" },
+    "logo": "polyweave/logo.svg"
   },
   {
     "name": "Mini GPT",
