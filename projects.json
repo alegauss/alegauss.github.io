@@ -66,6 +66,19 @@
     "logo": "logos/piano.png"
   },
   {
+    "name": "roadkeep-gui",
+    "group": "apps",
+    "kind": "Desktop · Backlog reader",
+    "blurb": "Every roadkeep backlog on your machine in one window: read what each project owes, file or ship a line, hand a task to Claude Code.",
+    "pitch": "roadkeep keeps one backlog honest; this reads all of them at once. It finds every governed checkout on the machine, shows what each one has shipped and still owes, and files or ships a line without leaving the window, always through the roadkeep command rather than around it. Hand a task to Claude Code and the session is started, claimed and shown as it works.",
+    "cta": "Download the app",
+    "tags": ["Electron", "Windows · Linux", "MIT"],
+    "site": "https://github.com/alegauss/roadkeep-gui/releases/latest",
+    "repo": "https://github.com/alegauss/roadkeep-gui",
+    "accent": { "rgb": "245,158,11", "bright": "#fbbf24" },
+    "logo": "logos/roadkeep-gui.png"
+  },
+  {
     "name": "roadkeep",
     "group": "cli",
     "kind": "Docs · CLI",
