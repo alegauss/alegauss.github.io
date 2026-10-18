@@ -29,7 +29,7 @@
   "products": [
     {
       "id": "turing",
-      "name": "Viglet Turing ES",
+      "name": "Viglet Turing",
       "url": "https://turing.viglet.org",
       "docs": "https://docs.viglet.org/turing/",
       "logo": "viglet/turing-logo.png",
@@ -40,7 +40,7 @@
     },
     {
       "id": "shio",
-      "name": "Viglet Shio CMS",
+      "name": "Viglet Shio",
       "url": "https://shio.viglet.org",
       "docs": "https://docs.viglet.org/shio/",
       "logo": "viglet/shio-logo.png",
@@ -70,16 +70,6 @@
     {
       "repo": "claude-code-usage",
       "file": "index.html",
-      "assetPrefix": "viglet/"
-    },
-    {
-      "repo": "claude-tray",
-      "file": "docs/index.html",
-      "assetPrefix": "viglet/"
-    },
-    {
-      "repo": "roadkeep",
-      "file": "docs/index.html",
       "assetPrefix": "viglet/"
     },
     {
