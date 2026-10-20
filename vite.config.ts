@@ -23,7 +23,7 @@ function devPrerender(): Plugin {
             let html = await server.transformIndexHtml(url, readFileSync("index.html", "utf8"))
             html = html
               .replace("<!--theme-script-->", `<script>${siteThemeScript(app.SITE.themeKey)}</script>`)
-              .replace("<title>alegauss</title>", `<title>${(route?.title ?? "alegauss").replace(/&/g, "&amp;").replace(/</g, "&lt;")}</title>`)
+              .replace("<title>Alegauss</title>", `<title>${(route?.title ?? "Alegauss").replace(/&/g, "&amp;").replace(/</g, "&lt;")}</title>`)
               .replace('<div id="root"></div>', `<div id="root">${app.render(path)}</div>`)
             res.statusCode = route ? 200 : 404
             res.setHeader("content-type", "text/html; charset=utf-8")

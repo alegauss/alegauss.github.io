@@ -64,7 +64,7 @@ for (const route of ROUTES) {
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:image" content="${esc(abs(`/${file}`))}" />`,
     `<link rel="alternate" type="text/markdown" href="${esc(abs(`${route.path}index.md`))}" />`,
-    `<link rel="alternate" type="application/atom+xml" title="alegauss changelog" href="${esc(abs("/changelog/feed.xml"))}" />`,
+    `<link rel="alternate" type="application/atom+xml" title="Alegauss changelog" href="${esc(abs("/changelog/feed.xml"))}" />`,
     ...(route.index ? [] : [`<meta name="robots" content="noindex" />`]),
   ]
   writeFileSync(html, readFileSync(html, "utf8").replace("</head>", `  ${tags.join("\n    ")}\n  </head>`))
@@ -108,7 +108,7 @@ const feedShips = ships.slice(0, 50)
 writeFileSync(
   join(DIST, "changelog", "feed.xml"),
   `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n` +
-    `  <title>alegauss — what every product shipped</title>\n` +
+    `  <title>Alegauss — what every product shipped</title>\n` +
     `  <id>${abs("/changelog/")}</id>\n` +
     `  <link rel="alternate" href="${abs("/changelog/")}"/>\n` +
     `  <link rel="self" href="${abs("/changelog/feed.xml")}"/>\n` +

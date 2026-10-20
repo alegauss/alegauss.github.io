@@ -18,7 +18,7 @@ export function Home() {
   return (
     <>
       <SiteHero
-        icon={{ src: "/logo.svg", alt: "alegauss logo" }}
+        icon={{ src: "/logo.svg", alt: "Alegauss logo" }}
         badge="Open source · free · analytics only with your consent"
         title="Software that shows you"
         titleAccent="what it's actually doing."

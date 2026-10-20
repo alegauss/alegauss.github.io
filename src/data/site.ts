@@ -2,12 +2,12 @@
    domain change (AG12) would move, and the search the header offers (AG14). */
 
 export const SITE = {
-  name: "alegauss",
+  name: "Alegauss",
   /** The origin every canonical URL, the sitemap and llms.txt are written under. */
   origin: "https://alegauss.github.io",
   /** The project the home page leads with (visibility's rule: one at a time). */
   flagship: "claude-tray",
-  title: "alegauss — software that shows its work",
+  title: "Alegauss — software that shows its work",
   description:
     "Open-source tools for working with coding agents, native Windows apps and measured write-ups by Alexandre Oliveira — the small thing the platform should have shipped, plus numbers taken from records rather than guessed at.",
   github: "https://github.com/alegauss",
