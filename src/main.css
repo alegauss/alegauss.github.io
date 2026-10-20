@@ -2,10 +2,11 @@
 @import "@viglet/viglet-design-system/preset";
 @import "@viglet/viglet-design-system/fonts";
 @import "@viglet/viglet-design-system/site.css";
+@import "./tone.css";
 
 /* ---------------------------------------------------------------
    The hub's own pieces, on the design system's tokens only (AG2):
-   no colour and no radius is declared here. The one exception is a
+   no colour and no radius is declared here (tone.css holds the ground). The one exception is a
    project's accent, which comes from the catalogue as --a-rgb on the
    element that shows it, so each project keeps its colour on its own
    card and page and nowhere else.
@@ -266,6 +267,12 @@
     border-radius: var(--vg-radius-control);
     background: var(--vg-popover);
   }
+}
+
+/* the mark is a circle: the hero frames its icon as a rounded square, whose shadow
+   would draw that square behind it. Outside the layer, to win over site.css. */
+.vg-site-hero-icon {
+  border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: reduce) {

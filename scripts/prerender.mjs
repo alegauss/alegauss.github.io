@@ -45,12 +45,16 @@ const written = prerenderSite({
 })
 
 // One card per page, drawn from that page's words: a product's card is that product's.
+// The design system draws only its own tones, so the card is drawn warm and each warm
+// colour swapped for its navy one (the dark ground in src/tone.css).
 const logo = readFileSync(join(REPO, "public", "logo.svg"), "utf8")
+const NAVY = { "#15100c": "#0b1220", "#f4ece4": "#e6edf7", "#b6a596": "#93a4bc", "#d97757": "#4c9aff", "#e9a33a": "#7dd3fc" }
+const navy = (svg) => svg.replace(/#[0-9a-f]{6}\b/gi, (c) => NAVY[c.toLowerCase()] ?? c)
 mkdirSync(join(DIST, "og"), { recursive: true })
 for (const route of ROUTES) {
   const file = `og/${slug(route.path)}.png`
   const { eyebrow, title, titleAccent, line, accent, mark } = route.card
-  await renderOgCard({ svg: ogCardSvg({ eyebrow, title, titleAccent, line, accent, mark: mark ?? logo, tone: "warm" }), out: join(DIST, file) })
+  await renderOgCard({ svg: navy(ogCardSvg({ eyebrow, title, titleAccent, line, accent, mark: mark ?? logo, tone: "warm" })), out: join(DIST, file) })
 
   const html = join(DIST, app.outputDir(route.path), "index.html")
   const tags = [

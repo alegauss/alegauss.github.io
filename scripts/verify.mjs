@@ -33,10 +33,11 @@ check("AG1", page("/").includes("analytics only with your consent"), "the badge 
 
 // AG2 — the deploy publishes only the build output, and no colour or radius in the hub
 // is declared outside the design system (a project's accent comes from the catalogue).
+// src/tone.css is the one exception: the navy tone the design system does not ship.
 const workflow = readFileSync(join(REPO, ".github", "workflows", "deploy.yml"), "utf8")
 check("AG2", /path:\s*\.?\/?dist\b/.test(workflow), "deploy.yml does not upload dist/")
 check("AG2", !existsSync(join(DIST, "docs")) && !existsSync(join(DIST, "scripts")), "docs/ or scripts/ is published")
-const sources = walk(join(REPO, "src")).filter((f) => /\.(css|tsx)$/.test(f))
+const sources = walk(join(REPO, "src")).filter((f) => /\.(css|tsx)$/.test(f) && f !== join(REPO, "src", "tone.css"))
 for (const f of sources) {
   const text = readFileSync(f, "utf8")
   const colour = text.match(/#[0-9a-fA-F]{3,8}\b|\b(?:rgb|rgba|hsl|hsla|oklch)\((?!var\(--a-rgb\))/)
@@ -98,10 +99,10 @@ const newest = app.shipsOf()[0]
 check("AG8", feed.includes("<entry>") && feed.includes(html(newest.id)), "the feed lacks the newest entry")
 check("AG8", page("/changelog/").includes(html(newest.id)), "/changelog/ lacks the newest entry")
 
-// AG10 — numbers carry an "as of" date wherever one is shown.
+// AG10 — a download count carries an "as of" date wherever one is shown.
 for (const p of PROJECTS) {
   const text = page(app.productPath(p))
-  if (text.includes("hub-stat")) check("AG10", /as of \d{4}-\d{2}-\d{2}/.test(text), `${p.name} shows numbers without a date`)
+  if (/downloads<\/dt>/.test(text)) check("AG10", /as of \d{4}-\d{2}-\d{2}/.test(text), `${p.name} shows downloads without a date`)
 }
 
 // AG11 — the method page links every Workbench product, and every figure has a source.

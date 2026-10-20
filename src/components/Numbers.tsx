@@ -3,16 +3,21 @@ import type { ProductNumbers } from "../data/records.ts"
 const fmt = (n: number) => n.toLocaleString("en-US")
 
 /** The public numbers as stats (AG10). A number the build could not read is absent, not zero. */
-export function numberItems(n: ProductNumbers): { label: string; value: string; note?: string; href?: string }[] {
-  const items: { label: string; value: string; note?: string; href?: string }[] = []
+type NumberItem = { label: string; value: string; note?: string; href?: string; download?: true }
+
+export function numberItems(n: ProductNumbers): NumberItem[] {
+  const items: NumberItem[] = []
   if (n.stars !== undefined) items.push({ label: "GitHub stars", value: fmt(n.stars) })
   if (n.release) {
     items.push({ label: "Latest release", value: n.release.tag, note: n.release.date ? `released ${n.release.date}` : undefined, href: n.release.url })
-    if (n.release.downloads !== undefined) items.push({ label: "Release downloads", value: fmt(n.release.downloads), note: n.release.tag })
+    if (n.release.downloads !== undefined) items.push({ label: "Release downloads", value: fmt(n.release.downloads), note: n.release.tag, download: true })
   }
-  if (n.pypiLastMonth !== undefined) items.push({ label: "PyPI downloads", value: fmt(n.pypiLastMonth), note: "last 30 days" })
+  if (n.pypiLastMonth !== undefined) items.push({ label: "PyPI downloads", value: fmt(n.pypiLastMonth), note: "last 30 days", download: true })
   return items
 }
+
+/** The "as of" date belongs to a download count; a release tag alone carries its own date. */
+const dated = (items: NumberItem[]) => items.some((i) => i.download)
 
 export function NumberLine({ numbers, asOf, tags }: { numbers: ProductNumbers; asOf: string; tags: string[] }) {
   const items = numberItems(numbers)
@@ -26,7 +31,7 @@ export function NumberLine({ numbers, asOf, tags }: { numbers: ProductNumbers; a
           {i.value} {i.label.toLowerCase()}
         </li>
       ))}
-      {items.length ? <li>as of {asOf}</li> : null}
+      {dated(items) ? <li>as of {asOf}</li> : null}
     </ul>
   )
 }
@@ -48,7 +53,9 @@ export function NumberStats({ numbers, asOf }: { numbers: ProductNumbers; asOf: 
           </div>
         ))}
       </dl>
-      <p className="m-0 mt-3 text-xs text-muted-foreground">Public numbers from GitHub and PyPI, as of {asOf}. The site is rebuilt daily.</p>
+      {dated(items) ? (
+        <p className="m-0 mt-3 text-xs text-muted-foreground">Public numbers from GitHub and PyPI, as of {asOf}. The site is rebuilt daily.</p>
+      ) : null}
     </section>
   )
 }

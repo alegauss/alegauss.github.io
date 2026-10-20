@@ -1,13 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="t">
+  <title id="t">alegauss</title>
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#E89070"/>
-      <stop offset=".55" stop-color="#D97757"/>
-      <stop offset="1" stop-color="#C2801F"/>
-    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="55%" r="60%">
+      <stop offset="0" stop-color="#2F8BFF"/>
+      <stop offset="1" stop-color="#1A4FD6"/>
+    </radialGradient>
   </defs>
-  <rect width="64" height="64" rx="15" fill="#1B1410"/>
-  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="14" fill="none" stroke="url(#g)" stroke-width="2.5" opacity=".65"/>
-  <path d="M20 44 L32 19 L44 44" fill="none" stroke="url(#g)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M25.5 36.5 H38.5" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+  <polyline points="136,352 256,112 376,352" fill="none" stroke="#D6E9FF" stroke-width="100" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="136,352 256,112 376,352" fill="none" stroke="#111111" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
