@@ -86,6 +86,14 @@
   --sidebar-ring: var(--vg-sidebar-ring);
 }
 
+/* site.css sets the primary button's text to white, but its own `.vg-site a { color:
+   inherit }` is more specific and wins, so on the light ground the label came out in the
+   page's dark foreground. Restated with the anchor in the selector until the design
+   system fixes the order. */
+.vg-site a.vg-site-btn-primary {
+  color: #fff;
+}
+
 /* the dark ground, with the same selector set the design system gives `warm` */
 .dark[data-tone="navy"],
 .dark [data-tone="navy"],
