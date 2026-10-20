@@ -119,7 +119,7 @@ export function Home() {
             <div className="vg-site-eyebrow m-0">The method</div>
             <h3 className="m-0 text-2xl font-extrabold tracking-tight">One way of working with coding agents, one tool per step.</h3>
             <p className="m-0 text-muted-foreground">
-              roadkeep governs the backlog, roadkeep-gui reads every backlog, commitclerk writes the commit and winwright
+              roadkeep governs the backlog and its desktop app reads every one, commitclerk writes the commit and winwright
               reports what a test observed.
             </p>
             <span className="mt-auto font-semibold" style={{ color: "var(--vg-brand)" }}>

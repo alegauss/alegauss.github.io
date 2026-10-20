@@ -9,7 +9,7 @@
    1. Casing of `name` is decided by the project, not by house style.
       Lower case is reserved for a name you literally invoke — in a
       shell or a csproj — and it is then spelled exactly as invoked:
-      roadkeep, roadkeep-gui, commitclerk, winwright, polyweave.
+      roadkeep, commitclerk, winwright, polyweave.
       Everything else is Title Case and matches the project's own site.
    2. `lines` is where a visitor looks for it (see lines.ts); a project
       may sit in two. `group` is the old format track and survives only
@@ -161,7 +161,7 @@ export const PROJECTS: Project[] = [
     lines: ["workbench"],
     kind: "Docs · CLI",
     blurb: "Owns the writes to your ROADMAP, CHANGELOG and IMPROVEMENTS, so the format is a schema at insertion instead of a convention you remember.",
-    pitch: "A ROADMAP and a CHANGELOG are formats held together by convention, so they drift the moment someone is in a hurry — or the moment an agent writes to them. roadkeep owns the writes: an entry goes in through a command that checks its shape at the point of insertion, which makes the file a schema rather than a habit.",
+    pitch: "A ROADMAP and a CHANGELOG are formats held together by convention, so they drift the moment someone is in a hurry — or the moment an agent writes to them. roadkeep owns the writes: an entry goes in through a command that checks its shape at the point of insertion, which makes the file a schema rather than a habit. Its desktop app reads every backlog on the machine at once.",
     shot: "roadkeep/assets/og.png",
     tags: ["Python ≥3.11", "Claude Code plugin", "Zero deps"],
     site: "roadkeep/",
@@ -177,26 +177,6 @@ export const PROJECTS: Project[] = [
     docs: "roadkeep/docs/",
     pypi: "roadkeep",
     source: { repo: "roadkeep", ref: "HEAD" },
-  },
-  {
-    id: "roadkeep-gui",
-    name: "roadkeep-gui",
-    group: "apps",
-    lines: ["workbench"],
-    kind: "Desktop · Backlog reader",
-    blurb: "Every roadkeep backlog on your machine in one window: read what each project owes, file or ship a line, hand a task to Claude Code.",
-    pitch: "roadkeep keeps one backlog honest; this reads all of them at once. It finds every governed checkout on the machine, shows what each one has shipped and still owes, and files or ships a line without leaving the window, always through the roadkeep command rather than around it. Hand a task to Claude Code and the session is started, claimed and shown as it works.",
-    cta: "Download the app",
-    tags: ["Electron", "Windows · Linux", "MIT"],
-    site: "https://github.com/alegauss/roadkeep-gui/releases/latest",
-    repo: "https://github.com/alegauss/roadkeep-gui",
-    accent: { rgb: "245,158,11", bright: "#fbbf24" },
-    logo: "logos/roadkeep-gui.png",
-    licence: "MIT",
-    platform: "Windows · Linux",
-    install: [],
-    download: "https://github.com/alegauss/roadkeep-gui/releases/latest",
-    source: { repo: "roadkeep-gui", ref: "HEAD" },
   },
   {
     id: "commitclerk",

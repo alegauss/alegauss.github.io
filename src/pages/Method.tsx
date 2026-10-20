@@ -15,8 +15,8 @@ export const METHOD_STEPS = [
   },
   {
     title: "See what every project owes",
-    text: "roadkeep-gui finds every governed checkout on the machine and shows what each has shipped and still owes. It files or ships a line through the roadkeep command, and hands a task to Claude Code as a session it starts, claims and shows while it works.",
-    tools: ["roadkeep-gui"],
+    text: "roadkeep's desktop app finds every governed checkout on the machine and shows what each has shipped and still owes. It files or ships a line through the roadkeep command, and hands a task to Claude Code as a session it starts, claims and shows while it works.",
+    tools: ["roadkeep"],
   },
   {
     title: "Let the diff write the commit",
