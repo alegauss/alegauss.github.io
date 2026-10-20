@@ -1,0 +1,33 @@
+{
+  "name": "alegauss-hub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "records": "node scripts/fetch-records.mjs",
+    "numbers": "node scripts/fetch-numbers.mjs",
+    "data": "npm run records && npm run numbers",
+    "build": "npm run data && npm run build:site",
+    "build:site": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/verify.mjs",
+    "typecheck": "tsc --noEmit",
+    "verify": "node scripts/verify.mjs",
+    "sponsor": "node scripts/sync-sponsor.mjs"
+  },
+  "dependencies": {
+    "@viglet/turing-sdk": "2026.3.9",
+    "@viglet/viglet-design-system": "2026.3.21",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}
