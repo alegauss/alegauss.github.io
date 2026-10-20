@@ -39,9 +39,13 @@ export interface ProductRecords {
 
 export interface ProductNumbers {
   stars?: number
-  release?: { tag: string; date: string | null; url: string; downloads: number }
+  release?: { tag: string; date: string | null; url: string; downloads?: number }
   pypiLastMonth?: number
 }
+
+/** Stars and downloads show only above this; the release tag always shows. */
+export const NUMBERS_MIN = 100
+const shown = (n: number | undefined) => (n !== undefined && n > NUMBERS_MIN ? n : undefined)
 
 const RECORDS = records.products as Record<string, ProductRecords>
 const NUMBERS = numbers.products as Record<string, ProductNumbers>
@@ -53,7 +57,14 @@ export const recordsOf = (p: Project): ProductRecords => {
   return r
 }
 
-export const numbersOf = (p: Project): ProductNumbers => NUMBERS[p.id] ?? {}
+export const numbersOf = (p: Project): ProductNumbers => {
+  const n = NUMBERS[p.id] ?? {}
+  return {
+    stars: shown(n.stars),
+    release: n.release ? { ...n.release, downloads: shown(n.release.downloads) } : undefined,
+    pypiLastMonth: shown(n.pypiLastMonth),
+  }
+}
 
 export interface DatedShip extends Ship {
   project: Project

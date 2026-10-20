@@ -8,7 +8,7 @@ export function numberItems(n: ProductNumbers): { label: string; value: string; 
   if (n.stars !== undefined) items.push({ label: "GitHub stars", value: fmt(n.stars) })
   if (n.release) {
     items.push({ label: "Latest release", value: n.release.tag, note: n.release.date ? `released ${n.release.date}` : undefined, href: n.release.url })
-    items.push({ label: "Release downloads", value: fmt(n.release.downloads), note: n.release.tag })
+    if (n.release.downloads !== undefined) items.push({ label: "Release downloads", value: fmt(n.release.downloads), note: n.release.tag })
   }
   if (n.pypiLastMonth !== undefined) items.push({ label: "PyPI downloads", value: fmt(n.pypiLastMonth), note: "last 30 days" })
   return items

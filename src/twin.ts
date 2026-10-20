@@ -38,7 +38,7 @@ function product(p: Project): string {
   ]
   const stats = [
     ...(n.stars !== undefined ? [`${n.stars} GitHub stars`] : []),
-    ...(n.release ? [`latest release ${n.release.tag}${n.release.date ? ` (${n.release.date})` : ""}, ${n.release.downloads} downloads`] : []),
+    ...(n.release ? [`latest release ${n.release.tag}${n.release.date ? ` (${n.release.date})` : ""}${n.release.downloads !== undefined ? `, ${n.release.downloads} downloads` : ""}`] : []),
     ...(n.pypiLastMonth !== undefined ? [`${n.pypiLastMonth} PyPI downloads in the last 30 days`] : []),
   ]
   if (stats.length) out.push("", `Public numbers as of ${NUMBERS_AS_OF}: ${stats.join("; ")}.`)
