@@ -330,6 +330,26 @@ export const PROJECTS: Project[] = [
     noSitemap: true,
     source: { repo: "claude-code-time-study", ref: "HEAD" },
   },
+  {
+    id: "claude-code-first",
+    name: "Claude Code First",
+    group: "measured",
+    lines: ["lab"],
+    kind: "Study · Specification",
+    blurb: "How to run a project where Claude Code writes the code and a person decides what gets built, with every rule resting on graded evidence.",
+    pitch: "An evidence-based specification of how to run a software project in which Claude Code is the primary author of the code and a person governs what is built. Each rule rests on graded findings from five projects run this way, and each finding on pointers into their pinned sources, which a gate checks on every push.",
+    cta: "Read the guide",
+    tags: ["Five projects", "Graded evidence", "MIT · CC BY 4.0"],
+    site: "claude-code-first/",
+    repo: "https://github.com/alegauss/claude-code-first",
+    accent: { rgb: "214,84,120", bright: "#E8799A" },
+    mark: '<svg viewBox="0 0 160 160" aria-hidden="true"><rect x="30" y="20" width="84" height="112" rx="14" fill="none" stroke="#E8799A" stroke-width="11"/><rect x="48" y="46" width="48" height="10" rx="5" fill="#E8799A"/><rect x="48" y="68" width="34" height="10" rx="5" fill="#E8799A"/><circle cx="112" cy="112" r="30" fill="#D65478"/><path d="M98 112 l10 10 l18 -19" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    licence: "MIT",
+    platform: "Any browser · Claude Code plugin for the audit",
+    install: [],
+    noSitemap: true,
+    source: { repo: "claude-code-first", ref: "HEAD" },
+  },
 ]
 
 export const projectById = (id: string): Project => {
