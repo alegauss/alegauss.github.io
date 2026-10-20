@@ -13,10 +13,20 @@
 //
 // Targets live in sponsor.json. Paths are resolved relative to the parent directory of
 // this repo, so sibling repos (claude-code-usage, ...) are reachable without config.
+//
+// Since AG7 the hub and every React product site render the block themselves, from the
+// design system's SiteSponsor fed this same JSON at build, so they are not targets: this
+// script serves only the plain pages with no build. A target with "markup": "site" gets
+// SiteSponsor's own markup, rendered by the component, which the design system's
+// site.css styles (VDS216) and the page carries no sponsor CSS of its own; a target
+// without it keeps the legacy .sponsor markup until its own migration lands.
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
+import { createElement } from "react"
+import { renderToStaticMarkup } from "react-dom/server"
+import { SiteSponsor } from "@viglet/viglet-design-system/site"
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const REPO = resolve(HERE, "..")
@@ -89,6 +99,20 @@ ${products}
   ${END}`
 }
 
+/** The design system's markup, from the component itself, so the plain pages and the
+ *  React sites cannot drift: class for class what SiteSponsor renders. */
+function renderSiteBlock(assetPrefix) {
+  // each site keeps the logo files flat under its assetPrefix, as the legacy block does
+  const flat = (o) => ({ ...o, logo: o.logo.split("/").pop() })
+  const declaration = { ...config, sponsor: flat(config.sponsor), products: config.products.map(flat) }
+  const markup = renderToStaticMarkup(createElement(SiteSponsor, { declaration, assetBase: assetPrefix, moreLabel: "More at" }))
+  return `${START} — generated from alegauss.github.io/sponsor.json by
+       scripts/sync-sponsor.mjs, as the design system's SiteSponsor renders it. Edit the
+       JSON, not this block; site.css styles it. -->
+  ${markup}
+  ${END}`
+}
+
 const check = process.argv.includes("--check")
 let changed = 0
 let missing = 0
@@ -115,7 +139,8 @@ for (const target of config.targets) {
     continue
   }
 
-  const next = html.slice(0, from) + renderBlock(target.assetPrefix) + html.slice(to + END.length)
+  const block = target.markup === "site" ? renderSiteBlock(target.assetPrefix) : renderBlock(target.assetPrefix)
+  const next = html.slice(0, from) + block + html.slice(to + END.length)
   if (next === html) {
     console.log(`ok:      ${target.repo}/${target.file}`)
     continue

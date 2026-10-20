@@ -1,0 +1,277 @@
+@import "tailwindcss";
+@import "@viglet/viglet-design-system/preset";
+@import "@viglet/viglet-design-system/fonts";
+@import "@viglet/viglet-design-system/site.css";
+
+/* ---------------------------------------------------------------
+   The hub's own pieces, on the design system's tokens only (AG2):
+   no colour and no radius is declared here. The one exception is a
+   project's accent, which comes from the catalogue as --a-rgb on the
+   element that shows it, so each project keeps its colour on its own
+   card and page and nowhere else.
+   --------------------------------------------------------------- */
+
+@layer components {
+  .hub-accent {
+    --a: rgb(var(--a-rgb));
+    /* the catalogue's accents were picked for the dark ground; mixed toward the
+       foreground they stay readable on both */
+    --a-fg: color-mix(in oklab, var(--a) 62%, var(--vg-foreground));
+  }
+
+  .hub-tile {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    border-radius: var(--vg-radius-control);
+    background: color-mix(in oklab, var(--a) 14%, transparent);
+    border: 1px solid color-mix(in oklab, var(--a) 34%, transparent);
+  }
+  .hub-tile img,
+  .hub-tile svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .hub-tile-lg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .hub-kind {
+    color: var(--a-fg);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hub-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-panel);
+    background: linear-gradient(180deg, var(--vg-card), var(--vg-muted));
+    transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.25s;
+  }
+  .hub-card:hover,
+  .hub-card:focus-within {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--a, var(--vg-brand-light)) 50%, transparent);
+    box-shadow: 0 18px 42px -24px color-mix(in oklab, var(--a, var(--vg-brand-light)) 60%, transparent);
+  }
+  /* the card is the link: the title's anchor covers it, and any other link sits above */
+  .hub-card .hub-stretch::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .hub-card .hub-above {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--vg-muted-foreground);
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+  .hub-meta > * + *::before {
+    content: "·";
+    margin: 0 7px;
+    opacity: 0.6;
+  }
+
+  .hub-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: var(--vg-radius-full);
+    border: 1px solid var(--vg-border);
+    background: var(--vg-card);
+    color: var(--vg-foreground);
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  a.hub-chip:hover,
+  button.hub-chip:hover {
+    border-color: var(--vg-brand-light);
+  }
+  .hub-chip[aria-current="page"],
+  .hub-chip[aria-pressed="true"] {
+    background: var(--vg-brand-bg);
+    border-color: var(--vg-brand-border);
+    color: var(--vg-brand);
+  }
+
+  .hub-band {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 20px;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--vg-border);
+  }
+  .hub-band h2,
+  .hub-band h3 {
+    margin: 0;
+    color: var(--vg-brand);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .hub-band span,
+  .hub-band p {
+    margin: 0;
+    color: var(--vg-muted-foreground);
+    font-size: 0.88rem;
+  }
+
+  .hub-code {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-control);
+    background: var(--vg-muted);
+    font-family: var(--vg-font-mono);
+    font-size: 0.86rem;
+  }
+  .hub-code pre {
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
+    font: inherit;
+  }
+
+  .hub-shot {
+    aspect-ratio: 1200 / 630;
+    overflow: hidden;
+    border-radius: var(--vg-radius-panel);
+    border: 1px solid color-mix(in oklab, var(--a) 30%, transparent);
+    background:
+      radial-gradient(60% 80% at 50% 46%, color-mix(in oklab, var(--a) 28%, transparent), transparent 70%),
+      var(--vg-card);
+    display: grid;
+    place-items: center;
+  }
+  .hub-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hub-stat {
+    padding: 18px 20px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-panel);
+    background: var(--vg-card);
+  }
+  .hub-stat dt {
+    color: var(--vg-muted-foreground);
+    font-size: 0.82rem;
+  }
+  .hub-stat dd {
+    margin: 4px 0 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* a ledger line can carry a path or a flag longer than a phone is wide */
+  .hub-entry {
+    overflow-wrap: anywhere;
+  }
+  .hub-entry code,
+  .hub-prose code {
+    font-family: var(--vg-font-mono);
+    font-size: 0.86em;
+    color: var(--vg-brand);
+  }
+
+  .hub-consent {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 60;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 18px 20px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-panel);
+    background: var(--vg-popover);
+    color: var(--vg-popover-foreground);
+    box-shadow: 0 24px 60px -20px color-mix(in oklab, var(--vg-background) 80%, transparent);
+  }
+
+  .hub-dialog {
+    width: min(680px, calc(100vw - 32px));
+    max-height: min(640px, calc(100vh - 96px));
+    margin: 72px auto auto;
+    padding: 0;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-panel);
+    background: var(--vg-popover);
+    color: var(--vg-popover-foreground);
+  }
+  .hub-dialog::backdrop {
+    background: color-mix(in oklab, var(--vg-background) 70%, transparent);
+  }
+
+  .hub-search-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius-control);
+    background: var(--vg-card);
+    color: var(--vg-muted-foreground);
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+  .hub-search-btn:hover {
+    color: var(--vg-foreground);
+    border-color: var(--vg-brand-light);
+  }
+
+  .hub-skip {
+    position: absolute;
+    left: -9999px;
+  }
+  .hub-skip:focus {
+    left: 16px;
+    top: 12px;
+    z-index: 100;
+    padding: 8px 14px;
+    border-radius: var(--vg-radius-control);
+    background: var(--vg-popover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-card,
+  .hub-card:hover {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,9 +1,13 @@
-name: Deploy static site to GitHub Pages
+name: Build and deploy the hub to GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily rebuild (AG10): the public numbers and the product ledgers change without a
+  # commit here, and the site only learns about them by building again.
+  schedule:
+    - cron: "17 6 * * *"
 
 permissions:
   contents: read
@@ -14,6 +18,11 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  # The roadkeep that parses every product's ledger, pinned to a commit: roadkeep cuts no
+  # releases, and the PyPI copy is too old to read the products' roadkeep.toml.
+  ROADKEEP_REF: eec61c67ed1f7882c7bb6c3589d2933606dfbedc
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,14 +32,38 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # sitemap lastmod is the authored tree's last commit
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          npm ci
+          pip install "git+https://github.com/alegauss/roadkeep@${ROADKEEP_REF}"
+
+      - name: Build
+        run: npm run build
+        env:
+          # public endpoints only; the token raises the rate limit and reads nothing private
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      # Only the build output is published, so docs/ and scripts/ are no longer served.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment

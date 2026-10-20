@@ -1,0 +1,39 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "alegauss",
+  "description": "Every Claude Code plugin published from Alexandre Oliveira's repositories, in one catalogue.",
+  "owner": {
+    "name": "Alexandre Oliveira",
+    "url": "https://github.com/alegauss"
+  },
+  "plugins": [
+    {
+      "name": "roadkeep",
+      "source": { "source": "git-subdir", "url": "alegauss/roadkeep", "path": "plugin" },
+      "description": "Refuses the hand-edit of a governed roadmap, changelog or rationale file and names the command to call instead, runs the gate as the turn ends, and offers add, ship, pick and lint as MCP tools and slash commands.",
+      "category": "productivity",
+      "homepage": "https://alegauss.github.io/products/roadkeep/"
+    },
+    {
+      "name": "winwright",
+      "source": { "source": "github", "repo": "alegauss/winwright" },
+      "description": "Drives a Windows desktop application through UI Automation and reports what it observed: a check that could not run is a third verdict instead of a green.",
+      "category": "testing",
+      "homepage": "https://alegauss.github.io/products/winwright/"
+    },
+    {
+      "name": "polyweave",
+      "source": { "source": "git-subdir", "url": "alegauss/polyweave", "path": "plugin" },
+      "description": "Make a game's parts by declaring what each must satisfy: 3D assets, pictures, sound loops and the world's text, searched and checked on Blender, Godot and paid generators.",
+      "category": "development",
+      "homepage": "https://alegauss.github.io/products/polyweave/"
+    },
+    {
+      "name": "piano",
+      "source": { "source": "git-subdir", "url": "alegauss/piano", "path": "plugin" },
+      "description": "A piano Claude Code can write scores for, play and teach from: validate and keep scores, drive the Piano app, and practise a passage at a climbing tempo.",
+      "category": "productivity",
+      "homepage": "https://alegauss.github.io/products/piano/"
+    }
+  ]
+}

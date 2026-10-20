@@ -1,18 +1,20 @@
 {
   "$comment": [
     "Canonical sponsor declaration for the alegauss projects — the single source of truth,",
-    "in the same spirit as projects.json.",
+    "in the same spirit as the hub's catalogue.",
     "",
-    "HOW IT IS CONSUMED: not by a runtime fetch. Each site carries the sponsor as STATIC",
-    "markup between `<!-- sponsor:start -->` and `<!-- sponsor:end -->`, generated from this",
-    "file by scripts/sync-sponsor.mjs. That is deliberate: the point of naming a sponsor is",
-    "to be read by search engines and LLMs, and content injected by JavaScript after load is",
-    "largely invisible to them. Fetching this file at runtime would move the sponsor out of",
-    "the indexable HTML and defeat the purpose.",
+    "HOW IT IS CONSUMED: never by a runtime fetch. The hub and the React product sites render",
+    "it at build with the design system's SiteSponsor component (AG7), so the block is in the",
+    "prerendered HTML. The plain pages with no build carry it as STATIC markup between",
+    "`<!-- sponsor:start -->` and `<!-- sponsor:end -->`, written by scripts/sync-sponsor.mjs:",
+    "a target marked \"markup\": \"site\" gets SiteSponsor's own markup, styled by the design",
+    "system's site.css; the others keep the legacy .sponsor markup until they migrate. That is",
+    "deliberate: the point of naming a sponsor is to be read by search engines and LLMs, and",
+    "content injected by JavaScript after load is largely invisible to them.",
     "",
-    "TO UPDATE: edit this file, then run `node scripts/sync-sponsor.mjs` (add --check in CI",
-    "to fail when a site has drifted). Repos outside GitHub Pages keep their own copy of the",
-    "same text — cursarei, for instance, holds it in src/lib/viglet.ts.",
+    "TO UPDATE: edit this file, rebuild the hub, then run `node scripts/sync-sponsor.mjs` (add",
+    "--check in CI to fail when a plain page has drifted). Repos outside GitHub Pages keep",
+    "their own copy of the same text — cursarei, for instance, holds it in src/lib/viglet.ts.",
     "",
     "LINK POLICY: no GitHub URLs anywhere — not the organisation, not the repositories.",
     "Every Viglet reference points at the project site or its docs, which is where the",
@@ -62,11 +64,6 @@
     }
   ],
   "targets": [
-    {
-      "repo": "alegauss.github.io",
-      "file": "index.html",
-      "assetPrefix": "viglet/"
-    },
     {
       "repo": "claude-code-usage",
       "file": "index.html",
