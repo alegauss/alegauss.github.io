@@ -18,17 +18,14 @@ export const SITE = {
    */
   profiles: [
     "https://github.com/alegauss",
+    "https://www.linkedin.com/in/alegauss/",
     "https://stackoverflow.com/users/2497985/alegauss",
     "https://huggingface.co/alegauss",
     "https://dev.to/alegauss",
     "https://x.com/alegauss",
     "https://bsky.app/profile/alegauss.bsky.social",
   ],
-  /**
-   * The organisations the author builds under, linked from the Person as `affiliation` (AG15).
-   * Not `worksFor`, and LinkedIn stays out of `profiles`: the author's employer is another
-   * company, and his LinkedIn is kept to that job.
-   */
+  /** The organisations the author builds under, linked from the Person (AG15). */
   orgs: {
     viglet: { name: "Viglet", url: "https://www.viglet.org", github: "https://github.com/openviglet" },
     japode: { name: "Japode", url: "https://japode.com", github: "https://github.com/Japode" },
