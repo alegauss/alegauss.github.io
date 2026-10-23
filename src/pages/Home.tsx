@@ -161,7 +161,7 @@ export function Home() {
       <section className="vg-site-section" id="about">
         <div className="vg-site-wrap">
           <SiteSectionHead eyebrow="About" title="How these are built" />
-          <p className="m-0 mb-6 max-w-3xl leading-relaxed text-muted-foreground">
+          <p className="m-0 mb-6 leading-relaxed text-muted-foreground">
             Every product here is made by Alexandre Oliveira (alegauss), a software developer in Brazil. He also builds{" "}
             <a className="font-semibold text-foreground underline-offset-2 hover:underline" href={SITE.orgs.viglet.url}>
               Viglet
