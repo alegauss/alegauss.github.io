@@ -18,7 +18,7 @@ export function personJsonLd() {
     "@type": "Person",
     "@id": `${SITE.origin}/#person`,
     name: SITE.author,
-    alternateName: "alegauss",
+    alternateName: ["alegauss", "Alê Oliveira"],
     url: `${SITE.origin}/`,
     nationality: { "@type": "Country", name: "Brazil" },
     jobTitle: "Software developer",
