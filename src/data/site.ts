@@ -23,6 +23,7 @@ export const SITE = {
     "https://huggingface.co/alegauss",
     "https://dev.to/alegauss",
     "https://x.com/alegauss",
+    "https://bsky.app/profile/alegauss.bsky.social",
   ],
   /** The organisations the author builds under, linked from the Person (AG15). */
   orgs: {
