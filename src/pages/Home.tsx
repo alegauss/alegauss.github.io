@@ -22,8 +22,10 @@ export function personJsonLd() {
     url: `${SITE.origin}/`,
     nationality: { "@type": "Country", name: "Brazil" },
     jobTitle: "Software developer",
-    worksFor: { "@type": "Organization", name: viglet.name, url: viglet.url, sameAs: [viglet.github] },
-    affiliation: [{ "@type": "Organization", name: japode.name, url: japode.url, sameAs: [japode.github] }],
+    affiliation: [
+      { "@type": "Organization", name: viglet.name, url: viglet.url, sameAs: [viglet.github] },
+      { "@type": "Organization", name: japode.name, url: japode.url, sameAs: [japode.github] },
+    ],
     sameAs: SITE.profiles,
     knowsAbout: ["Enterprise search", "Content management systems", "Claude Code", "Coding agents", "Windows desktop apps"],
   }
