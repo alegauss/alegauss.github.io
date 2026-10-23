@@ -28,7 +28,7 @@ export function productJsonLd(p: Project) {
     ...(n.release ? { softwareVersion: n.release.tag } : {}),
     ...(p.download ? { downloadUrl: p.download } : {}),
     sameAs: [p.repo, ...(productSite(p) ? [absolute(productSite(p)!)] : [])],
-    author: { "@type": "Person", name: SITE.author, url: SITE.github },
+    author: { "@type": "Person", "@id": `${SITE.origin}/#person`, name: SITE.author, url: SITE.github },
   }
 }
 

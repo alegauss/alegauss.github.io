@@ -10,6 +10,25 @@ import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
 import { ShipList } from "../components/ShipList.tsx"
 import { NumberLine } from "../components/Numbers.tsx"
 
+/** schema.org for the author (AG15): the Person every product page's `author` points at by @id. */
+export function personJsonLd() {
+  const { viglet, japode } = SITE.orgs
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE.origin}/#person`,
+    name: SITE.author,
+    alternateName: "alegauss",
+    url: `${SITE.origin}/`,
+    nationality: { "@type": "Country", name: "Brazil" },
+    jobTitle: "Software developer",
+    worksFor: { "@type": "Organization", name: viglet.name, url: viglet.url, sameAs: [viglet.github] },
+    affiliation: [{ "@type": "Organization", name: japode.name, url: japode.url, sameAs: [japode.github] }],
+    sameAs: SITE.profiles,
+    knowsAbout: ["Enterprise search", "Content management systems", "Claude Code", "Coding agents", "Windows desktop apps"],
+  }
+}
+
 export function Home() {
   const flagship = projectById(SITE.flagship)
   const flagshipLines = LINES.filter((l) => flagship.lines.includes(l.id))
@@ -17,6 +36,7 @@ export function Home() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()).replace(/</g, "\\u003c") }} />
       <SiteHero
         icon={{ src: "/logo.svg", alt: "Alegauss logo" }}
         badge="Open source · free · analytics only with your consent"
@@ -141,6 +161,21 @@ export function Home() {
       <section className="vg-site-section" id="about">
         <div className="vg-site-wrap">
           <SiteSectionHead eyebrow="About" title="How these are built" />
+          <p className="m-0 mb-6 max-w-3xl leading-relaxed text-muted-foreground">
+            Every product here is made by Alexandre Oliveira (alegauss), a software developer in Brazil. He also builds{" "}
+            <a className="font-semibold text-foreground underline-offset-2 hover:underline" href={SITE.orgs.viglet.url}>
+              Viglet
+            </a>
+            , open-source enterprise search and content tools (Viglet Turing, Viglet Shio and Viglet Dumont),{" "}
+            <a className="font-semibold text-foreground underline-offset-2 hover:underline" href="https://cursarei.com.br/">
+              Cursarei
+            </a>
+            , an independent directory of Brazilian courses, and the{" "}
+            <a className="font-semibold text-foreground underline-offset-2 hover:underline" href={SITE.orgs.japode.url}>
+              Japode
+            </a>{" "}
+            apps.
+          </p>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4">
             {[
               ["One job each", "No dashboards, no accounts, no background services you didn't ask for. A tool should do the one thing its name promises."],

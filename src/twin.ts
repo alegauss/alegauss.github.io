@@ -78,6 +78,10 @@ function body(path: string): string {
       "## Recently shipped",
       "",
       ...shipsOf().slice(0, 6).map((s) => ship(s)),
+      "",
+      "## About",
+      "",
+      `Every product here is made by Alexandre Oliveira (alegauss), a software developer in Brazil. He also builds ${link(SITE.orgs.viglet.name, SITE.orgs.viglet.url)}, open-source enterprise search and content tools (Viglet Turing, Viglet Shio and Viglet Dumont), ${link("Cursarei", "https://cursarei.com.br/")}, an independent directory of Brazilian courses, and the ${link(SITE.orgs.japode.name, SITE.orgs.japode.url)} apps. Elsewhere: ${SITE.profiles.join(", ")}.`,
     ].join("\n")
   }
   const line = LINES.find((l) => linePath(l.id) === path)
