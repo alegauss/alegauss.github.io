@@ -17,6 +17,7 @@
 - ✅ **AG9** **A product page cannot say what comes next, though each roadmap already holds it** — Each product page lists its roadmap's open blocks and lines at the commit the build read, and says so when nothing is open rather than hiding the section.
 - ✅ **AG10** **Product pages show no public numbers: stars, latest release, downloads** — A build step reads stars, the latest release and its downloads, and PyPI downloads, from public endpoints only; pages show them with an as-of date and a daily rebuild.
 - ✅ **AG11** **No page explains the method the Agent Workbench tools add up to** — /method/ walks the workflow one Workbench tool per step and quotes five Lab figures, each with the sentence it comes from and a link to it.
+- ✅ **AG16** **The method page lists one step per tool and never says which tools a Windows app, a service or a game needs** — C:/Program Files/Git/method/ opens on three tracks side by side, each naming the tools it adds and the shared core of roadkeep, commitclerk and Claude Code Tray.
 
 ## Block C — A vendor's reach
 

@@ -11,7 +11,7 @@ import { LAB_FIGURES } from "./data/lab.ts"
 import { MARKETPLACE, marketplaceAdd, pluginFor, pluginInstall } from "./data/plugins.ts"
 import { ROUTES, routeFor } from "./routes.tsx"
 import { changelogShips } from "./pages/Changelog.tsx"
-import { METHOD_STEPS } from "./pages/Method.tsx"
+import { METHOD_CORE, METHOD_STEPS, METHOD_TRACKS } from "./pages/Method.tsx"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
 const item = (p: Project) => `- ${link(p.name, productPath(p))} — ${p.kind}. ${p.blurb}`
@@ -105,8 +105,21 @@ function body(path: string): string {
       "",
       route.description,
       "",
+      "## Three tracks",
+      "",
+      ...METHOD_TRACKS.flatMap((t, i) => [
+        `### Track ${i + 1}: ${t.title}`,
+        "",
+        t.promise,
+        "",
+        ...t.tools.map(({ id, role }) => `- ${link(PROJECTS.find((x) => x.id === id)!.name, productPath(id))}: ${role}`),
+        `- Plus the shared core: ${METHOD_CORE.map((id) => link(PROJECTS.find((x) => x.id === id)!.name, productPath(id))).join(", ")}`,
+        "",
+      ]),
+      "## The shared core",
+      "",
       ...METHOD_STEPS.flatMap((s, i) => [
-        `## ${i + 1}. ${s.title}`,
+        `### ${i + 1}. ${s.title}`,
         "",
         s.text,
         "",

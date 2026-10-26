@@ -97,8 +97,8 @@ export const ROUTES: Route[] = [
   {
     path: "/method/",
     title: "The method — working with coding agents · Alegauss",
-    description: "How the Agent Workbench tools add up to one way of working with coding agents, one step per tool, with figures from the Lab write-ups.",
-    card: { eyebrow: "The method", title: ["Work with coding agents", "and keep the record"], titleAccent: "straight.", line: "One step per tool, figures from the Lab." },
+    description: "How the Agent Workbench tools add up to one way of working with coding agents: three tracks for Windows apps, services and games on a core every track shares, with figures from the Lab write-ups.",
+    card: { eyebrow: "The method", title: ["Work with coding agents", "and keep the record"], titleAccent: "straight.", line: "Three tracks, one shared core, figures from the Lab." },
     index: true,
     section: "Site",
     render: () => <Method />,
