@@ -32,7 +32,7 @@
     {
       "id": "turing",
       "name": "Viglet Turing",
-      "url": "https://turing.viglet.org",
+      "url": "https://openviglet.github.io/turing/",
       "docs": "https://docs.viglet.org/turing/",
       "logo": "viglet/turing-logo.png",
       "tagline": "Visitors find what they came for",
@@ -43,7 +43,7 @@
     {
       "id": "shio",
       "name": "Viglet Shio",
-      "url": "https://shio.viglet.org",
+      "url": "https://openviglet.github.io/shio/",
       "docs": "https://docs.viglet.org/shio/",
       "logo": "viglet/shio-logo.png",
       "tagline": "Publish today, not in three weeks",

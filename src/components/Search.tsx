@@ -96,7 +96,7 @@ export function SearchButton() {
         </div>
         <p className="m-0 border-t border-border px-5 py-3 text-xs text-muted-foreground">
           Search runs on{" "}
-          <a className="text-xs underline underline-offset-2" href="https://turing.viglet.org">
+          <a className="text-xs underline underline-offset-2" href="https://openviglet.github.io/turing/">
             Viglet Turing
           </a>
           .
