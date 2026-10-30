@@ -37,7 +37,7 @@ const gitRoot = resolve(here, "..", "..")   // the directory holding all the rep
    to Pages, so theirs has to be. */
 const MANIFEST = [
   { slug: "pportal",               svg: "pportal/site/public/og.svg" },
-  { slug: "freewilly",             svg: "freewilly/site/public/og.svg" },
+  { slug: "freeharbor",             svg: "freeharbor/site/scripts/og-card.svg" },
   { slug: "claude-tray",           svg: "claude-tray/site/public/og.svg" },
   { slug: "winwright",             svg: "winwright/site/public/og.svg" },
   { slug: "mini-gpt",              svg: "mini-gpt/site/public/og.svg" },
@@ -78,7 +78,7 @@ function fontFiles() {
 
 function loadResvg() {
   const req = createRequire(import.meta.url)
-  const candidates = ["winwright", "pportal", "claude-tray", "freewilly", "mini-gpt"]
+  const candidates = ["winwright", "pportal", "claude-tray", "freeharbor", "mini-gpt"]
     .map(p => join(gitRoot, p, "site", "node_modules", "@resvg", "resvg-js", "index.js"))
   for (const c of candidates) {
     if (existsSync(c)) return req(c).Resvg

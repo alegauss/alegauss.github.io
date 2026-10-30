@@ -18,7 +18,7 @@ export const METHOD_TRACKS = [
     title: "Services and infrastructure",
     promise: "The code runs somewhere other than the desktop, so the work is reaching it.",
     tools: [
-      { id: "freewilly", role: "Runs the containers on upstream Moby in WSL2, on the pipe the docker tools already look for." },
+      { id: "freeharbor", role: "Runs the containers on upstream Moby in WSL2, on the pipe the docker tools already look for." },
       { id: "quickshell", role: "Opens the SSH sessions, SFTP and port forwards to the machines it is deployed on." },
     ],
   },
