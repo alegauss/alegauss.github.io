@@ -206,7 +206,7 @@ export const PROJECTS: Project[] = [
     tags: ["Python ≥3.11", "Claude Code plugin", "Zero deps"],
     site: "roadkeep/",
     repo: "https://github.com/alegauss/roadkeep",
-    accent: { rgb: "148,163,184", bright: "#cbd5e1" },
+    accent: { rgb: "245,158,11", bright: "#fbbf24" },
     mark: '<svg viewBox="0 0 160 160" aria-hidden="true"><rect fill="#cbd5e1" x="24" y="34" width="46" height="12" rx="6"/><rect fill="#cbd5e1" x="24" y="62" width="72" height="12" rx="6"/><rect fill="#cbd5e1" x="24" y="90" width="58" height="12" rx="6"/><rect fill="#cbd5e1" x="24" y="118" width="90" height="12" rx="6"/><rect fill="#f59e0b" x="120" y="22" width="8" height="116" rx="4"/></svg>',
     licence: "Apache-2.0",
     platform: "Python ≥3.11",
