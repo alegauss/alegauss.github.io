@@ -6,7 +6,6 @@
 
 ## Block C — A vendor's reach
 
-- 📋 **AG12** (deps: AG6 ✅) **The hub and every product site live under github.io instead of a domain of their own** — A custom domain on the user site moves every project site with it, and the move costs less before rankings accrue. → §AG12
 - ⏳ **AG14** (deps: AG2 ✅) **The site has no search, and the sponsor's search product is not shown working** — viglet.org searches itself with @viglet/turing-sdk, which is also a working demo of the sponsor's product. → §AG14
 
 ## Done when — AG14
