@@ -4,7 +4,7 @@
 export const SITE = {
   name: "Alegauss",
   /** The origin every canonical URL, the sitemap and llms.txt are written under. */
-  origin: "https://alegauss.github.io",
+  origin: "https://alegauss.com",
   /** The project the home page leads with (visibility's rule: one at a time). */
   flagship: "claude-tray",
   title: "Alegauss — software that shows its work",
