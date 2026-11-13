@@ -64,6 +64,9 @@ export interface Project {
   pypi?: string
   /** The product site publishes no sitemap.xml of its own, so robots.txt names none. */
   noSitemap?: true
+  /** The product site's canonical copy lives on this other host, whose sitemap lists it;
+   *  the hub's sitemap index may only name sitemaps under its own origin. */
+  canonicalHost?: string
 }
 
 export const PROJECTS: Project[] = [
@@ -192,6 +195,7 @@ export const PROJECTS: Project[] = [
     platform: "Windows 10 1903 or later / 11, x64",
     install: [],
     download: "https://github.com/alegauss/revelei/releases/latest",
+    canonicalHost: "japode.com",
     source: { repo: "revelei", ref: "HEAD" },
   },
   {

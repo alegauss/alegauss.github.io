@@ -78,8 +78,22 @@ for (const p of PROJECTS) {
 }
 
 // AG6 — adding a project adds it to the sitemap, llms.txt and an OG image.
-const sitemap = read("sitemap.xml")
+// sitemap.xml is an index of the hub's own sitemap and every product site's; robots.txt
+// names the index, and no sitemap written here lists a URL outside the origin.
+const index = read("sitemap.xml")
+const sitemap = read("sitemap-hub.xml")
 const llms = read("llms.txt")
+const locs = (xml) => [...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1])
+check("AG6", index.includes("<sitemapindex") && !index.includes("<urlset"), "sitemap.xml is not a sitemap index")
+check("AG6", locs(index).includes(`${SITE.origin}/sitemap-hub.xml`), "the sitemap index lacks sitemap-hub.xml")
+check("AG6", read("robots.txt").includes(`Sitemap: ${SITE.origin}/sitemap.xml`), "robots.txt does not name the sitemap index")
+for (const u of [...locs(index), ...locs(sitemap)]) check("AG6", u.startsWith(`${SITE.origin}/`), `a sitemap lists ${u}, outside ${SITE.origin}`)
+for (const p of PROJECTS) {
+  const site = app.productSite(p)
+  if (!site || p.canonicalHost) continue
+  if (p.noSitemap) check("AG6", locs(sitemap).includes(`${SITE.origin}${site}`), `the hub sitemap lacks ${p.name}'s site`)
+  else check("AG6", locs(index).includes(`${SITE.origin}${site}sitemap.xml`), `the sitemap index lacks ${p.name}'s sitemap`)
+}
 for (const r of ROUTES) {
   const slug = app.outputDir(r.path).replaceAll("/", "-") || "home"
   check("AG6", existsSync(join(DIST, "og", `${slug}.png`)), `no OG card for ${r.path}`)

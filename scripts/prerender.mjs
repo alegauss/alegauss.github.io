@@ -73,33 +73,36 @@ for (const route of ROUTES) {
 // GitHub Pages serves /404.html for any path it does not have.
 copyFileSync(join(DIST, "404", "index.html"), join(DIST, "404.html"))
 
-// sitemap.xml: every hub page, then every product site. lastmod is when the content
-// last changed: the authored tree's last commit, or the newest ledger entry if later.
+// sitemap.xml is an index: the hub's own pages in sitemap-hub.xml, then each product
+// site's own sitemap.xml, so one submitted sitemap reports every site under the origin.
+// An index and a urlset cannot share a file. A product site with no sitemap of its own
+// is listed in the hub's; one whose canonical copy lives on another host is left to
+// that host, since a sitemap here may only name URLs under this origin. lastmod is when
+// the hub's content last changed: the authored tree's last commit, or the newest ledger
+// entry if later.
 const ships = app.shipsOf()
 const authored = lastAuthoredChange(REPO, ["src", "public", "index.html", "sponsor.json", ".claude-plugin"])
 const lastmod = [authored, ships[0]?.date].filter(Boolean).sort().at(-1)
-const sites = PROJECTS.map((p) => app.productSite(p)).filter(Boolean)
-const urls = [...ROUTES.filter((r) => r.index).map((r) => abs(r.path)), ...sites.map(abs)]
+const sited = PROJECTS.filter((p) => app.productSite(p) && !p.canonicalHost)
+const sitemaps = sited.filter((p) => !p.noSitemap).map((p) => abs(`${app.productSite(p)}sitemap.xml`))
+const pages = ROUTES.filter((r) => r.index).map((r) => abs(r.path))
+const bare = sited.filter((p) => p.noSitemap).map((p) => abs(app.productSite(p)))
+const stamp = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""
 writeFileSync(
-  join(DIST, "sitemap.xml"),
+  join(DIST, "sitemap-hub.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    urls.map((u) => `  <url>\n    <loc>${esc(u)}</loc>${lastmod && u.startsWith(abs("/")) && !sites.some((s) => u === abs(s)) ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`).join("\n") +
+    [...pages.map((u) => `  <url>\n    <loc>${esc(u)}</loc>${stamp}\n  </url>`), ...bare.map((u) => `  <url>\n    <loc>${esc(u)}</loc>\n  </url>`)].join("\n") +
     `\n</urlset>\n`,
 )
-
-// robots.txt is only read at the host root, so each product site's sitemap has to be
-// named here: a Sitemap: line inside /<project>/robots.txt is ignored by crawlers.
 writeFileSync(
-  join(DIST, "robots.txt"),
-  [
-    "User-agent: *",
-    "Allow: /",
-    "",
-    `Sitemap: ${abs("/sitemap.xml")}`,
-    ...PROJECTS.filter((p) => app.productSite(p) && !p.noSitemap).map((p) => `Sitemap: ${abs(`${app.productSite(p)}sitemap.xml`)}`),
-    "",
-  ].join("\n"),
+  join(DIST, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    [`  <sitemap>\n    <loc>${esc(abs("/sitemap-hub.xml"))}</loc>${stamp}\n  </sitemap>`, ...sitemaps.map((u) => `  <sitemap>\n    <loc>${esc(u)}</loc>\n  </sitemap>`)].join("\n") +
+    `\n</sitemapindex>\n`,
 )
+
+// robots.txt names the index alone: it already leads to every product site's sitemap.
+writeFileSync(join(DIST, "robots.txt"), ["User-agent: *", "Allow: /", "", `Sitemap: ${abs("/sitemap.xml")}`, ""].join("\n"))
 
 writeFileSync(join(DIST, "llms.txt"), app.llmsTxt())
 
@@ -146,4 +149,4 @@ const published = PROJECTS.map((p) => {
 writeFileSync(join(DIST, "projects.json"), JSON.stringify(published, null, 2) + "\n")
 copyFileSync(join(REPO, "sponsor.json"), join(DIST, "sponsor.json"))
 
-console.log(`prerendered ${written.length} pages, ${ROUTES.length} OG cards, ${urls.length} sitemap rows`)
+console.log(`prerendered ${written.length} pages, ${ROUTES.length} OG cards, ${pages.length + bare.length} hub sitemap rows, ${sitemaps.length} product sitemaps indexed`)
