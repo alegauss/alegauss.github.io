@@ -45,18 +45,19 @@ export function Home() {
       <SiteHero
         icon={{ src: "/logo.svg", alt: "Alegauss logo" }}
         badge="Open source · free · analytics only with your consent"
-        title="We build with"
-        titleAccent="the tools we build."
+        title={SITE.heroTitle}
+        titleAccent={SITE.heroAccent}
         sub={SITE.positioning}
         actions={
           <>
-            <SiteButton href="#lines">See the product lines</SiteButton>
+            <SiteButton href="#products">Find a product</SiteButton>
             <SiteButton href="/method/" variant="ghost">
-              How the tools fit together
+              How we build
             </SiteButton>
           </>
         }
       />
+      <p className="vg-site-wrap m-0 pb-8! text-center text-sm font-semibold text-muted-foreground">{SITE.headline}</p>
 
       {/* the flagship is a field in site.ts, not a position in the list (AG4) */}
       <section className="vg-site-section pt-0!" aria-labelledby="flagship">

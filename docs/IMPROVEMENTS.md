@@ -35,27 +35,6 @@ that search runs on Viglet Turing.
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-### §AG26 An immediately understandable first screen
-
-Basis: the design review in this conversation and the current Home.tsx and site.ts. This
-is an editorial design judgment, not a measured usability finding. AG17 already
-introduced the independent AI studio positioning; the remaining issue is the order and
-emphasis of the message.
-
-Make the hero's main heading identify what visitors can find: AI applications and tools
-for building software with agents. Retain 'We build with the tools we build' as a
-supporting signature rather than the only large statement. Give the supporting sentence
-concrete examples or outcomes instead of repeating the method in abstract terms. Make
-the primary action lead to product discovery and retain an obvious path to The Method.
-
-Keep the brand, author attribution, accessibility and privacy disclosures. Do not imply
-that all utilities embed AI or that the products interoperate. Align site metadata,
-social-card text and the home Markdown twin with the revised emphasis. Avoid a new logo,
-a new design system or a category migration.
-
-Validate the first screen at desktop and narrow mobile widths, including readable line
-breaks, navigation and accessible actions.
-
 ### §AG27 A visual showcase that represents the AI focus
 
 AG24 already moved application examples and The Method before the catalogue. AG25

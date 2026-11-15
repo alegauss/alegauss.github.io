@@ -56,6 +56,10 @@ const home = page("/")
 // AG17 — the studio's positioning survives prerender and the text-only twin.
 check("AG17", home.includes(html(SITE.positioning)) && home.includes(html(SITE.method)), "the home page lacks the shared development method")
 check("AG17", read("index.md").includes(SITE.headline) && read("index.md").includes(SITE.method), "the Markdown twin lacks the positioning")
+// AG26 — the offering comes before the supporting studio signature.
+check("AG26", home.indexOf(html(SITE.heroTitle)) < home.indexOf(html(SITE.headline)) && home.includes(html(SITE.heroAccent)), "the offering is not the primary hero message")
+check("AG26", home.includes('href="#products"') && home.includes('href="/method/"'), "hero lacks discovery and method actions")
+check("AG26", read("index.md").indexOf(SITE.heroTitle) < read("index.md").indexOf(SITE.headline), "Markdown prioritises the motto over the offering")
 check("AG24", home.indexOf('id="our-method"') < home.indexOf('id="products"') && home.indexOf('id="products"') < home.indexOf('id="recent-updates"'), "home discovery order is wrong")
 check("AG24", home.includes('id="ai-examples"') && !home.includes('class="hub-entry'), "home lacks application examples or still carries detailed task entries")
 check("AG24", read("index.md").indexOf("## Built with our own tools") < read("index.md").indexOf("## Recent updates"), "Markdown discovery order disagrees with HTML")

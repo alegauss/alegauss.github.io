@@ -10,8 +10,7 @@
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-- 📋 **AG26** (deps: —) **The hero leads with a studio motto before naming the applications and agent development tools** — Lead with a concrete product offering and useful next steps, keeping the studio motto as a supporting signature. → §AG26
-- 📋 **AG27** (deps: AG26) **The first product panel centres on a tray utility while AI application results sit further down the page** — Show authentic Modelado and Revelei results near the top alongside the development tools, preserving the configurable flagship. → §AG27
+- 📋 **AG27** (deps: AG26 ✅) **The first product panel centres on a tray utility while AI application results sit further down the page** — Show authentic Modelado and Revelei results near the top alongside the development tools, preserving the configurable flagship. → §AG27
 - 📋 **AG28** (deps: —) **Repeated cards give the full catalogue almost the same visual weight as the selected product highlights** — Give selected highlights more visual emphasis and make the full catalogue easier to scan without losing filters or product access. → §AG28
 - 📋 **AG29** (deps: —) **Review dates, source labels and development evidence compete with product guidance on the detail pages** — Keep outcomes and the next action prominent while making provenance available through accessible secondary disclosure. → §AG29
 - 📋 **AG30** (deps: —) **The analytics consent panel occupies a large part of the mobile viewport and obscures product content** — Reduce the panel's mobile footprint with concise copy and layout while preserving clear choices and the existing consent behaviour. → §AG30
@@ -21,13 +20,6 @@
 - **A Turing site indexes the hub and answers from alegauss.github.io** SITE.search.site
   names it, and the header search returns product and changelog pages from a browser on
   the hub's origin, past CORS.
-
-## Done when — AG26
-
-- **The first screen identifies the offering before the studio motto** The heading names
-  AI applications and agent development tools; the motto remains secondary; actions lead
-  to products and The Method; desktop/mobile captures, metadata, social cards and
-  Markdown carry consistent claims.
 
 ## Done when — AG27
 

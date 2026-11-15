@@ -44,7 +44,7 @@ export const ROUTES: Route[] = [
     path: "/",
     title: SITE.title,
     description: SITE.description,
-    card: { eyebrow: "Independent AI software", title: ["We build with"], titleAccent: "the tools we build.", line: "AI applications · Agent development tools · A shared method" },
+    card: { eyebrow: "Independent AI software", title: [SITE.heroTitle], titleAccent: SITE.heroAccent, line: "Create 3D models · Improve photos · Build with agents" },
     index: true,
     section: "Site",
     render: () => <Home />,

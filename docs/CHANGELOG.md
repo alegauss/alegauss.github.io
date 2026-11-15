@@ -49,3 +49,5 @@
 
 - ✅ **AG31** **Home page update and application links end in question marks instead of navigation arrows** — Homepage update and Explore links render navigation arrows again, and Markdown dates use the intended separator, with built-page checks preventing the regression.
   checked **Navigation arrows render without stray question marks** Built homepage Explore and recent-update links end in an arrow and retain their destinations; the Markdown update/date separator is an em dash; legitimate question marks are preserved; tests, typecheck and built-page verification pass.
+- ✅ **AG26** **The hero leads with a studio motto before naming the applications and agent development tools** — The hero leads with AI applications and coding-agent tools, concrete outcomes and discovery actions; the studio motto is secondary across HTML, metadata and Markdown.
+  checked **The first screen identifies the offering before the studio motto** The heading names AI applications and agent development tools; the motto remains secondary; actions lead to products and The Method; desktop/mobile captures, metadata, social cards and Markdown carry consistent claims.
