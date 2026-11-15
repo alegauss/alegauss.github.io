@@ -35,29 +35,6 @@ that search runs on Viglet Turing.
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-### §AG28 Distinct treatment for highlights and the complete catalogue
-
-AG21 already removed implementation-heavy tags from cards, and AG19 groups entries by
-availability. Keep those gains. This task concerns visual hierarchy and repetition, not
-another metadata or taxonomy rewrite.
-
-Differentiate the small editorial showcase from the complete product directory through
-scale, spacing, image use and information density within the established design system.
-Make the full catalogue more compact to scan while keeping name, concrete outcome,
-purpose, platform, maturity and product link understandable. Review whether every
-repeated card needs the same border, padding and metadata prominence. Preserve product
-logos and accent colours; do not invent an unrelated visual style for each item.
-
-Retain the filters and their counts, empty state, reset and keyboard behaviour from
-AG20. All products must still appear once in the prerendered main catalogue with
-JavaScript disabled; highlighting a product elsewhere must not create a second
-filterable entry. Maintain meaningful availability group headings and the existing
-product URLs.
-
-Compare before/after desktop and mobile captures, including long product names and both
-themes. Use existing data and shared components rather than maintaining a separate list
-of catalogue content.
-
 ### §AG29 Evidence available at the right reading level
 
 AG19, AG22, AG23 and AG25 added reviewed availability, documented development

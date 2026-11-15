@@ -13,7 +13,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
     return entries.length ? (
       <section key={group.title} data-catalogue-group className="mb-8">
         <h3 className="mb-4 text-lg font-bold">{group.title}</h3>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(330px,100%),1fr))] gap-4">
+        <div className="grid gap-x-8 lg:grid-cols-2" data-product-directory>
           {entries.map((p) => <ProjectCard key={p.id} project={p} />)}
         </div>
       </section>

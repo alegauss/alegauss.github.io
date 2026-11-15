@@ -10,7 +10,6 @@
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-- 📋 **AG28** (deps: —) **Repeated cards give the full catalogue almost the same visual weight as the selected product highlights** — Give selected highlights more visual emphasis and make the full catalogue easier to scan without losing filters or product access. → §AG28
 - 📋 **AG29** (deps: —) **Review dates, source labels and development evidence compete with product guidance on the detail pages** — Keep outcomes and the next action prominent while making provenance available through accessible secondary disclosure. → §AG29
 - 📋 **AG30** (deps: —) **The analytics consent panel occupies a large part of the mobile viewport and obscures product content** — Reduce the panel's mobile footprint with concise copy and layout while preserving clear choices and the existing consent behaviour. → §AG30
 
@@ -19,13 +18,6 @@
 - **A Turing site indexes the hub and answers from alegauss.github.io** SITE.search.site
   names it, and the header search returns product and changelog pages from a browser on
   the hub's origin, past CORS.
-
-## Done when — AG28
-
-- **Highlights and catalogue have distinct visual roles** Desktop/mobile captures
-  distinguish selected highlights from the complete directory; cards retain essential
-  selection data and readable targets; filters, empty/reset states and no-JavaScript
-  access still work; every product appears once in the filterable catalogue.
 
 ## Done when — AG29
 

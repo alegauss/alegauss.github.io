@@ -79,8 +79,10 @@ const published = JSON.parse(read("projects.json"))
 // AG20 — all cards remain visible once in the static catalogue before enhancement.
 check("AG20", (home.match(/data-catalogue-card=/g) || []).length === PROJECTS.length, "static catalogue is incomplete or duplicated")
 check("AG20", home.includes('data-island="catalogue-filters"'), "catalogue filter enhancement is absent")
+check("AG28", home.includes('data-product-directory'), "the catalogue lacks the compact directory treatment")
 for (const p of PROJECTS) {
   const card = home.match(new RegExp(`<article[^>]*data-catalogue-card="${p.id}"[^>]*>[\\s\\S]*?</article>`))?.[0] || ""
+  check("AG28", !card.includes('class="hub-card') && card.includes(`href="${app.productPath(p)}"`), `${p.name} repeats the showcase card treatment or lacks its product link`)
   check("AG21", card.includes(html(p.blurb)) && !card.includes(".NET 10") && !card.includes("ONNX Runtime"), `${p.name}'s card does not prioritise the outcome`)
   check("AG3", home.includes(html(p.name)), `the home page HTML lacks ${p.name}`)
   check("AG3", home.includes(html(p.blurb)), `the home page HTML lacks ${p.name}'s blurb`)
