@@ -33,25 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG18 Product families organised by purpose
-
-The current LineId model mixes Agent Workbench, Windows Native and Lab. Replace the
-primary families with Agent Development Tools, AI-Powered Applications, Developer
-Utilities and Research & Labs. Modelado and Revelei belong with AI applications;
-roadkeep, winwright and commitclerk belong with agent development tools. Classify every
-remaining project from its actual purpose: using a Claude Code plugin alone does not
-make Piano a software development tool, and askround needs a deliberate placement based
-on its visibility use case.
-
-Keep platform independent of family membership and allow multiple memberships where
-useful. The main catalogue already renders each project once; preserve that property.
-Update line pages, navigation, counts, generated projects.json, metadata, Markdown and
-verification assumptions from the same data source.
-
-Preserve existing /lines/ URLs with aliases or the deployment's supported redirect
-mechanism when changing slugs, and keep product URLs stable. This revises AG4's
-delivered grouping rather than recreating its catalogue.
-
 ### §AG19 Availability that reflects what a visitor can actually use
 
 projects.ts mixes 'In development' with runtime versions and platform tags, while other

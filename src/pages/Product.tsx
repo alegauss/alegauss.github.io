@@ -20,7 +20,7 @@ export function productJsonLd(p: Project) {
     name: p.name,
     description: p.blurb,
     url: absolute(productPath(p)),
-    applicationCategory: p.lines.includes("lab") ? "ReferenceApplication" : "DeveloperApplication",
+    applicationCategory: p.lines.includes("lab") ? "ReferenceApplication" : p.lines.includes("applications") ? "MultimediaApplication" : "DeveloperApplication",
     operatingSystem: p.platform,
     license: `https://spdx.org/licenses/${p.licence}.html`,
     isAccessibleForFree: true,

@@ -94,7 +94,7 @@ export function Home() {
           <SiteFeatureIndex
             eyebrow="Product lines"
             title="Start from the problem you have."
-            description="Two product lines and a lab. A tool can sit in two of them."
+            description="Choose by what you want to do. Platform and availability are listed for each product."
             goLabel="See the line →"
             items={LINES.map((l) => ({
               href: linePath(l.id),

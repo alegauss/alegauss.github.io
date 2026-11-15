@@ -65,6 +65,14 @@ for (const p of PROJECTS) {
 
 // AG4 — each line has its own page and the home page leads with the flagship.
 for (const slug of ["agent-workbench", "windows-native", "lab"]) check("AG4", existsSync(join(DIST, "lines", slug, "index.html")), `/lines/${slug}/ is missing`)
+// AG18 ? purpose families are complete and the original line addresses stay usable.
+for (const line of app.LINES) {
+  check("AG18", page(`/lines/${line.slug}/`).includes(html(line.name)), `${line.name} has no line page`)
+  check("AG18", published.filter((p) => p.lines.includes(line.id)).length === PROJECTS.filter((p) => p.lines.includes(line.id)).length, `${line.name} has inconsistent counts`)
+}
+for (const p of PROJECTS) check("AG18", p.lines.length > 0 && p.lines.every((id) => app.LINES.some((l) => l.id === id)), `${p.name} has an unknown family`)
+for (const id of ["modelado", "revelei"]) check("AG18", PROJECTS.find((p) => p.id === id).lines.includes("applications"), `${id} is not an AI application`)
+check("AG18", !app.LINES.some((l) => l.name === "Windows Native"), "Windows remains a primary family")
 const flagship = PROJECTS.find((p) => p.id === SITE.flagship)
 check("AG4", home.indexOf("Flagship") !== -1 && home.indexOf("Flagship") < home.indexOf('id="lines"'), "the flagship does not come first")
 check("AG4", home.includes(`id="flagship"`) && home.includes(html(flagship.name)), "the flagship panel is missing")

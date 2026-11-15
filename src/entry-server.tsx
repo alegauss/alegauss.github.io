@@ -14,3 +14,5 @@ export const render = (path: string) => renderToString(<Layout>{routeFor(path).r
 export const canonicalUrl = (path: string) => absolute(path)
 export const outputDir = (path: string) => path.replace(/^\/|\/$/g, "")
 export const ROUTE_META = ROUTES.map(({ path, title, description }) => ({ path, title, description }))
+
+export { LINES } from "./data/lines.ts"

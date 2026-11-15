@@ -137,7 +137,7 @@ writeFileSync(
 
 // projects.json keeps the shape other sites already read; it is generated now, not kept.
 const published = PROJECTS.map((p) => {
-  const out = { name: p.name, group: p.group, kind: p.kind, blurb: p.blurb, pitch: p.pitch }
+  const out = { name: p.name, group: p.group, lines: p.lines, kind: p.kind, blurb: p.blurb, pitch: p.pitch }
   if (p.shot) out.shot = p.shot
   if (p.cta) out.cta = p.cta
   Object.assign(out, { tags: p.tags, site: p.site, repo: p.repo, accent: p.accent })

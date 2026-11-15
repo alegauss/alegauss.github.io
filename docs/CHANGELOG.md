@@ -28,3 +28,5 @@
 
 - ✅ **AG17** **The home page does not explain the AI focus or that Alegauss builds products with its own tools** — The hero, About, metadata, social card and Markdown present independent AI products built with roadkeep, winwright and commitclerk through a shared method.
   checked **The AI focus and shared method are explicit** Home hero, About, metadata, social cards and Markdown explain independent AI applications and agent development tools, naming actual development use without promising application integration or changing product URLs.
+- ✅ **AG18** **Agent Workbench, Windows Native and Lab mix purpose, platform and publication type** — Four purpose-based families classify every product, with AI applications separate from developer tools and platform metadata, preserving existing line and product URLs.
+  checked **Purpose and platform are separate throughout discovery** Every project has a reviewed purpose family; Modelado and Revelei appear as AI applications; the catalogue contains each project once; previous line URLs still resolve; navigation, counts, JSON and Markdown agree.
