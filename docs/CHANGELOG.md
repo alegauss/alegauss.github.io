@@ -23,3 +23,6 @@
 
 - ✅ **AG13** **Claude Code plugins are installed one repository at a time, with no place listing them** — The manifest lives in this repository's .claude-plugin/, so one command adds it and roadkeep, winwright, polyweave and Piano install from it; /plugins/ reads the same file.
 - ✅ **AG14 (the header search)** **The site has no search, and the sponsor's search product is not shown working** — The header search on @viglet/turing-sdk is built and credits Turing; it switches on once a Turing site indexes the hub and allows its origin, which SITE.search.site then names.
+
+## Block D — Independent AI products, built with our own tools
+

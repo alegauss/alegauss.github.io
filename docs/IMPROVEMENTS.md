@@ -30,3 +30,165 @@ on the hub.
 
 Done when the header search returns product and changelog pages, and the page states
 that search runs on Viglet Turing.
+
+## Block D — Independent AI products, built with our own tools
+
+### §AG17 An independent AI studio that builds with its own tools
+
+Source: the owner's supplied analysis,
+https://chatgpt.com/share/6af9b90c-e054-83e9-974a-8df6f8e29ffa. The final clarification
+takes precedence over earlier proposals: products are independent; roadkeep manages
+their roadmaps, commitclerk supports commits, and winwright supports agent-driven tests
+in Windows projects.
+
+Revise Home.tsx, site.ts, route descriptions, generated social cards and the Markdown
+twin to explain the AI focus and shared development practice. Use 'We build with the
+tools we build' as the editorial direction, with concrete supporting copy. Keep the
+author's attribution and existing privacy disclosures. Describe AI-powered applications
+separately from tools used by coding agents; avoid suggesting that every utility embeds
+AI or that final applications interoperate.
+
+Keep product landing pages in their existing subdirectories, including /products/<id>/
+and each product's own site path. Subdomain migration, new hosted services and runtime
+integration between products are outside this request.
+
+### §AG18 Product families organised by purpose
+
+The current LineId model mixes Agent Workbench, Windows Native and Lab. Replace the
+primary families with Agent Development Tools, AI-Powered Applications, Developer
+Utilities and Research & Labs. Modelado and Revelei belong with AI applications;
+roadkeep, winwright and commitclerk belong with agent development tools. Classify every
+remaining project from its actual purpose: using a Claude Code plugin alone does not
+make Piano a software development tool, and askround needs a deliberate placement based
+on its visibility use case.
+
+Keep platform independent of family membership and allow multiple memberships where
+useful. The main catalogue already renders each project once; preserve that property.
+Update line pages, navigation, counts, generated projects.json, metadata, Markdown and
+verification assumptions from the same data source.
+
+Preserve existing /lines/ URLs with aliases or the deployment's supported redirect
+mechanism when changing slugs, and keep product URLs stable. This revises AG4's
+delivered grouping rather than recreating its catalogue.
+
+### §AG19 Availability that reflects what a visitor can actually use
+
+projects.ts mixes 'In development' with runtime versions and platform tags, while other
+entries show releases through public numbers. Add structured maturity and availability
+data, with consistent labels such as Available, Beta and In development. Determine each
+state from the project's documentation and usable distribution, recording a source and
+review date; a releases/latest link, commit history or a package version alone does not
+prove a stable downloadable app exists.
+
+Use the same state in cards, line pages, the flagship, product detail pages and
+Markdown. Separate available products from those still in development without hiding
+either. CTA wording must match the evidence: preview, build from source and download are
+different actions. Research material needs an appropriate published or experimental
+presentation rather than an invented binary release.
+
+Retain release metrics as supporting evidence, and make stale or missing evidence
+visible during maintenance.
+
+### §AG20 Catalogue filters that combine purpose, platform and maturity
+
+Use the revised family and availability data to filter the main catalogue by purpose,
+operating system and maturity. Normalise platform values instead of parsing display tags
+such as '.NET 10' or arbitrary platform prose. Support combined filters, a visible
+result count, clear/reset and an explicit empty state.
+
+Keep every project present once in the initial prerendered HTML for discovery and
+no-JavaScript access, then enhance filtering through the site's island mechanism.
+Controls need labels, keyboard access, visible focus and understandable status
+announcements. Filters must not make card links unusable or imply that an agent-facing
+tool is an AI-powered end-user application.
+
+Verify individual and combined selections, clearing, no matches, mobile layout and the
+no-JavaScript catalogue. Keep per-line pages available as direct navigation routes.
+
+### §AG21 Cards that help a visitor choose
+
+ProjectCard currently renders project.kind, a blurb and the unrestricted tags array.
+Tags include runtimes, dependency counts and implementation technologies alongside
+availability and Windows versions. Review every card so the first sentence states the
+user problem or result and the next metadata identifies purpose, platform and maturity.
+
+Move framework names, runtime versions and technical detail to the existing product page
+where they help installation or compatibility decisions. Keep concise requirements on
+the card only when they materially affect selection, such as Windows-only support or
+local hardware needs. Preserve each product's existing logo and colour, using shared
+card structure and design-system tokens.
+
+This is an editorial refinement of the existing cards, not a new visual identity or a
+second product catalogue. Check narrow layouts and ensure card labels agree with the
+filter data and product detail.
+
+### §AG22 The Method demonstrated through the owner's actual workflow
+
+AG11 and AG16 already delivered /method/, shared tools and tracks for Windows apps,
+services and games. Extend that page rather than filing another generic workflow
+diagram. Explain roadkeep for planning and tracking, coding agents for implementation,
+winwright for agent-assisted testing in Windows projects and commitclerk for commit
+work, with tests and commits repeating throughout development.
+
+Use Modelado and Revelei as candidate examples of products built this way. Verify
+repository evidence before stating which tool each project uses, and link to stable
+source locations where possible. Distinguish owner-confirmed working practice from
+independently inspectable evidence. Do not label a hypothetical game asset pipeline or
+an unverified deployment as production use.
+
+Keep the existing tracks and sourced Lab figures where they remain accurate, but
+distinguish suggested combinations from documented use. State that a shared engineering
+method does not mean integration or runtime dependency between the applications.
+
+### §AG23 Product relationships grounded in development use
+
+Add explicit relationship data between products, with a type, short explanation and
+evidence rather than automatically calling every product in a family related. On
+Modelado and Revelei, show 'How we build' links to roadkeep, winwright and commitclerk
+only where usage has been verified. On tool pages, show the corresponding 'Used to
+build' projects, using the same relationship data so both directions stay consistent.
+
+Label these as development relationships, not application dependencies, interoperability
+or a requirement to install the development tools. Complementary recommendations may be
+added only when their purpose is clear and must remain distinct from documented use.
+Omit empty sections and invalid or self-referencing links.
+
+Render relationships and evidence in the product HTML and Markdown twin, linking through
+existing product URL helpers. Reuse the Method evidence and preserve product
+independence.
+
+### §AG24 Home page hierarchy for first-time visitors
+
+Home.tsx currently places six raw shipped entries between the full catalogue and the
+Method promotion. The Method already has a hero link, so the gap is prominence and
+explanation rather than a missing route.
+
+Reorder the home page around the revised positioning, the product families, concrete
+application examples and a concise explanation that Alegauss builds with its own tools.
+Give Modelado and Revelei visibility alongside the development tools without replacing
+the configurable flagship mechanism or fabricating availability. Move detailed release
+activity behind a compact recent-updates section and the existing full changelog link.
+
+Retain changelog pages, Atom feeds and source attribution from AG8. The homepage should
+help a visitor identify an application or development tool before reading internal task
+sentences. Keep the HTML, Markdown twin and route/social descriptions consistent and
+check mobile reading order.
+
+### §AG25 Product landing pages that demonstrate what the application does
+
+AG5 already delivered /products/<id>/ pages with pitches, links, install steps, JSON-LD
+and links to each product's own site. ProjectTile and accentStyle already provide shared
+styling with individual identities. Improve that foundation rather than commissioning
+new sites or logos.
+
+Review the product page template for audience, problem, concrete output, platform
+requirements, documentation and the next action. For Modelado and Revelei, use authentic
+before/after output or screenshots that explain the capability, with descriptive
+captions and alt text; an OG image alone is not necessarily a useful demonstration. Use
+existing product assets when suitable, and do not fabricate results or imply unfinished
+features are available.
+
+Keep the primary action consistent with maturity and confirmed installation or download
+availability. Retain the hub-to-product-site boundary to avoid duplicating full
+documentation. Generate equivalent useful text in Markdown and maintain the shared
+design system, each product's own logo and accent, and stable subdirectory URLs.
