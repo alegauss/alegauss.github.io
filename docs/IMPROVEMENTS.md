@@ -33,25 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG17 An independent AI studio that builds with its own tools
-
-Source: the owner's supplied analysis,
-https://chatgpt.com/share/6af9b90c-e054-83e9-974a-8df6f8e29ffa. The final clarification
-takes precedence over earlier proposals: products are independent; roadkeep manages
-their roadmaps, commitclerk supports commits, and winwright supports agent-driven tests
-in Windows projects.
-
-Revise Home.tsx, site.ts, route descriptions, generated social cards and the Markdown
-twin to explain the AI focus and shared development practice. Use 'We build with the
-tools we build' as the editorial direction, with concrete supporting copy. Keep the
-author's attribution and existing privacy disclosures. Describe AI-powered applications
-separately from tools used by coding agents; avoid suggesting that every utility embeds
-AI or that final applications interoperate.
-
-Keep product landing pages in their existing subdirectories, including /products/<id>/
-and each product's own site path. Subdomain migration, new hosted services and runtime
-integration between products are outside this request.
-
 ### §AG18 Product families organised by purpose
 
 The current LineId model mixes Agent Workbench, Windows Native and Lab. Replace the

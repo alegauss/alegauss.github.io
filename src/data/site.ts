@@ -7,9 +7,12 @@ export const SITE = {
   origin: "https://alegauss.com",
   /** The project the home page leads with (visibility's rule: one at a time). */
   flagship: "claude-tray",
-  title: "Alegauss — software that shows its work",
+  title: "Alegauss — independent AI software and agent development tools",
+  headline: "We build with the tools we build.",
+  positioning: "Independent AI applications and tools for agent-assisted software development, built with a shared engineering method.",
+  method: "We use roadkeep to manage our roadmaps, coding agents to implement changes, winwright to test Windows projects and commitclerk to support our commit workflow. The applications are independent; what they share is how we build them.",
   description:
-    "Open-source tools for working with coding agents, native Windows apps and measured write-ups by Alexandre Oliveira — the small thing the platform should have shipped, plus numbers taken from records rather than guessed at.",
+    "Independent AI applications and agent development tools by Alexandre Oliveira. Built with our own tools: roadkeep for roadmaps, winwright for Windows testing and commitclerk for commits.",
   github: "https://github.com/alegauss",
   author: "Alexandre Oliveira",
   /**

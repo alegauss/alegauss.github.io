@@ -40,9 +40,9 @@ export function Home() {
       <SiteHero
         icon={{ src: "/logo.svg", alt: "Alegauss logo" }}
         badge="Open source · free · analytics only with your consent"
-        title="Software that shows you"
-        titleAccent="what it's actually doing."
-        sub="Tools for working with coding agents without losing track of them, the Windows apps the platform should have shipped, and write-ups where the numbers come from records rather than recollection."
+        title="We build with"
+        titleAccent="the tools we build."
+        sub={SITE.positioning}
         actions={
           <>
             <SiteButton href="#lines">See the product lines</SiteButton>
@@ -160,7 +160,8 @@ export function Home() {
 
       <section className="vg-site-section" id="about">
         <div className="vg-site-wrap">
-          <SiteSectionHead eyebrow="About" title="How these are built" />
+          <SiteSectionHead eyebrow="About" title="An independent AI software studio" />
+          <p className="m-0 mb-6 leading-relaxed text-muted-foreground">{SITE.method}</p>
           <p className="m-0 mb-6 leading-relaxed text-muted-foreground">
             Every product here is made by Alexandre Oliveira (alegauss), a software developer in Brazil. He also builds{" "}
             <a className="font-semibold text-foreground underline-offset-2 hover:underline" href={SITE.orgs.viglet.url}>

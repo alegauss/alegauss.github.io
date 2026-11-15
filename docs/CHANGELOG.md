@@ -26,3 +26,5 @@
 
 ## Block D — Independent AI products, built with our own tools
 
+- ✅ **AG17** **The home page does not explain the AI focus or that Alegauss builds products with its own tools** — The hero, About, metadata, social card and Markdown present independent AI products built with roadkeep, winwright and commitclerk through a shared method.
+  checked **The AI focus and shared method are explicit** Home hero, About, metadata, social cards and Markdown explain independent AI applications and agent development tools, naming actual development use without promising application integration or changing product URLs.

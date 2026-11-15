@@ -44,7 +44,7 @@ export const ROUTES: Route[] = [
     path: "/",
     title: SITE.title,
     description: SITE.description,
-    card: { eyebrow: "Alegauss", title: ["Software that shows you"], titleAccent: "what it's actually doing.", line: "Agent Workbench · Windows Native · Lab" },
+    card: { eyebrow: "Independent AI software", title: ["We build with"], titleAccent: "the tools we build.", line: "AI applications · Agent development tools · A shared method" },
     index: true,
     section: "Site",
     render: () => <Home />,

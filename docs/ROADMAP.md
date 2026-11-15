@@ -8,14 +8,13 @@
 
 ## Block D — Independent AI products, built with our own tools
 
-- 📋 **AG17** (deps: —) **The home page does not explain the AI focus or that Alegauss builds products with its own tools** — State the independent AI studio positioning and shared engineering method consistently in the hero, About and discovery metadata. → §AG17
 - 📋 **AG18** (deps: —) **Agent Workbench, Windows Native and Lab mix purpose, platform and publication type** — Group products by visitor need and keep Windows as platform metadata, with AI applications distinct from agent development tools. → §AG18
 - 📋 **AG19** (deps: —) **Availability is buried in inconsistent tags and cannot be compared across products** — Give every catalogue entry an evidence-based maturity state and distinguish usable releases from work in development. → §AG19
 - 📋 **AG20** (deps: AG18, AG19) **Visitors cannot narrow the catalogue by purpose, operating system or maturity** — Add combinable accessible catalogue filters backed by structured product metadata while retaining the full prerendered catalogue. → §AG20
 - 📋 **AG21** (deps: AG18, AG19) **Catalogue cards mix runtimes and implementation details with the information needed to choose a product** — Lead cards with the user outcome and consistent purpose, platform and availability labels, keeping technical depth on product pages. → §AG21
 - 📋 **AG22** (deps: —) **The Method shows possible tool combinations but not how those tools build Alegauss products** — Extend the existing tracks with the real planning, coding, Windows testing and commit cycle, supported by project evidence. → §AG22
 - 📋 **AG23** (deps: AG22) **Product pages do not connect applications to the development tools actually used to build them** — Show verified built-with and used-to-build relationships with reciprocal product links and an explanation of each relationship. → §AG23
-- 📋 **AG24** (deps: AG17, AG18) **The Method appears below technical release entries instead of explaining the products near the top** — Prioritise product discovery and the shared method on the home page while keeping a compact path to the full changelog. → §AG24
+- 📋 **AG24** (deps: AG17 ✅, AG18) **The Method appears below technical release entries instead of explaining the products near the top** — Prioritise product discovery and the shared method on the home page while keeping a compact path to the full changelog. → §AG24
 - 📋 **AG25** (deps: AG18, AG19) **Product pages use the same pitch and install layout without a consistent demonstration of the user outcome** — Strengthen the existing landing pages with useful product visuals, audience guidance and availability-appropriate next steps. → §AG25
 
 ## Done when — AG14
@@ -23,13 +22,6 @@
 - **A Turing site indexes the hub and answers from alegauss.github.io** SITE.search.site
   names it, and the header search returns product and changelog pages from a browser on
   the hub's origin, past CORS.
-
-## Done when — AG17
-
-- **The AI focus and shared method are explicit** Home hero, About, metadata, social
-  cards and Markdown explain independent AI applications and agent development tools,
-  naming actual development use without promising application integration or changing
-  product URLs.
 
 ## Done when — AG18
 

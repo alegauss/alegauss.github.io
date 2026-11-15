@@ -52,6 +52,9 @@ for (const keep of ["projects.json", "sponsor.json", "logo.svg", "viglet/viglet-
 // AG3 — the built index.html carries every project's name, blurb and link with
 // JavaScript disabled, and projects.json comes from the same source as the cards.
 const home = page("/")
+// AG17 — the studio's positioning survives prerender and the text-only twin.
+check("AG17", home.includes(html(SITE.positioning)) && home.includes(html(SITE.method)), "the home page lacks the shared development method")
+check("AG17", read("index.md").includes(SITE.headline) && read("index.md").includes(SITE.method), "the Markdown twin lacks the positioning")
 const published = JSON.parse(read("projects.json"))
 for (const p of PROJECTS) {
   check("AG3", home.includes(html(p.name)), `the home page HTML lacks ${p.name}`)
