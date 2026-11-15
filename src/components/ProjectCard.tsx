@@ -1,6 +1,7 @@
 import type { Project } from "../data/projects.ts"
 import { productPath } from "../data/links.ts"
 import { ProjectTile, accentStyle } from "./ProjectTile.tsx"
+import { AvailabilityBadge } from "./Availability.tsx"
 
 /** A directory entry: the depth lives on the product page it links to. */
 export function ProjectCard({ project, note }: { project: Project; note?: string }) {
@@ -18,6 +19,7 @@ export function ProjectCard({ project, note }: { project: Project; note?: string
         </div>
       </div>
       <p className="m-0 text-[0.93rem] leading-relaxed text-muted-foreground">{project.blurb}</p>
+      <AvailabilityBadge project={project} />
       <ul className="hub-meta m-0 list-none p-0">
         {project.tags.map((t) => (
           <li key={t}>{t}</li>

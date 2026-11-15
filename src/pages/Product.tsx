@@ -10,6 +10,7 @@ import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
 import { ShipList } from "../components/ShipList.tsx"
 import { NumberStats } from "../components/Numbers.tsx"
 import { Inline } from "../components/Inline.tsx"
+import { AvailabilityBadge, AvailabilityEvidence, availabilityAction } from "../components/Availability.tsx"
 
 /** schema.org for the product (AG5): what a search engine needs to rank the page for its name. */
 export function productJsonLd(p: Project) {
@@ -59,7 +60,7 @@ function Install({ project }: { project: Project }) {
         {project.download ? (
           <p className="m-0">
             <a className="font-semibold underline underline-offset-2" href={project.download}>
-              Download the latest release →
+              View release downloads →
             </a>
           </p>
         ) : null}
@@ -70,6 +71,7 @@ function Install({ project }: { project: Project }) {
 
 function WhatComesNext({ project }: { project: Project }) {
   const r = recordsOf(project)
+
   const open = r.blocks.filter((b) => b.open.length)
   return (
     <section className="mb-14" aria-labelledby="next">
@@ -114,6 +116,7 @@ function WhatComesNext({ project }: { project: Project }) {
 }
 
 export function Product({ project }: { project: Project }) {
+  const action = availabilityAction(project)
   const site = productSite(project)
   const lines = LINES.filter((l) => project.lines.includes(l.id))
   const ships = shipsOf([project])
@@ -156,9 +159,11 @@ export function Product({ project }: { project: Project }) {
             </div>
           </div>
           <p className="m-0 mb-6 text-lg leading-relaxed text-muted-foreground">{project.pitch}</p>
+          <AvailabilityBadge project={project} />
+          <AvailabilityEvidence project={project} />
           <div className="flex flex-wrap gap-3">
-            {site ? <SiteButton href={site}>{project.cta ?? "Open the product site"}</SiteButton> : null}
-            {!site && project.download ? <SiteButton href={project.download}>Download the app</SiteButton> : null}
+            <SiteButton href={action.href}>{action.label}</SiteButton>
+            {site && action.href !== site ? <SiteButton href={site} variant="ghost">{project.cta ?? "Product site"}</SiteButton> : null}
             {project.docs ? (
               <SiteButton href={asset(project.docs)} variant="ghost">
                 Docs

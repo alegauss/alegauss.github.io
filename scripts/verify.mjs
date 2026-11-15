@@ -78,6 +78,16 @@ check("AG4", home.indexOf("Flagship") !== -1 && home.indexOf("Flagship") < home.
 check("AG4", home.includes(`id="flagship"`) && home.includes(html(flagship.name)), "the flagship panel is missing")
 
 // AG5 — every project has a page carrying a SoftwareApplication JSON-LD block.
+// AG19 — the same reviewed availability is visible on every discovery surface.
+for (const p of PROJECTS) {
+  const a = p.availability
+  check("AG19", a.source.includes("/blob/") && /\d{4}-\d{2}-\d{2}/.test(a.reviewed) && a.evidence, `${p.name} lacks availability evidence`)
+  check("AG19", page(app.productPath(p)).includes(app.MATURITY_LABELS[a.state]) && read(`${app.outputDir(app.productPath(p))}/index.md`).includes(a.source), `${p.name} has inconsistent availability`)
+  check("AG19", !p.tags.includes("In development"), `${p.name} keeps an unstructured maturity tag`)
+  if (app.availabilityStale(a)) console.warn(`AG19: review availability for ${p.name} (last checked ${a.reviewed})`)
+}
+check("AG19", app.availabilityStale({ source: "", reviewed: "" }), "missing evidence is not flagged")
+check("AG19", app.availabilityStale({ source: "source", reviewed: "2020-01-01" }), "old evidence is not flagged")
 // AG9 — each page lists its open blocks, or says the roadmap is empty.
 for (const p of PROJECTS) {
   const path = app.productPath(p)

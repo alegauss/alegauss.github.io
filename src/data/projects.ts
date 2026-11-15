@@ -22,6 +22,7 @@
    made absolute where a page links them (see links.ts).
    --------------------------------------------------------------- */
 
+import { AVAILABILITY, type Availability } from "./availability.ts"
 import type { LineId } from "./lines.ts"
 
 export interface Accent {
@@ -42,6 +43,7 @@ export interface Project {
   name: string
   group: "apps" | "cli" | "measured"
   lines: LineId[]
+  availability: Availability
   kind: string
   blurb: string
   pitch: string
@@ -72,6 +74,7 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: "claude-tray",
+    availability: AVAILABILITY["claude-tray"],
     name: "Claude Code Tray",
     group: "apps",
     lines: ["workbench"],
@@ -94,6 +97,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "freeharbor",
+    availability: AVAILABILITY["freeharbor"],
     name: "FreeHarbor",
     group: "apps",
     lines: ["utilities"],
@@ -101,7 +105,7 @@ export const PROJECTS: Project[] = [
     blurb: "Docker on Windows without Docker Desktop: upstream Moby in a WSL2 distro it owns, on the pipe your tools already look for.",
     pitch: "Docker Desktop charges a licence fee for what is, underneath, an open engine. FreeHarbor runs upstream Moby in a WSL2 distro it owns and exposes it on the docker_engine pipe your tools already look for, so nothing in your setup has to know it changed. One window, your containers, no subscription.",
     shot: "freeharbor/og.png",
-    tags: [".NET 10", "In development", "Apache 2.0"],
+    tags: [".NET 10", "Apache 2.0"],
     site: "freeharbor/",
     repo: "https://github.com/alegauss/freeharbor",
     accent: { rgb: "46,155,214", bright: "#67C3F2" },
@@ -114,6 +118,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "pportal",
+    availability: AVAILABILITY["pportal"],
     name: "PPortal",
     group: "apps",
     lines: ["utilities"],
@@ -136,6 +141,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "aduzi",
+    availability: AVAILABILITY["aduzi"],
     name: "Aduzi",
     group: "apps",
     lines: ["utilities"],
@@ -143,7 +149,7 @@ export const PROJECTS: Project[] = [
     blurb: "SSH on Windows without the suite around it: the terminal grid drawn on the GPU, and a live prompt in under 400 ms.",
     pitch: "A native Windows SSH client that draws the terminal grid on the GPU: one instanced draw call per frame, none at all while nothing changes, and a cold start to a live prompt in under 400 ms. Sessions, keys, SFTP and port forwards, with your own known_hosts and OpenSSH agent, and nothing bolted on beside them.",
     shot: "aduzi/og.png",
-    tags: [".NET 10", "In development", "Windows 10 / 11"],
+    tags: [".NET 10", "Windows 10 / 11"],
     site: "aduzi/",
     repo: "https://github.com/alegauss/aduzi",
     accent: { rgb: "124,92,245", bright: "#a78bfa" },
@@ -159,6 +165,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "modelado",
+    availability: AVAILABILITY["modelado"],
     name: "Modelado",
     group: "apps",
     lines: ["applications"],
@@ -179,6 +186,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "revelei",
+    availability: AVAILABILITY["revelei"],
     name: "Revelei",
     group: "apps",
     lines: ["applications"],
@@ -200,6 +208,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "roadkeep",
+    availability: AVAILABILITY["roadkeep"],
     name: "roadkeep",
     group: "cli",
     lines: ["workbench"],
@@ -224,6 +233,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "commitclerk",
+    availability: AVAILABILITY["commitclerk"],
     name: "commitclerk",
     group: "cli",
     lines: ["workbench"],
@@ -247,6 +257,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "askround",
+    availability: AVAILABILITY["askround"],
     name: "askround",
     group: "cli",
     lines: ["utilities"],
@@ -270,6 +281,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "winwright",
+    availability: AVAILABILITY["winwright"],
     name: "winwright",
     group: "cli",
     lines: ["workbench"],
@@ -292,6 +304,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "polyweave",
+    availability: AVAILABILITY["polyweave"],
     name: "polyweave",
     group: "cli",
     lines: ["workbench"],
@@ -307,12 +320,13 @@ export const PROJECTS: Project[] = [
     licence: "MIT",
     platform: "Python 3.11",
     install: [
-      { label: "pip", command: "pip install git+https://github.com/alegauss/polyweave" },
+      { label: "pip", command: "pip install polyweave-gamekit" },
     ],
     source: { repo: "polyweave", ref: "HEAD" },
   },
   {
     id: "piano",
+    availability: AVAILABILITY["piano"],
     name: "Piano",
     group: "apps",
     lines: ["applications"],
@@ -320,7 +334,7 @@ export const PROJECTS: Project[] = [
     blurb: "A piano Claude Code can write scores for, play and teach from: the notes fall onto the keys and you learn to play them.",
     pitch: "A desktop piano built to be driven from Claude Code. Its plugin brings an MCP server that writes, checks and keeps scores, then opens the app to play them: the notes fall onto the keyboard, and practice mode waits for you on MIDI or the computer keys, loops a bar and says how each one went.",
     shot: "piano/og.png",
-    tags: ["Electron", "In development", "Claude Code plugin"],
+    tags: ["Electron", "Claude Code plugin"],
     site: "piano/",
     repo: "https://github.com/alegauss/piano",
     accent: { rgb: "53,182,240", bright: "#7fd0f5" },
@@ -335,6 +349,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "mini-gpt",
+    availability: AVAILABILITY["mini-gpt"],
     name: "Mini GPT",
     group: "measured",
     lines: ["lab"],
@@ -358,6 +373,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-usage",
+    availability: AVAILABILITY["claude-code-usage"],
     name: "Usage Simulator",
     group: "measured",
     lines: ["lab"],
@@ -378,6 +394,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-time-study",
+    availability: AVAILABILITY["claude-code-time-study"],
     name: "Time Study",
     group: "measured",
     lines: ["lab"],
@@ -399,6 +416,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-first",
+    availability: AVAILABILITY["claude-code-first"],
     name: "Claude Code First",
     group: "measured",
     lines: ["lab"],

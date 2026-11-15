@@ -5,10 +5,11 @@ import { PROJECTS, projectById } from "../data/projects.ts"
 import { asset, linePath, productPath, productSite } from "../data/links.ts"
 import { NUMBERS_AS_OF, numbersOf, shipsOf } from "../data/records.ts"
 import { marketplaceAdd, MARKETPLACE } from "../data/plugins.ts"
-import { ProjectCard } from "../components/ProjectCard.tsx"
+import { ProjectGrid } from "../components/ProjectGrid.tsx"
 import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
 import { ShipList } from "../components/ShipList.tsx"
 import { NumberLine } from "../components/Numbers.tsx"
+import { AvailabilityBadge } from "../components/Availability.tsx"
 
 /** schema.org for the author (AG15): the Person every product page's `author` points at by @id. */
 export function personJsonLd() {
@@ -73,6 +74,7 @@ export function Home() {
               </div>
               <p className="m-0 mb-4 leading-relaxed text-muted-foreground">{flagship.pitch}</p>
               <NumberLine numbers={numbersOf(flagship)} asOf={NUMBERS_AS_OF} tags={flagship.tags} />
+              <AvailabilityBadge project={flagship} />
               <div className="mt-6 flex flex-wrap gap-3">
                 <SiteButton href={productPath(flagship)}>Open the product page</SiteButton>
                 {site ? (
@@ -111,11 +113,7 @@ export function Home() {
             <h2>Every product</h2>
             <span>Each has a page here, and most a site of its own with the full documentation.</span>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(330px,100%),1fr))] gap-4">
-            {PROJECTS.map((p) => (
-              <ProjectCard key={p.id} project={p} />
-            ))}
-          </div>
+          <ProjectGrid projects={PROJECTS} />
         </div>
       </section>
 

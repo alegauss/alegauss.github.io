@@ -33,24 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG19 Availability that reflects what a visitor can actually use
-
-projects.ts mixes 'In development' with runtime versions and platform tags, while other
-entries show releases through public numbers. Add structured maturity and availability
-data, with consistent labels such as Available, Beta and In development. Determine each
-state from the project's documentation and usable distribution, recording a source and
-review date; a releases/latest link, commit history or a package version alone does not
-prove a stable downloadable app exists.
-
-Use the same state in cards, line pages, the flagship, product detail pages and
-Markdown. Separate available products from those still in development without hiding
-either. CTA wording must match the evidence: preview, build from source and download are
-different actions. Research material needs an appropriate published or experimental
-presentation rather than an invented binary release.
-
-Retain release metrics as supporting evidence, and make stale or missing evidence
-visible during maintenance.
-
 ### §AG20 Catalogue filters that combine purpose, platform and maturity
 
 Use the revised family and availability data to filter the main catalogue by purpose,

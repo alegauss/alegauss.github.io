@@ -16,3 +16,4 @@ export const outputDir = (path: string) => path.replace(/^\/|\/$/g, "")
 export const ROUTE_META = ROUTES.map(({ path, title, description }) => ({ path, title, description }))
 
 export { LINES } from "./data/lines.ts"
+export { MATURITY_LABELS, availabilityStale } from "./data/availability.ts"

@@ -1,0 +1,31 @@
+/** AG19: editorial availability reviewed against pinned public product documentation. */
+export type Maturity = "available" | "beta" | "development" | "published" | "experimental"
+export interface Availability {
+  state: Maturity
+  channel: "download" | "package" | "source" | "read" | "web"
+  href: string
+  source: string
+  reviewed: string
+  evidence: string
+}
+export const MATURITY_LABELS: Record<Maturity, string> = { available: "Available", beta: "Beta", development: "In development", published: "Published", experimental: "Experimental" }
+export const CHANNEL_LABELS = { download: "Download", package: "Install", source: "Build from source", read: "Read the study", web: "Open the tool" } as const
+export const availabilityStale = (a: Availability, today = new Date()) => !a.source || !a.reviewed || !Number.isFinite(Date.parse(a.reviewed)) || today.getTime() - Date.parse(a.reviewed) > 90 * 86400000
+export const AVAILABILITY: Record<string, Availability> = {
+  "claude-tray": {"state": "available", "channel": "download", "href": "https://github.com/alegauss/claude-tray/releases/latest", "source": "https://github.com/alegauss/claude-tray/blob/7a99f079e253b8d98b31dc9476b3efaae1ad1a0a/README.md", "reviewed": "2026-11-15", "evidence": "The README documents winget and the Windows installer."},
+  "freeharbor": {"state": "available", "channel": "download", "href": "https://github.com/alegauss/freeharbor/releases/latest", "source": "https://github.com/alegauss/freeharbor/blob/2ca043285e549106bca03633b49556e4722a133e/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the per-user Windows installer."},
+  "pportal": {"state": "available", "channel": "source", "href": "https://github.com/alegauss/pportal/blob/b9347036086fa9f6a90e8e7b1483b2ef3f2ac147/doc/platform-build.md", "source": "https://github.com/alegauss/pportal/blob/b9347036086fa9f6a90e8e7b1483b2ef3f2ac147/README.md", "reviewed": "2026-11-15", "evidence": "The README links Windows source-build instructions; no packaged download was verified."},
+  "aduzi": {"state": "beta", "channel": "download", "href": "https://github.com/alegauss/aduzi/releases/tag/v0.1.0", "source": "https://github.com/alegauss/aduzi/blob/8e0a6c79ea505dccfadabd55d054cae554a3e65d/README.md", "reviewed": "2026-11-15", "evidence": "The README explicitly labels 0.1.0 as a pre-release and documents the unsigned Windows archive."},
+  "modelado": {"state": "available", "channel": "download", "href": "https://apps.microsoft.com/detail/9PB86WW5NRR2", "source": "https://github.com/alegauss/modelado/blob/9ab2cc8a627d7c9adbbacb2b4f5f13c5939528aa/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the Microsoft Store app and a per-user Windows installer."},
+  "revelei": {"state": "available", "channel": "download", "href": "https://github.com/alegauss/revelei/releases", "source": "https://github.com/alegauss/revelei/blob/b29d4e293a293ac5b15fdcd71edb61037c4c94ea/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the Windows installer and local model requirements."},
+  "roadkeep": {"state": "available", "channel": "package", "href": "#install", "source": "https://github.com/alegauss/roadkeep/blob/dd41f015f14e4301fcf3e339e6e9b71e1fac8779/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the agent plugin, uvx and pip installation."},
+  "commitclerk": {"state": "available", "channel": "package", "href": "#install", "source": "https://github.com/alegauss/commitclerk/blob/f0a798d34b878b74341bbe56cecbdf6923877a5c/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the PyPI package and installation."},
+  "askround": {"state": "available", "channel": "source", "href": "https://github.com/alegauss/askround#install", "source": "https://github.com/alegauss/askround/blob/f0f86d771f883f4618e5965e4e57493e2f61b8a2/README.md", "reviewed": "2026-11-15", "evidence": "The README documents checkout installation before the first package release."},
+  "winwright": {"state": "available", "channel": "package", "href": "#install", "source": "https://github.com/alegauss/winwright/blob/1d1637c4448b185b6e45d67a1552dd9a5660e5a6/README.md", "reviewed": "2026-11-15", "evidence": "The README documents published NuGet packages and the agent plugin."},
+  "polyweave": {"state": "available", "channel": "package", "href": "#install", "source": "https://github.com/alegauss/polyweave/blob/59c16db2e92b89a4a8b900924c3ec3d40f9b8cab/README.md", "reviewed": "2026-11-15", "evidence": "The README documents the polyweave-gamekit package and agent plugin."},
+  "piano": {"state": "available", "channel": "download", "href": "https://github.com/alegauss/piano/releases/latest", "source": "https://github.com/alegauss/piano/blob/09b54493870151c1204c426b266be7a3313bb4cb/README.md", "reviewed": "2026-11-15", "evidence": "The README documents app downloads for Windows, macOS and Linux."},
+  "mini-gpt": {"state": "experimental", "channel": "source", "href": "https://github.com/alegauss/mini-gpt", "source": "https://github.com/alegauss/mini-gpt/blob/650a003ac60ecdedbfa063e81b9065cad37be099/README.md", "reviewed": "2026-11-15", "evidence": "The teaching project documents building and running experimental GPT implementations."},
+  "claude-code-usage": {"state": "published", "channel": "web", "href": "/claude-code-usage/", "source": "https://github.com/alegauss/claude-code-usage/blob/ec484fbf053e5d8dcdf37c64bda9ff1514ccbf04/README.md", "reviewed": "2026-11-15", "evidence": "The repository documents the browser-based usage model and its inputs."},
+  "claude-code-time-study": {"state": "published", "channel": "read", "href": "/claude-code-time-study/", "source": "https://github.com/alegauss/claude-code-time-study/blob/c87dfe946fe7566a690a02acf3f3be6cfbe1a37d/README.md", "reviewed": "2026-11-15", "evidence": "The repository publishes its time study, records and adjustable assumptions."},
+  "claude-code-first": {"state": "published", "channel": "read", "href": "/claude-code-first/", "source": "https://github.com/alegauss/claude-code-first/blob/50852bd9efc156605ef1de156235efd45f0c86b4/README.md", "reviewed": "2026-11-15", "evidence": "The repository publishes an evidence-based specification and an audit plugin."},
+}

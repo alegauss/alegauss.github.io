@@ -140,7 +140,7 @@ const published = PROJECTS.map((p) => {
   const out = { name: p.name, group: p.group, lines: p.lines, kind: p.kind, blurb: p.blurb, pitch: p.pitch }
   if (p.shot) out.shot = p.shot
   if (p.cta) out.cta = p.cta
-  Object.assign(out, { tags: p.tags, site: p.site, repo: p.repo, accent: p.accent })
+  Object.assign(out, { tags: p.tags, site: p.site, repo: p.repo, accent: p.accent, availability: p.availability })
   if (p.logo) out.logo = p.logo
   if (p.mark) out.mark = p.mark
   out.page = abs(app.productPath(p))

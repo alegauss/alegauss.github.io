@@ -3,7 +3,7 @@ import { LINES, type Line as LineT } from "../data/lines.ts"
 import { PROJECTS } from "../data/projects.ts"
 import { linePath } from "../data/links.ts"
 import { shipsOf } from "../data/records.ts"
-import { ProjectCard } from "../components/ProjectCard.tsx"
+import { ProjectGrid } from "../components/ProjectGrid.tsx"
 import { ShipList } from "../components/ShipList.tsx"
 
 export function Line({ line }: { line: LineT }) {
@@ -28,11 +28,7 @@ export function Line({ line }: { line: LineT }) {
         ) : null}
       </header>
       <section className="vg-site-wrap pb-14!">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(330px,100%),1fr))] gap-4">
-          {projects.map((p) => (
-            <ProjectCard key={p.id} project={p} />
-          ))}
-        </div>
+        <ProjectGrid projects={projects} />
       </section>
       <section className="vg-site-wrap pb-16!">
         <div className="hub-band">

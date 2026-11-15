@@ -12,9 +12,11 @@ import { MARKETPLACE, marketplaceAdd, pluginFor, pluginInstall } from "./data/pl
 import { ROUTES, routeFor } from "./routes.tsx"
 import { changelogShips } from "./pages/Changelog.tsx"
 import { METHOD_CORE, METHOD_STEPS, METHOD_TRACKS } from "./pages/Method.tsx"
+import { MATURITY_LABELS } from "./data/availability.ts"
+import { availabilityAction } from "./components/Availability.tsx"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
-const item = (p: Project) => `- ${link(p.name, productPath(p))} — ${p.kind}. ${p.blurb}`
+const item = (p: Project) => `- ${link(p.name, productPath(p))} — ${MATURITY_LABELS[p.availability.state]} (${p.availability.channel}). ${p.blurb}`
 const ship = (s: DatedShip, product = true) => `- ${s.date ?? "undated"}${product ? ` · ${s.project.name}` : ""} · ${s.id}: ${shipTitle(s)}`
 
 function product(p: Project): string {
@@ -29,6 +31,9 @@ function product(p: Project): string {
     "",
     p.pitch,
     "",
+    `- Availability: ${MATURITY_LABELS[p.availability.state]} (${p.availability.channel}); reviewed ${p.availability.reviewed}. ${p.availability.evidence}`,
+    `- Availability source: ${p.availability.source}`,
+    `- ${availabilityAction(p).label}: ${p.availability.href.startsWith("#") ? absolute(productPath(p)) + p.availability.href : p.availability.href}`,
     `- Platform: ${p.platform}`,
     `- Licence: ${p.licence}`,
     ...(site ? [`- Product site: ${absolute(site)}`] : []),
