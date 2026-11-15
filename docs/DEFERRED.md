@@ -11,3 +11,5 @@
 
 ## Block D — Independent AI products, built with our own tools
 
+## Block E — Visual hierarchy and first-visit confidence
+

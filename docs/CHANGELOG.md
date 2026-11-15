@@ -44,3 +44,6 @@
   checked **Products and method precede detailed release activity** The home page explains the positioning and method near product discovery, gives AI applications visibility and keeps recent updates compact; flagship configuration, full changelog, Atom feeds, mobile reading order and Markdown remain valid.
 - ✅ **AG25** **Product pages use the same pitch and install layout without a consistent demonstration of the user outcome** — Product pages explain audience and outcomes, and Modelado/Revelei show authentic examples with captions, alternative text, pinned provenance and suitable next actions.
   checked **Product pages demonstrate capability and offer an accurate next step** Modelado and Revelei show authentic useful examples with captions and alt text; the template explains audience, outcome, platform, docs and a maturity-appropriate CTA; existing design, subdirectory URLs and useful Markdown remain consistent.
+
+## Block E — Visual hierarchy and first-visit confidence
+
