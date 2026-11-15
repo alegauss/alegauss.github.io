@@ -11,6 +11,7 @@ import { ShipList } from "../components/ShipList.tsx"
 import { NumberStats } from "../components/Numbers.tsx"
 import { Inline } from "../components/Inline.tsx"
 import { AvailabilityBadge, AvailabilityEvidence, availabilityAction } from "../components/Availability.tsx"
+import { ProductRelations } from "../components/ProductRelations.tsx"
 
 /** schema.org for the product (AG5): what a search engine needs to rank the page for its name. */
 export function productJsonLd(p: Project) {
@@ -191,6 +192,7 @@ export function Product({ project }: { project: Project }) {
         <div className="flex flex-wrap gap-8">
           <div className="min-w-0 flex-[999_1_560px]">
             <Install project={project} />
+            <ProductRelations project={project} />
             <WhatComesNext project={project} />
           </div>
           <aside className="min-w-0 flex-[1_1_260px]">

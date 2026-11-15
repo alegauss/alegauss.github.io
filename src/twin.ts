@@ -15,6 +15,7 @@ import { METHOD_CORE, METHOD_STEPS, METHOD_TRACKS } from "./pages/Method.tsx"
 import { MATURITY_LABELS } from "./data/availability.ts"
 import { availabilityAction } from "./components/Availability.tsx"
 import { METHOD_CYCLE, METHOD_USES } from "./data/method.ts"
+import { developmentRelations } from "./data/relationships.ts"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
 const item = (p: Project) => `- ${link(p.name, productPath(p))} — ${MATURITY_LABELS[p.availability.state]} (${p.availability.channel}). ${p.blurb}`
@@ -49,6 +50,11 @@ function product(p: Project): string {
   ]
   if (stats.length) out.push("", `Public numbers as of ${NUMBERS_AS_OF}: ${stats.join("; ")}.`)
   const steps = [...(plugin ? [{ label: "Claude Code plugin", command: `${marketplaceAdd}\n${pluginInstall(plugin.name)}` }] : []), ...p.install]
+  const relations = developmentRelations(p.id)
+  if (relations.length) {
+    out.push("", "## Development relationships", "", "These describe how we build. Applications run independently; users do not need these development tools.")
+    for (const relation of relations) out.push(`- ${relation.type === "built-with" ? "Built with" : "Used to build"}: ${link(relation.related.name, productPath(relation.related))} — ${relation.role} ${link(relation.basis, relation.source)}; reviewed ${relation.reviewed}.`)
+  }
   if (steps.length) {
     out.push("", "## Install")
     for (const s of steps) out.push("", `${s.label}:`, "", "```", s.command, "```")

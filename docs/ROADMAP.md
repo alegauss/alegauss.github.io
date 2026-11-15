@@ -8,7 +8,6 @@
 
 ## Block D — Independent AI products, built with our own tools
 
-- 📋 **AG23** (deps: AG22 ✅) **Product pages do not connect applications to the development tools actually used to build them** — Show verified built-with and used-to-build relationships with reciprocal product links and an explanation of each relationship. → §AG23
 - 📋 **AG24** (deps: AG17 ✅, AG18 ✅) **The Method appears below technical release entries instead of explaining the products near the top** — Prioritise product discovery and the shared method on the home page while keeping a compact path to the full changelog. → §AG24
 - 📋 **AG25** (deps: AG18 ✅, AG19 ✅) **Product pages use the same pitch and install layout without a consistent demonstration of the user outcome** — Strengthen the existing landing pages with useful product visuals, audience guidance and availability-appropriate next steps. → §AG25
 
@@ -17,13 +16,6 @@
 - **A Turing site indexes the hub and answers from alegauss.github.io** SITE.search.site
   names it, and the header search returns product and changelog pages from a browser on
   the hub's origin, past CORS.
-
-## Done when — AG23
-
-- **Development relationships have evidence and reciprocal links** Verified built-with
-  and used-to-build links come from shared data, include role and evidence, render in
-  HTML and Markdown, omit empty or invalid relationships and never imply that end users
-  must install the development tools.
 
 ## Done when — AG24
 

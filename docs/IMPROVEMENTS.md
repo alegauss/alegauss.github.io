@@ -33,23 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG23 Product relationships grounded in development use
-
-Add explicit relationship data between products, with a type, short explanation and
-evidence rather than automatically calling every product in a family related. On
-Modelado and Revelei, show 'How we build' links to roadkeep, winwright and commitclerk
-only where usage has been verified. On tool pages, show the corresponding 'Used to
-build' projects, using the same relationship data so both directions stay consistent.
-
-Label these as development relationships, not application dependencies, interoperability
-or a requirement to install the development tools. Complementary recommendations may be
-added only when their purpose is clear and must remain distinct from documented use.
-Omit empty sections and invalid or self-referencing links.
-
-Render relationships and evidence in the product HTML and Markdown twin, linking through
-existing product URL helpers. Reuse the Method evidence and preserve product
-independence.
-
 ### §AG24 Home page hierarchy for first-time visitors
 
 Home.tsx currently places six raw shipped entries between the full catalogue and the

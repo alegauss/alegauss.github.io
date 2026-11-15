@@ -149,6 +149,13 @@ for (const p of PROJECTS) {
 const method = page("/method/")
 check("AG22", method.includes("Plan, implement, test, commit. Repeat.") && method.includes("Suggested tracks"), "method does not distinguish the real cycle and suggested combinations")
 for (const use of app.METHOD_USES) {
+  // AG23 — both endpoints carry the related product and the same source.
+  check("AG23", use.application !== use.tool && [use.application, use.tool].every((id) => PROJECTS.some((p) => p.id === id)), "development relationship has invalid endpoints")
+  for (const [from, to] of [[use.application, use.tool], [use.tool, use.application]]) {
+    const path = app.productPath(from)
+    check("AG23", page(path).includes(`href="${app.productPath(to)}"`) && page(path).includes(html(use.source)), `${from} lacks its development relationship to ${to}`)
+    check("AG23", read(`${app.outputDir(path)}/index.md`).includes(app.productPath(to)) && read(`${app.outputDir(path)}/index.md`).includes(use.source), `${from}'s Markdown lacks relationship evidence`)
+  }
   check("AG22", method.includes(html(use.source)) && read("method/index.md").includes(use.source), "method evidence is missing in HTML or Markdown")
   check("AG22", use.basis !== "Repository evidence" || /\/blob\/[a-f0-9]{40}\//.test(use.source), "repository evidence is not pinned")
 }
