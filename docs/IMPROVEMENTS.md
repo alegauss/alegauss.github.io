@@ -35,26 +35,18 @@ that search runs on Viglet Turing.
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-### §AG30 Compact mobile analytics consent
+### §AG33 Apply the latest consent choice on the current page
 
-The mobile capture in this conversation showed the consent panel covering a substantial
-portion of the product-discovery screen. Consent.tsx currently combines the analytics
-choice with a separate claim about product telemetry and uses the standard large button
-treatment. AG1 already prevents Google Analytics from loading before consent; preserve
-that behaviour.
+The AG30 browser check reproduced an existing consent-state bug: allow analytics, reopen
+settings, decline, reopen settings and allow again. The stored choice becomes granted,
+but window['ga-disable-' + SITE.analytics] stays true because loadAnalytics returns
+immediately once its loaded flag is set. The visitor's latest choice is therefore not
+applied until a full page navigation.
 
-Keep the initial notice focused on the actual decision: optional Google Analytics is off
-until allowed. Move supplementary explanation to an accessible details treatment or the
-existing settings path when useful. Reduce padding and excess text on narrow screens
-while keeping decline and allow choices equally legible and easy to reach. Do not reduce
-text to an unreadable size, favour acceptance through visual hierarchy, auto-dismiss the
-panel or load tracking before a decision.
-
-Preserve the stored preference, the footer's Analytics settings entry point and the
-ability to change the choice. Reuse design-system tokens and shared button conventions
-where compatible with a compact layout.
-
-Compare banner height at the same 360- and 390-pixel widths before and after. Verify
-320-pixel width, text zoom and keyboard access without clipping or horizontal overflow.
-Keep touch targets at least 44 CSS pixels, and confirm no analytics request before
-consent or after a stored refusal.
+Clear the measurement-specific disable flag whenever analytics is explicitly enabled,
+before the already-loaded guard. Preserve script deduplication, no request before
+consent, stored refusal, and revocation. Add a maintained browser regression that
+exercises the real built site and the full grant/revoke/grant sequence, intercepting the
+analytics script rather than sending tracking data. Include refusal across a reload and
+reopening settings. Keep this functional correction separate from the compact banner
+layout.

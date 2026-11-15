@@ -182,7 +182,9 @@
   }
 
   .hub-stat {
-    padding: 18px 20px;
+    padding: 12px 14px;
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
     border: 1px solid var(--vg-border);
     border-radius: var(--vg-radius-panel);
     background: var(--vg-card);
@@ -223,6 +225,13 @@
     background: var(--vg-popover);
     color: var(--vg-popover-foreground);
     box-shadow: 0 24px 60px -20px color-mix(in oklab, var(--vg-background) 80%, transparent);
+  }
+  .hub-consent .vg-site-btn {
+    flex: 1 1 8.5em;
+    min-height: 44px;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .hub-dialog {

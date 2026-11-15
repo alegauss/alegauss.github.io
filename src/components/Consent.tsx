@@ -72,14 +72,13 @@ export function ConsentBanner() {
   return (
     <section className="hub-consent" aria-label="Analytics consent">
       <p className="m-0 text-sm leading-relaxed">
-        This site counts visits with Google Analytics only if you allow it. Nothing is loaded until you choose, and the
-        tools themselves collect nothing either way.
+        Optional Google Analytics stays off until you allow it.
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         <button type="button" className="vg-site-btn vg-site-btn-ghost" onClick={() => choose("denied")}>
           Decline
         </button>
-        <button type="button" className="vg-site-btn vg-site-btn-primary" onClick={() => choose("granted")}>
+        <button type="button" className="vg-site-btn vg-site-btn-ghost" onClick={() => choose("granted")}>
           Allow analytics
         </button>
       </div>
