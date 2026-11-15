@@ -64,7 +64,7 @@ check("AG24", home.indexOf('id="our-method"') < home.indexOf('id="products"') &&
 check("AG24", home.includes('id="ai-examples"') && !home.includes('class="hub-entry'), "home lacks application examples or still carries detailed task entries")
 check("AG24", read("index.md").indexOf("## Built with our own tools") < read("index.md").indexOf("## Recent updates"), "Markdown discovery order disagrees with HTML")
 // AG27 — authentic application results precede the configurable developer flagship.
-check("AG27", home.indexOf('data-home-showcase') < home.indexOf('id="flagship"'), "application outcomes still follow the flagship")
+check("AG27", !SITE.flagship || home.indexOf('data-home-showcase') < home.indexOf('id="flagship"'), "application outcomes still follow the flagship")
 for (const id of app.SHOWCASE_IDS) {
   const demo = app.DEMONSTRATIONS[id]
   check("AG27", home.includes(`data-showcase-product="${id}"`) && home.includes(html(demo.source)), `${id} lacks a sourced showcase`)
@@ -101,8 +101,23 @@ for (const p of PROJECTS) check("AG18", p.lines.length > 0 && p.lines.every((id)
 for (const id of ["modelado", "revelei"]) check("AG18", PROJECTS.find((p) => p.id === id).lines.includes("applications"), `${id} is not an AI application`)
 check("AG18", !app.LINES.some((l) => l.name === "Windows Native"), "Windows remains a primary family")
 const flagship = PROJECTS.find((p) => p.id === SITE.flagship)
-check("AG4", home.indexOf("Flagship") !== -1 && home.indexOf("Flagship") < home.indexOf('id="lines"'), "the flagship does not come first")
-check("AG4", home.includes(`id="flagship"`) && home.includes(html(flagship.name)), "the flagship panel is missing")
+if (SITE.flagship) {
+  check("AG4", flagship && home.indexOf("Flagship") !== -1 && home.indexOf("Flagship") < home.indexOf('id="lines"'), "the configured flagship does not come first")
+  check("AG4", flagship && home.includes(`id="flagship"`) && home.includes(html(flagship.name)), "the configured flagship panel is missing")
+} else {
+  check("AG32", !home.includes('id="flagship"') && !read("index.md").includes("Flagship:"), "an unconfigured flagship still appears")
+}
+// Verify both supported configurations through the real server renderer and text twin.
+const savedFlagship = SITE.flagship
+try {
+  for (const id of [null, "roadkeep"]) {
+    SITE.flagship = id
+    const rendered = app.render("/").replaceAll("<!-- -->", "")
+    check("AG32", rendered.includes('id="flagship"') === Boolean(id) && app.twin("/").includes("Flagship:") === Boolean(id), "optional flagship rendering is inconsistent")
+    check("AG32", rendered.includes('data-catalogue-card="claude-tray"') && rendered.includes('data-home-showcase'), "optional flagship removes the Tray catalogue entry or AI showcase")
+    if (id) check("AG32", rendered.includes('id="flagship" class="m-0 text-3xl font-black tracking-tight">roadkeep</h2>'), "configured project did not become the flagship")
+  }
+} finally { SITE.flagship = savedFlagship }
 
 // AG5 — every project has a page carrying a SoftwareApplication JSON-LD block.
 // AG19 — the same reviewed availability is visible on every discovery surface.

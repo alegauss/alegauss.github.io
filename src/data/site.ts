@@ -5,8 +5,8 @@ export const SITE = {
   name: "Alegauss",
   /** The origin every canonical URL, the sitemap and llms.txt are written under. */
   origin: "https://alegauss.com",
-  /** The project the home page leads with (visibility's rule: one at a time). */
-  flagship: "claude-tray",
+  /** Optional dedicated highlight; null leaves the AI result showcase as the opening. */
+  flagship: null as string | null,
   title: "Alegauss — independent AI software and agent development tools",
   headline: "We build with the tools we build.",
   heroTitle: "AI applications.",

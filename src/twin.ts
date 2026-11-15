@@ -80,7 +80,7 @@ function product(p: Project): string {
 function body(path: string): string {
   const route = routeFor(path)
   if (path === "/") {
-    const flagship = PROJECTS.find((p) => p.id === SITE.flagship)!
+    const flagship = SITE.flagship ? PROJECTS.find((p) => p.id === SITE.flagship) : undefined
     return [
       `# ${SITE.title}`,
       "",
@@ -102,7 +102,7 @@ function body(path: string): string {
         const demo = DEMONSTRATIONS[id]
         return [item(PROJECTS.find((p) => p.id === id)!), demo.caption, ...demo.images.map((image) => `![${image.alt}](${absolute(image.src)})`), link(demo.credit, demo.creditUrl), link("Example provenance", demo.source), ""]
       }),
-      `Flagship: ${link(flagship.name, productPath(flagship))} — ${flagship.blurb}`,
+      ...(flagship ? [`Flagship: ${link(flagship.name, productPath(flagship))} — ${flagship.blurb}`] : []),
       "",
       "## Product lines",
       "",

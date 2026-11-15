@@ -36,9 +36,9 @@ export function personJsonLd() {
 export const homeUpdates = () => shipsOf().filter((ship, index, all) => all.findIndex((other) => other.project.id === ship.project.id) === index).slice(0, 3)
 
 export function Home() {
-  const flagship = projectById(SITE.flagship)
-  const flagshipLines = LINES.filter((l) => flagship.lines.includes(l.id))
-  const site = productSite(flagship)
+  const flagship = SITE.flagship ? projectById(SITE.flagship) : null
+  const flagshipLines = flagship ? LINES.filter((l) => flagship.lines.includes(l.id)) : []
+  const site = flagship ? productSite(flagship) : null
 
   return (
     <>
@@ -62,7 +62,7 @@ export function Home() {
       </SiteHero>
 
       {/* the flagship is a field in site.ts, not a position in the list (AG4) */}
-      <section className="vg-site-section pt-0!" aria-labelledby="flagship">
+      {flagship ? <section className="vg-site-section pt-0!" aria-labelledby="flagship">
         <div className="vg-site-wrap">
           <article
             className="hub-accent grid items-center gap-9 rounded-[var(--vg-radius-panel)] border p-6 md:grid-cols-2 md:p-10"
@@ -96,7 +96,7 @@ export function Home() {
             </div>
           </article>
         </div>
-      </section>
+      </section> : null}
 
       <section className="vg-site-section" id="lines">
         <div className="vg-site-wrap">

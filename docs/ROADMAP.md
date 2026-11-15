@@ -1,5 +1,7 @@
 # Roadmap (active backlog)
 
+## Priority
+
 ## Block A — A catalogue crawlers can read
 
 ## Block B — Proof from the projects' own records
