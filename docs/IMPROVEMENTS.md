@@ -32,22 +32,3 @@ Done when the header search returns product and changelog pages, and the page st
 that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
-
-### §AG25 Product landing pages that demonstrate what the application does
-
-AG5 already delivered /products/<id>/ pages with pitches, links, install steps, JSON-LD
-and links to each product's own site. ProjectTile and accentStyle already provide shared
-styling with individual identities. Improve that foundation rather than commissioning
-new sites or logos.
-
-Review the product page template for audience, problem, concrete output, platform
-requirements, documentation and the next action. For Modelado and Revelei, use authentic
-before/after output or screenshots that explain the capability, with descriptive
-captions and alt text; an OG image alone is not necessarily a useful demonstration. Use
-existing product assets when suitable, and do not fabricate results or imply unfinished
-features are available.
-
-Keep the primary action consistent with maturity and confirmed installation or download
-availability. Retain the hub-to-product-site boundary to avoid duplicating full
-documentation. Generate equivalent useful text in Markdown and maintain the shared
-design system, each product's own logo and accent, and stable subdirectory URLs.

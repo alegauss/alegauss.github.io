@@ -18,3 +18,4 @@ export const ROUTE_META = ROUTES.map(({ path, title, description }) => ({ path, 
 export { LINES } from "./data/lines.ts"
 export { MATURITY_LABELS, availabilityStale } from "./data/availability.ts"
 export { METHOD_USES } from "./data/method.ts"
+export { DEMONSTRATIONS } from "./data/demonstrations.ts"

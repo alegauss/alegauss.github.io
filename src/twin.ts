@@ -16,6 +16,7 @@ import { MATURITY_LABELS } from "./data/availability.ts"
 import { availabilityAction } from "./components/Availability.tsx"
 import { METHOD_CYCLE, METHOD_USES } from "./data/method.ts"
 import { homeUpdates } from "./pages/Home.tsx"
+import { DEMONSTRATIONS } from "./data/demonstrations.ts"
 import { developmentRelations } from "./data/relationships.ts"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
@@ -33,6 +34,10 @@ function product(p: Project): string {
     `${p.kind} · ${p.lines.map((id) => LINES.find((l) => l.id === id)!.name).join(" · ")}`,
     "",
     p.pitch,
+    "",
+    `Who it is for: ${p.audience}`,
+    "",
+    `What you get: ${p.outcome}`,
     "",
     `- Availability: ${MATURITY_LABELS[p.availability.state]} (${p.availability.channel}); reviewed ${p.availability.reviewed}. ${p.availability.evidence}`,
     `- Availability source: ${p.availability.source}`,
@@ -52,6 +57,8 @@ function product(p: Project): string {
   if (stats.length) out.push("", `Public numbers as of ${NUMBERS_AS_OF}: ${stats.join("; ")}.`)
   const steps = [...(plugin ? [{ label: "Claude Code plugin", command: `${marketplaceAdd}\n${pluginInstall(plugin.name)}` }] : []), ...p.install]
   const relations = developmentRelations(p.id)
+  const demo = DEMONSTRATIONS[p.id]
+  if (demo) out.push("", `## ${demo.title}`, "", demo.caption, ...demo.images.map((image) => `![${image.alt}](${absolute(image.src)})\n${image.label}. Source: ${image.original}`), "", link(demo.credit, demo.creditUrl), link("Example provenance", demo.source), link("Credits and licences", "/demos/SOURCES.md"))
   if (relations.length) {
     out.push("", "## Development relationships", "", "These describe how we build. Applications run independently; users do not need these development tools.")
     for (const relation of relations) out.push(`- ${relation.type === "built-with" ? "Built with" : "Used to build"}: ${link(relation.related.name, productPath(relation.related))} — ${relation.role} ${link(relation.basis, relation.source)}; reviewed ${relation.reviewed}.`)

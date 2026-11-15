@@ -8,6 +8,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { dirname, join, relative, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
+import { createHash } from "node:crypto"
 import * as app from "../dist-server/entry-server.js"
 
 const REPO = resolve(dirname(fileURLToPath(import.meta.url)), "..")
@@ -102,8 +103,20 @@ for (const p of PROJECTS) {
   check("AG5", existsSync(join(DIST, app.outputDir(path), "index.html")), `${path} is missing`)
   if (!existsSync(join(DIST, app.outputDir(path), "index.html"))) continue
   const text = page(path)
+  check("AG25", text.includes(html(p.audience)) && text.includes(html(p.outcome)), `${p.name} lacks audience or outcome guidance`)
   check("AG5", /"@type":"SoftwareApplication"/.test(text), `${path} has no SoftwareApplication JSON-LD`)
   check("AG9", text.includes("What comes next"), `${path} has no "What comes next"`)
+}
+
+for (const [id, demo] of Object.entries(app.DEMONSTRATIONS)) {
+  const text = page(app.productPath(id))
+  const markdown = read(`${app.outputDir(app.productPath(id))}/index.md`)
+  check("AG25", text.includes(html(demo.caption)) && markdown.includes(demo.caption), `${id} lacks the demonstration explanation`)
+  for (const image of demo.images) {
+    const file = join(DIST, image.src.replace(/^\//, ""))
+    check("AG25", existsSync(file) && createHash("sha256").update(readFileSync(file)).digest("hex") === image.sha256, `${image.src} differs from the pinned example`)
+    check("AG25", text.includes(`alt="${html(image.alt)}"`) && markdown.includes(image.alt), `${image.src} lacks useful alternative text`)
+  }
 }
 
 // AG6 — adding a project adds it to the sitemap, llms.txt and an OG image.

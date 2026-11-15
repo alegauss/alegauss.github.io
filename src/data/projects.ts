@@ -48,6 +48,8 @@ export interface Project {
   kind: string
   blurb: string
   pitch: string
+  audience: string
+  outcome: string
   shot?: string
   cta?: string
   tags: string[]
@@ -76,6 +78,8 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: "claude-tray",
+    audience: "Developers using Claude Code on Windows.",
+    outcome: "See the current rate-limit percentage in the system tray.",
     platforms: ["windows"],
     availability: AVAILABILITY["claude-tray"],
     name: "Claude Code Tray",
@@ -100,6 +104,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "freeharbor",
+    audience: "Windows developers who need a local container engine.",
+    outcome: "Run containers through upstream Moby in WSL2 using familiar Docker tooling.",
     platforms: ["windows"],
     availability: AVAILABILITY["freeharbor"],
     name: "FreeHarbor",
@@ -122,6 +128,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "pportal",
+    audience: "PlayStation players who use Remote Play on Windows.",
+    outcome: "Stream PlayStation gameplay to a native Windows client.",
     platforms: ["windows"],
     availability: AVAILABILITY["pportal"],
     name: "PPortal",
@@ -146,6 +154,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "aduzi",
+    audience: "Windows users who work with remote machines.",
+    outcome: "Open SSH sessions, transfer files with SFTP and configure port forwards.",
     platforms: ["windows"],
     availability: AVAILABILITY["aduzi"],
     name: "Aduzi",
@@ -171,6 +181,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "modelado",
+    audience: "Creators who want to turn object photos into 3D assets on Windows.",
+    outcome: "Generate a 3D object or relief, edit the mesh and export GLB, OBJ, STL or PLY.",
     platforms: ["windows"],
     availability: AVAILABILITY["modelado"],
     name: "Modelado",
@@ -193,6 +205,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "revelei",
+    audience: "Windows users who want to improve photos without uploading them.",
+    outcome: "Upscale images, restore faces, remove backgrounds or reduce noise, then export the result.",
     platforms: ["windows"],
     availability: AVAILABILITY["revelei"],
     name: "Revelei",
@@ -216,6 +230,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "roadkeep",
+    audience: "Developers and agents maintaining project roadmaps.",
+    outcome: "Keep planned work, shipped changes and rationale consistent through validated commands.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["roadkeep"],
     name: "roadkeep",
@@ -242,6 +258,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "commitclerk",
+    audience: "Developers who want help preparing a commit from staged changes.",
+    outcome: "Review an LLM-generated Conventional Commits message based on the staged diff.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["commitclerk"],
     name: "commitclerk",
@@ -267,6 +285,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "askround",
+    audience: "Product makers who need to understand visibility in AI answers.",
+    outcome: "Compare whether assistants name your product, its position and the cited sources.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["askround"],
     name: "askround",
@@ -292,6 +312,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "winwright",
+    audience: "Developers and agents testing Windows desktop applications.",
+    outcome: "Drive the application and record observed outcomes, including checks that could not run.",
     platforms: ["windows"],
     availability: AVAILABILITY["winwright"],
     name: "winwright",
@@ -316,6 +338,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "polyweave",
+    audience: "Creators using coding agents to produce 3D assets.",
+    outcome: "Describe asset constraints, search suitable parameters and check the rendered output.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["polyweave"],
     name: "polyweave",
@@ -339,6 +363,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "piano",
+    audience: "People who want an agent to write music and help them practise.",
+    outcome: "Generate a score, play it and practise with falling notes or sheet music.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["piano"],
     name: "Piano",
@@ -363,6 +389,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "mini-gpt",
+    audience: "Learners studying how GPT models work from first principles.",
+    outcome: "Build and run character-level language models in Java, with the maths explained in Portuguese.",
     platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["mini-gpt"],
     name: "Mini GPT",
@@ -388,6 +416,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-usage",
+    audience: "Claude Code users comparing task costs and usage limits.",
+    outcome: "Explore a browser model with adjustable inputs and documented measured coefficients.",
     platforms: ["browser"],
     availability: AVAILABILITY["claude-code-usage"],
     name: "Usage Simulator",
@@ -410,6 +440,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-time-study",
+    audience: "People evaluating where time goes in agent-assisted development.",
+    outcome: "Inspect recorded development time and adjust the report assumptions.",
     platforms: ["browser"],
     availability: AVAILABILITY["claude-code-time-study"],
     name: "Time Study",
@@ -433,6 +465,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-first",
+    audience: "People designing or reviewing a Claude Code-led development process.",
+    outcome: "Read an evidence-based specification and use its audit plugin.",
     platforms: ["browser"],
     availability: AVAILABILITY["claude-code-first"],
     name: "Claude Code First",

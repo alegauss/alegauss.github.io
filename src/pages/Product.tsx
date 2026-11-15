@@ -12,6 +12,8 @@ import { NumberStats } from "../components/Numbers.tsx"
 import { Inline } from "../components/Inline.tsx"
 import { AvailabilityBadge, AvailabilityEvidence, availabilityAction } from "../components/Availability.tsx"
 import { ProductRelations } from "../components/ProductRelations.tsx"
+import { ProductDemonstration } from "../components/ProductDemonstration.tsx"
+import { DEMONSTRATIONS } from "../data/demonstrations.ts"
 
 /** schema.org for the product (AG5): what a search engine needs to rank the page for its name. */
 export function productJsonLd(p: Project) {
@@ -175,7 +177,7 @@ export function Product({ project }: { project: Project }) {
             </SiteButton>
           </div>
         </div>
-        <div className="hub-shot">
+        {DEMONSTRATIONS[project.id] ? <ProductDemonstration project={project} /> : <div className="hub-shot">
           {project.shot ? (
             <img src={asset(project.shot)} alt="" width={1200} height={630} decoding="async" />
           ) : (
@@ -183,10 +185,14 @@ export function Product({ project }: { project: Project }) {
               <ProjectTile project={project} large />
             </span>
           )}
-        </div>
+        </div>}
       </header>
 
       <div className="vg-site-wrap pb-10!">
+        <section className="mb-10 grid gap-4 md:grid-cols-2" aria-label="Who it helps and what it produces">
+          <div className="hub-card"><h2 className="m-0 text-lg font-bold">Who it is for</h2><p className="m-0 text-muted-foreground">{project.audience}</p></div>
+          <div className="hub-card"><h2 className="m-0 text-lg font-bold">What you get</h2><p className="m-0 text-muted-foreground">{project.outcome}</p></div>
+        </section>
         <NumberStats numbers={numbersOf(project)} asOf={NUMBERS_AS_OF} />
 
         <div className="flex flex-wrap gap-8">
