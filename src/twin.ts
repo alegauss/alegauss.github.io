@@ -17,6 +17,7 @@ import { availabilityAction } from "./components/Availability.tsx"
 import { METHOD_CYCLE, METHOD_USES } from "./data/method.ts"
 import { homeUpdates } from "./pages/Home.tsx"
 import { DEMONSTRATIONS } from "./data/demonstrations.ts"
+import { SHOWCASE_IDS } from "./components/HomeShowcase.tsx"
 import { developmentRelations } from "./data/relationships.ts"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
@@ -95,15 +96,17 @@ function body(path: string): string {
       "",
       SITE.method,
       "",
+      "## AI on your own PC. See the results.",
+      "",
+      ...SHOWCASE_IDS.flatMap((id) => {
+        const demo = DEMONSTRATIONS[id]
+        return [item(PROJECTS.find((p) => p.id === id)!), demo.caption, ...demo.images.map((image) => `![${image.alt}](${absolute(image.src)})`), link(demo.credit, demo.creditUrl), link("Example provenance", demo.source), ""]
+      }),
       `Flagship: ${link(flagship.name, productPath(flagship))} — ${flagship.blurb}`,
       "",
       "## Product lines",
       "",
       ...LINES.map((l) => `- ${link(l.name, linePath(l.id))} — ${l.promise}`),
-      "",
-      "## AI applications: create on your own PC",
-      "",
-      ...["modelado", "revelei"].map((id) => item(PROJECTS.find((p) => p.id === id)!)),
       "",
       "## Built with our own tools",
       "",

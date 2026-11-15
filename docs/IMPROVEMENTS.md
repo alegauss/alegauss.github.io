@@ -35,30 +35,6 @@ that search runs on Viglet Turing.
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-### §AG27 A visual showcase that represents the AI focus
-
-AG24 already moved application examples and The Method before the catalogue. AG25
-supplied authentic photo-to-mesh and denoising demonstrations on the individual product
-pages. Do not recreate those tasks: the remaining gap is that the first product panel
-still leads with Claude Code Tray, while the homepage's application examples show icons
-and text rather than results.
-
-Use the existing demonstration data and reviewed assets to bring a compact, meaningful
-AI result close to the hero. Represent Modelado and Revelei alongside the agent
-development tools, with a clear editorial hierarchy and direct links to the relevant
-product pages. Keep SITE.flagship configurable; avoid replacing it with hardcoded
-assumptions about the first project in an array. The layout may balance or reposition
-its panel without changing which product the field names.
-
-Reuse the existing source credits and alternative text, adapting captions to the smaller
-context without changing what the examples prove. No fabricated app screenshots,
-performance claims or client testimonials. Preserve distinct product identities and
-shared design tokens.
-
-Check loading cost, reserved image dimensions, narrow-screen reading order and
-light/dark themes. Keep full catalogue entries unique and the text-only page
-understandable.
-
 ### §AG28 Distinct treatment for highlights and the complete catalogue
 
 AG21 already removed implementation-heavy tags from cards, and AG19 groups entries by

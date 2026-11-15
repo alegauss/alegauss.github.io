@@ -63,6 +63,13 @@ check("AG26", read("index.md").indexOf(SITE.heroTitle) < read("index.md").indexO
 check("AG24", home.indexOf('id="our-method"') < home.indexOf('id="products"') && home.indexOf('id="products"') < home.indexOf('id="recent-updates"'), "home discovery order is wrong")
 check("AG24", home.includes('id="ai-examples"') && !home.includes('class="hub-entry'), "home lacks application examples or still carries detailed task entries")
 check("AG24", read("index.md").indexOf("## Built with our own tools") < read("index.md").indexOf("## Recent updates"), "Markdown discovery order disagrees with HTML")
+// AG27 — authentic application results precede the configurable developer flagship.
+check("AG27", home.indexOf('data-home-showcase') < home.indexOf('id="flagship"'), "application outcomes still follow the flagship")
+for (const id of app.SHOWCASE_IDS) {
+  const demo = app.DEMONSTRATIONS[id]
+  check("AG27", home.includes(`data-showcase-product="${id}"`) && home.includes(html(demo.source)), `${id} lacks a sourced showcase`)
+  for (const image of demo.images) check("AG27", home.includes(`src="${image.src}"`) && home.includes(`alt="${html(image.alt)}"`), `${id} lacks an authentic accessible result`)
+}
 // AG31 — check rendered navigation, not the source's character spelling.
 const updateLabels = [...home.matchAll(/<a[^>]*href="\/changelog\/[^"/]+\/"[^>]*>([^<]* updates[^<]*)<\/a>/g)].map((match) => match[1])
 check("AG31", updateLabels.length > 0 && updateLabels.every((label) => label.endsWith(" \u2192")), "recent-update links lost their navigation arrows")

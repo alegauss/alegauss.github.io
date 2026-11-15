@@ -12,6 +12,7 @@ import { AvailabilityBadge } from "../components/Availability.tsx"
 import { Island } from "../islands.tsx"
 import { PLATFORMS } from "../data/catalogue.ts"
 import { MATURITY_LABELS } from "../data/availability.ts"
+import { HomeShowcase } from "../components/HomeShowcase.tsx"
 
 /** schema.org for the author (AG15): the Person every product page's `author` points at by @id. */
 export function personJsonLd() {
@@ -43,7 +44,6 @@ export function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()).replace(/</g, "\\u003c") }} />
       <SiteHero
-        icon={{ src: "/logo.svg", alt: "Alegauss logo" }}
         badge="Open source · free · analytics only with your consent"
         title={SITE.heroTitle}
         titleAccent={SITE.heroAccent}
@@ -56,8 +56,10 @@ export function Home() {
             </SiteButton>
           </>
         }
-      />
-      <p className="vg-site-wrap m-0 pb-8! text-center text-sm font-semibold text-muted-foreground">{SITE.headline}</p>
+      meta={[SITE.headline]}
+      >
+        <HomeShowcase />
+      </SiteHero>
 
       {/* the flagship is a field in site.ts, not a position in the list (AG4) */}
       <section className="vg-site-section pt-0!" aria-labelledby="flagship">
@@ -109,23 +111,6 @@ export function Home() {
               description: l.promise,
             }))}
           />
-        </div>
-      </section>
-
-      <section className="vg-site-section" aria-labelledby="ai-examples">
-        <div className="vg-site-wrap">
-          <SiteSectionHead eyebrow="AI applications" title={<span id="ai-examples">Create on your own PC</span>} />
-          <div className="grid gap-4 md:grid-cols-2">
-            {["modelado", "revelei"].map((id) => {
-              const p = projectById(id)
-              return <a key={id} href={productPath(p)} className="hub-card hub-accent" style={accentStyle(p)}>
-                <div className="flex items-center gap-3"><ProjectTile project={p} /><h3 className="m-0 text-2xl font-bold">{p.name}</h3></div>
-                <p className="m-0 text-muted-foreground">{p.blurb}</p>
-                <AvailabilityBadge project={p} />
-                <span className="font-semibold">Explore {p.name} &rarr;</span>
-              </a>
-            })}
-          </div>
         </div>
       </section>
 
