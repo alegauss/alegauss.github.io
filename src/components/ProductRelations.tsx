@@ -6,8 +6,9 @@ export function ProductRelations({ project }: { project: Project }) {
   const relations = developmentRelations(project.id)
   if (!relations.length) return null
   return (
-    <section className="mb-14" aria-labelledby="development-relations">
-      <div className="hub-band"><h2 id="development-relations">Development relationships</h2></div>
+    <details className="mb-10 border-y border-border py-3" data-development-evidence>
+      <summary className="min-h-11 cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--vg-brand)]">{relations.some((r) => r.type === "built-with") ? `How we build ${project.name}` : `Projects built with ${project.name}`}</summary>
+      <div className="mt-4">
       <p className="mb-5 text-muted-foreground">These links describe <a className="underline underline-offset-2" href="/method/">how we build</a>. The applications run independently; users do not need these development tools.</p>
       {(["built-with", "used-to-build"] as const).map((type) => {
         const entries = relations.filter((relation) => relation.type === type)
@@ -20,6 +21,7 @@ export function ProductRelations({ project }: { project: Project }) {
           </li>)}</ul>
         </div> : null
       })}
-    </section>
+      </div>
+    </details>
   )
 }

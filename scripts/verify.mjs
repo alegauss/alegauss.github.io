@@ -125,6 +125,7 @@ for (const p of PROJECTS) {
   const a = p.availability
   check("AG19", a.source.includes("/blob/") && /\d{4}-\d{2}-\d{2}/.test(a.reviewed) && a.evidence, `${p.name} lacks availability evidence`)
   check("AG19", page(app.productPath(p)).includes(app.MATURITY_LABELS[a.state]) && read(`${app.outputDir(app.productPath(p))}/index.md`).includes(a.source), `${p.name} has inconsistent availability`)
+  check("AG29", page(app.productPath(p)).includes('data-availability-evidence') && page(app.productPath(p)).includes(html(p.platform)), `${p.name} lacks native evidence disclosure or visible requirements`)
   check("AG19", !p.tags.includes("In development"), `${p.name} keeps an unstructured maturity tag`)
   if (app.availabilityStale(a)) console.warn(`AG19: review availability for ${p.name} (last checked ${a.reviewed})`)
 }
@@ -196,6 +197,7 @@ for (const p of PROJECTS) {
 
 // AG11 — the method page links every Workbench product, and every figure has a source.
 const method = page("/method/")
+check("AG29", (method.match(/data-method-evidence/g) || []).length === 2, "method evidence has no per-project disclosure")
 check("AG22", method.includes("Plan, implement, test, commit. Repeat.") && method.includes("Suggested tracks"), "method does not distinguish the real cycle and suggested combinations")
 for (const use of app.METHOD_USES) {
   // AG23 — both endpoints carry the related product and the same source.

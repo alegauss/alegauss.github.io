@@ -163,7 +163,7 @@ export function Product({ project }: { project: Project }) {
           </div>
           <p className="m-0 mb-6 text-lg leading-relaxed text-muted-foreground">{project.pitch}</p>
           <AvailabilityBadge project={project} />
-          <AvailabilityEvidence project={project} />
+          <p className="my-3 text-sm text-muted-foreground">{project.platform} · {project.licence}</p>
           <div className="flex flex-wrap gap-3">
             <SiteButton href={action.href}>{action.label}</SiteButton>
             {site && action.href !== site ? <SiteButton href={site} variant="ghost">{project.cta ?? "Product site"}</SiteButton> : null}
@@ -176,6 +176,7 @@ export function Product({ project }: { project: Project }) {
               Source
             </SiteButton>
           </div>
+          <AvailabilityEvidence project={project} />
         </div>
         {DEMONSTRATIONS[project.id] ? <ProductDemonstration project={project} /> : <div className="hub-shot">
           {project.shot ? (

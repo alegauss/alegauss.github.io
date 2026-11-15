@@ -35,30 +35,6 @@ that search runs on Viglet Turing.
 
 ## Block E — Visual hierarchy and first-visit confidence
 
-### §AG29 Evidence available at the right reading level
-
-AG19, AG22, AG23 and AG25 added reviewed availability, documented development
-relationships and authentic examples. These facts are credibility assets; this task
-changes their visual presentation without weakening or deleting them.
-
-On Product.tsx, Availability.tsx, ProductRelations.tsx and the relevant Method sections,
-establish a clear reading order: benefit and outcome, authentic example, appropriate
-next action, then supporting evidence. Consolidate repeated review dates and source
-labels where that helps scanning. Consider native details/summary or another accessible
-secondary treatment for lengthy provenance and build-method explanations. Keep labels
-such as repository evidence and owner-confirmed practice attached to the claims they
-qualify, including inside any disclosure.
-
-Do not hide information needed to decide whether to install, such as maturity, essential
-platform requirements, relevant warnings or licence restrictions. Preserve sources,
-dates, photo credits and image provenance. Expanded evidence must remain reachable by
-keyboard, usable without JavaScript and present in the prerendered HTML and Markdown
-twin.
-
-Verify default and expanded presentations on mobile and desktop, including focus,
-heading structure and both colour themes. Preserve product links and avoid presenting
-development tools as runtime requirements.
-
 ### §AG30 Compact mobile analytics consent
 
 The mobile capture in this conversation showed the consent panel covering a substantial

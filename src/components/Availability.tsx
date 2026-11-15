@@ -14,9 +14,12 @@ export function AvailabilityBadge({ project }: { project: Project }) {
 export function AvailabilityEvidence({ project }: { project: Project }) {
   const a = project.availability
   return (
-    <p className="my-4 text-sm leading-relaxed text-muted-foreground">
-      {a.evidence} <a className="underline underline-offset-2" href={a.source}>Availability source</a> · reviewed <time dateTime={a.reviewed}>{a.reviewed}</time>.
-      {availabilityStale(a) ? " Availability needs a fresh review; confirm the current instructions before installing." : null}
-    </p>
+    <>
+      {availabilityStale(a) ? <p className="my-3 text-sm text-muted-foreground">Availability needs a fresh review; confirm the current instructions before installing.</p> : null}
+      <details className="my-4 text-sm leading-relaxed text-muted-foreground" data-availability-evidence>
+        <summary className="min-h-11 cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--vg-brand)]">Availability sources</summary>
+        <p className="mb-0 mt-2">{a.evidence} <a className="underline underline-offset-2" href={a.source}>Availability source</a> · reviewed <time dateTime={a.reviewed}>{a.reviewed}</time>.</p>
+      </details>
+    </>
   )
 }

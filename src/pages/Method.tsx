@@ -102,15 +102,22 @@ export function Method() {
 
       <section className="vg-site-wrap py-8!" aria-labelledby="documented-use">
         <SiteSectionHead eyebrow="In our projects" title={<span id="documented-use">How Modelado and Revelei are built</span>}>
-          Repository evidence links to a reviewed commit. Owner-confirmed practice is identified separately; it is not independently verified by those configuration files.
+          Two independent applications use the shared method. Expand the sources to inspect the repository evidence and owner-confirmed practice.
         </SiteSectionHead>
         <div className="grid gap-4 md:grid-cols-2">
           {["modelado", "revelei"].map((id) => <article key={id} className="hub-card">
             <h3 className="m-0 text-xl font-bold"><a href={productPath(id)}>{projectById(id).name}</a></h3>
             <ul className="m-0 list-none space-y-4 p-0">{METHOD_USES.filter((use) => use.application === id).map((use) => <li key={use.tool}>
               <a className="font-semibold underline underline-offset-2" href={productPath(use.tool)}>{projectById(use.tool).name}</a>: {use.role}
-              <small className="mt-1 block text-muted-foreground"><a className="underline underline-offset-2" href={use.source}>{use.basis}</a> · reviewed {use.reviewed}</small>
+              {use.basis === "Owner-confirmed" ? <small className="ml-1 text-muted-foreground">(owner-confirmed)</small> : null}
             </li>)}</ul>
+            <details className="text-sm text-muted-foreground" data-method-evidence>
+              <summary className="min-h-11 cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--vg-brand)]">Sources and review dates</summary>
+              <p className="my-2">Repository evidence links to a reviewed commit. Owner-confirmed practice is reported by the author and is not independently verified by those configuration files.</p>
+              <ul className="m-0 list-none space-y-3 p-0">{METHOD_USES.filter((use) => use.application === id).map((use) => <li key={use.tool}>
+                <span className="font-semibold">{projectById(use.tool).name}</span>: <a className="underline underline-offset-2" href={use.source}>{use.basis}</a> · reviewed {use.reviewed}
+              </li>)}</ul>
+            </details>
           </article>)}
         </div>
       </section>
