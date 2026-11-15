@@ -8,7 +8,6 @@
 
 ## Block D — Independent AI products, built with our own tools
 
-- 📋 **AG20** (deps: AG18 ✅, AG19 ✅) **Visitors cannot narrow the catalogue by purpose, operating system or maturity** — Add combinable accessible catalogue filters backed by structured product metadata while retaining the full prerendered catalogue. → §AG20
 - 📋 **AG21** (deps: AG18 ✅, AG19 ✅) **Catalogue cards mix runtimes and implementation details with the information needed to choose a product** — Lead cards with the user outcome and consistent purpose, platform and availability labels, keeping technical depth on product pages. → §AG21
 - 📋 **AG22** (deps: —) **The Method shows possible tool combinations but not how those tools build Alegauss products** — Extend the existing tracks with the real planning, coding, Windows testing and commit cycle, supported by project evidence. → §AG22
 - 📋 **AG23** (deps: AG22) **Product pages do not connect applications to the development tools actually used to build them** — Show verified built-with and used-to-build relationships with reciprocal product links and an explanation of each relationship. → §AG23
@@ -20,13 +19,6 @@
 - **A Turing site indexes the hub and answers from alegauss.github.io** SITE.search.site
   names it, and the header search returns product and changelog pages from a browser on
   the hub's origin, past CORS.
-
-## Done when — AG20
-
-- **Combined filters preserve access to the catalogue** Purpose, platform and maturity
-  combine correctly; reset and no-results states work; labels, focus and result
-  announcements are accessible; mobile layout works; all projects remain discoverable
-  once in prerendered HTML without JavaScript.
 
 ## Done when — AG21
 

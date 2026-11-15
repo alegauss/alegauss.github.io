@@ -11,7 +11,8 @@
     "build:site": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/verify.mjs",
     "typecheck": "tsc --noEmit",
     "verify": "node scripts/verify.mjs",
-    "sponsor": "node scripts/sync-sponsor.mjs"
+    "sponsor": "node scripts/sync-sponsor.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@viglet/turing-sdk": "2026.3.9",

@@ -10,6 +10,9 @@ import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
 import { ShipList } from "../components/ShipList.tsx"
 import { NumberLine } from "../components/Numbers.tsx"
 import { AvailabilityBadge } from "../components/Availability.tsx"
+import { Island } from "../islands.tsx"
+import { PLATFORMS } from "../data/catalogue.ts"
+import { MATURITY_LABELS } from "../data/availability.ts"
 
 /** schema.org for the author (AG15): the Person every product page's `author` points at by @id. */
 export function personJsonLd() {
@@ -113,6 +116,11 @@ export function Home() {
             <h2>Every product</h2>
             <span>Each has a page here, and most a site of its own with the full documentation.</span>
           </div>
+          <Island name="catalogue-filters" props={{ total: String(PROJECTS.length), options: JSON.stringify({
+            purpose: LINES.map((l) => ({ id: l.id, name: l.name })),
+            platform: Object.entries(PLATFORMS).map(([id, name]) => ({ id, name })),
+            maturity: Object.entries(MATURITY_LABELS).filter(([id]) => PROJECTS.some((p) => p.availability.state === id)).map(([id, name]) => ({ id, name })),
+          }) }} />
           <ProjectGrid projects={PROJECTS} />
         </div>
       </section>

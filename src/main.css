@@ -4,6 +4,8 @@
 @import "@viglet/viglet-design-system/site.css";
 @import "./tone.css";
 
+[data-catalogue-card][hidden], [data-catalogue-group][hidden], [data-catalogue-controls][hidden] { display: none; }
+
 /* ---------------------------------------------------------------
    The hub's own pieces, on the design system's tokens only (AG2):
    no colour and no radius is declared here (tone.css holds the ground). The one exception is a

@@ -6,7 +6,7 @@ import { AvailabilityBadge } from "./Availability.tsx"
 /** A directory entry: the depth lives on the product page it links to. */
 export function ProjectCard({ project, note }: { project: Project; note?: string }) {
   return (
-    <article className="hub-card hub-accent" style={accentStyle(project)}>
+    <article className="hub-card hub-accent" style={accentStyle(project)} data-catalogue-card={project.id} data-lines={project.lines.join(" ")} data-platforms={project.platforms.join(" ")} data-maturity={project.availability.state}>
       <div className="flex items-center gap-3">
         <ProjectTile project={project} />
         <div className="min-w-0">

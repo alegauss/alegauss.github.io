@@ -56,6 +56,9 @@ const home = page("/")
 check("AG17", home.includes(html(SITE.positioning)) && home.includes(html(SITE.method)), "the home page lacks the shared development method")
 check("AG17", read("index.md").includes(SITE.headline) && read("index.md").includes(SITE.method), "the Markdown twin lacks the positioning")
 const published = JSON.parse(read("projects.json"))
+// AG20 — all cards remain visible once in the static catalogue before enhancement.
+check("AG20", (home.match(/data-catalogue-card=/g) || []).length === PROJECTS.length, "static catalogue is incomplete or duplicated")
+check("AG20", home.includes('data-island="catalogue-filters"'), "catalogue filter enhancement is absent")
 for (const p of PROJECTS) {
   check("AG3", home.includes(html(p.name)), `the home page HTML lacks ${p.name}`)
   check("AG3", home.includes(html(p.blurb)), `the home page HTML lacks ${p.name}'s blurb`)

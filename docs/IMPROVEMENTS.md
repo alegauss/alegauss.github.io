@@ -33,22 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG20 Catalogue filters that combine purpose, platform and maturity
-
-Use the revised family and availability data to filter the main catalogue by purpose,
-operating system and maturity. Normalise platform values instead of parsing display tags
-such as '.NET 10' or arbitrary platform prose. Support combined filters, a visible
-result count, clear/reset and an explicit empty state.
-
-Keep every project present once in the initial prerendered HTML for discovery and
-no-JavaScript access, then enhance filtering through the site's island mechanism.
-Controls need labels, keyboard access, visible focus and understandable status
-announcements. Filters must not make card links unusable or imply that an agent-facing
-tool is an AI-powered end-user application.
-
-Verify individual and combined selections, clearing, no matches, mobile layout and the
-no-JavaScript catalogue. Keep per-line pages available as direct navigation routes.
-
 ### §AG21 Cards that help a visitor choose
 
 ProjectCard currently renders project.kind, a blurb and the unrestricted tags array.

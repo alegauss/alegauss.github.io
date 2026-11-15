@@ -3,6 +3,7 @@ import { SiteCopyButton, SiteThemeToggle } from "@viglet/viglet-design-system/si
 import { SITE } from "./data/site.ts"
 import { SearchButton } from "./components/Search.tsx"
 import { askConsent } from "./components/Consent.tsx"
+import { CatalogueFilters } from "./components/CatalogueFilters.tsx"
 
 /* The page is static HTML; only these pieces run in the browser. Hydrating whole pages
    would ship every ledger entry the build read (megabytes of JSON) to make four buttons
@@ -25,6 +26,7 @@ export const ISLANDS: Record<string, ComponentType<any>> = {
   copy: Copy,
   search: SearchButton,
   "consent-settings": ConsentSettings,
+  "catalogue-filters": CatalogueFilters,
 }
 
 export function Island({ name, props = {} }: { name: keyof typeof ISLANDS & string; props?: Record<string, string> }) {

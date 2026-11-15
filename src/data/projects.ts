@@ -22,6 +22,7 @@
    made absolute where a page links them (see links.ts).
    --------------------------------------------------------------- */
 
+import type { PlatformId } from "./catalogue.ts"
 import { AVAILABILITY, type Availability } from "./availability.ts"
 import type { LineId } from "./lines.ts"
 
@@ -57,6 +58,7 @@ export interface Project {
   mark?: string
   licence: string
   platform: string
+  platforms: PlatformId[]
   install: InstallStep[]
   /** A releases page, where the product ships a binary. */
   download?: string
@@ -74,6 +76,7 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: "claude-tray",
+    platforms: ["windows"],
     availability: AVAILABILITY["claude-tray"],
     name: "Claude Code Tray",
     group: "apps",
@@ -97,6 +100,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "freeharbor",
+    platforms: ["windows"],
     availability: AVAILABILITY["freeharbor"],
     name: "FreeHarbor",
     group: "apps",
@@ -118,6 +122,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "pportal",
+    platforms: ["windows"],
     availability: AVAILABILITY["pportal"],
     name: "PPortal",
     group: "apps",
@@ -141,6 +146,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "aduzi",
+    platforms: ["windows"],
     availability: AVAILABILITY["aduzi"],
     name: "Aduzi",
     group: "apps",
@@ -165,6 +171,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "modelado",
+    platforms: ["windows"],
     availability: AVAILABILITY["modelado"],
     name: "Modelado",
     group: "apps",
@@ -186,6 +193,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "revelei",
+    platforms: ["windows"],
     availability: AVAILABILITY["revelei"],
     name: "Revelei",
     group: "apps",
@@ -208,6 +216,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "roadkeep",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["roadkeep"],
     name: "roadkeep",
     group: "cli",
@@ -233,6 +242,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "commitclerk",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["commitclerk"],
     name: "commitclerk",
     group: "cli",
@@ -257,6 +267,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "askround",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["askround"],
     name: "askround",
     group: "cli",
@@ -281,6 +292,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "winwright",
+    platforms: ["windows"],
     availability: AVAILABILITY["winwright"],
     name: "winwright",
     group: "cli",
@@ -304,6 +316,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "polyweave",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["polyweave"],
     name: "polyweave",
     group: "cli",
@@ -326,6 +339,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "piano",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["piano"],
     name: "Piano",
     group: "apps",
@@ -349,6 +363,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "mini-gpt",
+    platforms: ["windows", "macos", "linux"],
     availability: AVAILABILITY["mini-gpt"],
     name: "Mini GPT",
     group: "measured",
@@ -373,6 +388,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-usage",
+    platforms: ["browser"],
     availability: AVAILABILITY["claude-code-usage"],
     name: "Usage Simulator",
     group: "measured",
@@ -394,6 +410,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-time-study",
+    platforms: ["browser"],
     availability: AVAILABILITY["claude-code-time-study"],
     name: "Time Study",
     group: "measured",
@@ -416,6 +433,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "claude-code-first",
+    platforms: ["browser"],
     availability: AVAILABILITY["claude-code-first"],
     name: "Claude Code First",
     group: "measured",
