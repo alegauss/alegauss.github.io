@@ -147,6 +147,11 @@ for (const p of PROJECTS) {
 
 // AG11 — the method page links every Workbench product, and every figure has a source.
 const method = page("/method/")
+check("AG22", method.includes("Plan, implement, test, commit. Repeat.") && method.includes("Suggested tracks"), "method does not distinguish the real cycle and suggested combinations")
+for (const use of app.METHOD_USES) {
+  check("AG22", method.includes(html(use.source)) && read("method/index.md").includes(use.source), "method evidence is missing in HTML or Markdown")
+  check("AG22", use.basis !== "Repository evidence" || /\/blob\/[a-f0-9]{40}\//.test(use.source), "repository evidence is not pinned")
+}
 for (const p of PROJECTS.filter((x) => x.lines.includes("workbench"))) check("AG11", method.includes(`href="${app.productPath(p)}"`), `the method page does not link ${p.name}`)
 
 // AG13 — the plugins page lists every plugin in the manifest Claude Code reads.

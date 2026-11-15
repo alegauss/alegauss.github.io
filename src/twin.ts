@@ -14,6 +14,7 @@ import { changelogShips } from "./pages/Changelog.tsx"
 import { METHOD_CORE, METHOD_STEPS, METHOD_TRACKS } from "./pages/Method.tsx"
 import { MATURITY_LABELS } from "./data/availability.ts"
 import { availabilityAction } from "./components/Availability.tsx"
+import { METHOD_CYCLE, METHOD_USES } from "./data/method.ts"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
 const item = (p: Project) => `- ${link(p.name, productPath(p))} — ${MATURITY_LABELS[p.availability.state]} (${p.availability.channel}). ${p.blurb}`
@@ -116,7 +117,21 @@ function body(path: string): string {
       "",
       route.description,
       "",
-      "## Three tracks",
+      "The applications are independent. Development tools are not runtime requirements.",
+      "",
+      "## Plan, implement, test, commit. Repeat.",
+      "",
+      ...METHOD_CYCLE.map((step, i) => `${i + 1}. ${step.title}: ${step.text}`),
+      "Tests and commits repeat throughout development; a failed check sends work back through implementation and testing.",
+      "",
+      "## Documented development use",
+      "",
+      "Repository evidence is pinned; owner-confirmed practice is identified separately and is not independently verified by configuration files.",
+      ...METHOD_USES.map((use) => `- ${link(PROJECTS.find((p) => p.id === use.application)!.name, productPath(use.application))}: ${link(use.tool, productPath(use.tool))} — ${use.role} ${link(use.basis, use.source)}; reviewed ${use.reviewed}.`),
+      "",
+      "## Suggested tracks",
+      "",
+      "Possible tool combinations, rather than evidence that each combination shipped.",
       "",
       ...METHOD_TRACKS.flatMap((t, i) => [
         `### Track ${i + 1}: ${t.title}`,

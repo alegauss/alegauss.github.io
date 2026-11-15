@@ -33,24 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG22 The Method demonstrated through the owner's actual workflow
-
-AG11 and AG16 already delivered /method/, shared tools and tracks for Windows apps,
-services and games. Extend that page rather than filing another generic workflow
-diagram. Explain roadkeep for planning and tracking, coding agents for implementation,
-winwright for agent-assisted testing in Windows projects and commitclerk for commit
-work, with tests and commits repeating throughout development.
-
-Use Modelado and Revelei as candidate examples of products built this way. Verify
-repository evidence before stating which tool each project uses, and link to stable
-source locations where possible. Distinguish owner-confirmed working practice from
-independently inspectable evidence. Do not label a hypothetical game asset pipeline or
-an unverified deployment as production use.
-
-Keep the existing tracks and sourced Lab figures where they remain accurate, but
-distinguish suggested combinations from documented use. State that a shared engineering
-method does not mean integration or runtime dependency between the applications.
-
 ### §AG23 Product relationships grounded in development use
 
 Add explicit relationship data between products, with a type, short explanation and

@@ -3,6 +3,7 @@ import { projectById } from "../data/projects.ts"
 import { productPath } from "../data/links.ts"
 import { LAB_FIGURES } from "../data/lab.ts"
 import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
+import { METHOD_CYCLE, METHOD_USES } from "../data/method.ts"
 
 /* AG11: the workflow the Agent Workbench tools add up to. Three tracks, one per kind of
    project, each adding its own tools to a core every track shares. Each line says only
@@ -83,17 +84,41 @@ export function Method() {
     <>
       <header className="vg-site-wrap pt-16! pb-6! text-center">
         <div className="vg-site-eyebrow">The method</div>
-        <h1 className="m-0 mx-auto mb-4 max-w-[20ch] text-5xl font-black tracking-tight">Work with coding agents and keep the record straight.</h1>
+        <h1 className="m-0 mx-auto mb-4 max-w-[20ch] text-5xl font-black tracking-tight">We build with the tools we build.</h1>
         <p className="m-0 mx-auto max-w-[62ch] text-lg leading-relaxed text-muted-foreground">
-          Pick the track for what you are building. Each one adds its own tools to a core that every track shares. Each tool
-          does only what it does today, and the numbers at the end come from the Lab write-ups, not from this page.
+          Independent products, a shared engineering method. Our roadmaps, Windows tests and commit workflow use tools we
+          develop ourselves. This describes how we build; the applications do not require these development tools to run.
         </p>
       </header>
 
+      <section className="vg-site-wrap py-8!" aria-labelledby="development-cycle">
+        <SiteSectionHead eyebrow="How we work" title={<span id="development-cycle">Plan, implement, test, commit. Repeat.</span>}>
+          Tests and commits happen throughout development. A failed check sends the work back through implementation and testing.
+        </SiteSectionHead>
+        <ol className="m-0 grid list-none gap-4 p-0 md:grid-cols-2">
+          {METHOD_CYCLE.map((step, i) => <li key={step.title} className="hub-card"><span className="hub-kind">{i + 1}</span><h3 className="m-0 text-xl font-bold">{step.title}</h3><p className="m-0 text-muted-foreground">{step.text}</p></li>)}
+        </ol>
+      </section>
+
+      <section className="vg-site-wrap py-8!" aria-labelledby="documented-use">
+        <SiteSectionHead eyebrow="In our projects" title={<span id="documented-use">How Modelado and Revelei are built</span>}>
+          Repository evidence links to a reviewed commit. Owner-confirmed practice is identified separately; it is not independently verified by those configuration files.
+        </SiteSectionHead>
+        <div className="grid gap-4 md:grid-cols-2">
+          {["modelado", "revelei"].map((id) => <article key={id} className="hub-card">
+            <h3 className="m-0 text-xl font-bold"><a href={productPath(id)}>{projectById(id).name}</a></h3>
+            <ul className="m-0 list-none space-y-4 p-0">{METHOD_USES.filter((use) => use.application === id).map((use) => <li key={use.tool}>
+              <a className="font-semibold underline underline-offset-2" href={productPath(use.tool)}>{projectById(use.tool).name}</a>: {use.role}
+              <small className="mt-1 block text-muted-foreground"><a className="underline underline-offset-2" href={use.source}>{use.basis}</a> · reviewed {use.reviewed}</small>
+            </li>)}</ul>
+          </article>)}
+        </div>
+      </section>
+
       <section className="vg-site-section" aria-labelledby="tracks">
         <div className="vg-site-wrap">
-          <SiteSectionHead eyebrow="Three tracks" title={<span id="tracks">What are you building?</span>}>
-            A Windows app, a service and a game are checked against different things, so each track brings its own tools.
+          <SiteSectionHead eyebrow="Suggested tracks" title={<span id="tracks">What are you building?</span>}>
+            These are possible tool combinations, rather than evidence that every combination has been used in a shipped product.
           </SiteSectionHead>
           <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-4 p-0">
             {METHOD_TRACKS.map((t, i) => (
