@@ -33,23 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG24 Home page hierarchy for first-time visitors
-
-Home.tsx currently places six raw shipped entries between the full catalogue and the
-Method promotion. The Method already has a hero link, so the gap is prominence and
-explanation rather than a missing route.
-
-Reorder the home page around the revised positioning, the product families, concrete
-application examples and a concise explanation that Alegauss builds with its own tools.
-Give Modelado and Revelei visibility alongside the development tools without replacing
-the configurable flagship mechanism or fabricating availability. Move detailed release
-activity behind a compact recent-updates section and the existing full changelog link.
-
-Retain changelog pages, Atom feeds and source attribution from AG8. The homepage should
-help a visitor identify an application or development tool before reading internal task
-sentences. Keep the HTML, Markdown twin and route/social descriptions consistent and
-check mobile reading order.
-
 ### §AG25 Product landing pages that demonstrate what the application does
 
 AG5 already delivered /products/<id>/ pages with pitches, links, install steps, JSON-LD

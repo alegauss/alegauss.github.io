@@ -15,6 +15,7 @@ import { METHOD_CORE, METHOD_STEPS, METHOD_TRACKS } from "./pages/Method.tsx"
 import { MATURITY_LABELS } from "./data/availability.ts"
 import { availabilityAction } from "./components/Availability.tsx"
 import { METHOD_CYCLE, METHOD_USES } from "./data/method.ts"
+import { homeUpdates } from "./pages/Home.tsx"
 import { developmentRelations } from "./data/relationships.ts"
 
 const link = (text: string, href: string) => `[${text}](${/^https?:/.test(href) ? href : absolute(href)})`
@@ -89,13 +90,23 @@ function body(path: string): string {
       "",
       ...LINES.map((l) => `- ${link(l.name, linePath(l.id))} — ${l.promise}`),
       "",
+      "## AI applications: create on your own PC",
+      "",
+      ...["modelado", "revelei"].map((id) => item(PROJECTS.find((p) => p.id === id)!)),
+      "",
+      "## Built with our own tools",
+      "",
+      SITE.method,
+      link("Read the method and project evidence", "/method/"),
+      "",
       "## Every product",
       "",
       ...PROJECTS.map(item),
       "",
-      "## Recently shipped",
+      "## Recent updates",
       "",
-      ...shipsOf().slice(0, 6).map((s) => ship(s)),
+      ...homeUpdates().map((s) => `- ${link(s.project.name + " updates", `/changelog/${s.project.id}/`)}${s.date ? ` ? ${s.date}` : ""}`),
+      link("Every product's changelog", "/changelog/"),
       "",
       "## About",
       "",

@@ -7,7 +7,6 @@ import { NUMBERS_AS_OF, numbersOf, shipsOf } from "../data/records.ts"
 import { marketplaceAdd, MARKETPLACE } from "../data/plugins.ts"
 import { ProjectGrid } from "../components/ProjectGrid.tsx"
 import { ProjectTile, accentStyle } from "../components/ProjectTile.tsx"
-import { ShipList } from "../components/ShipList.tsx"
 import { NumberLine } from "../components/Numbers.tsx"
 import { AvailabilityBadge } from "../components/Availability.tsx"
 import { Island } from "../islands.tsx"
@@ -32,6 +31,8 @@ export function personJsonLd() {
     knowsAbout: ["Enterprise search", "Content management systems", "Claude Code", "Coding agents", "Windows desktop apps"],
   }
 }
+
+export const homeUpdates = () => shipsOf().filter((ship, index, all) => all.findIndex((other) => other.project.id === ship.project.id) === index).slice(0, 3)
 
 export function Home() {
   const flagship = projectById(SITE.flagship)
@@ -110,6 +111,48 @@ export function Home() {
         </div>
       </section>
 
+      <section className="vg-site-section" aria-labelledby="ai-examples">
+        <div className="vg-site-wrap">
+          <SiteSectionHead eyebrow="AI applications" title={<span id="ai-examples">Create on your own PC</span>} />
+          <div className="grid gap-4 md:grid-cols-2">
+            {["modelado", "revelei"].map((id) => {
+              const p = projectById(id)
+              return <a key={id} href={productPath(p)} className="hub-card hub-accent" style={accentStyle(p)}>
+                <div className="flex items-center gap-3"><ProjectTile project={p} /><h3 className="m-0 text-2xl font-bold">{p.name}</h3></div>
+                <p className="m-0 text-muted-foreground">{p.blurb}</p>
+                <AvailabilityBadge project={p} />
+                <span className="font-semibold">Explore {p.name} ?</span>
+              </a>
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="vg-site-section" id="our-method">
+        <div className="vg-site-wrap grid gap-4 md:grid-cols-2">
+          <a href="/method/" className="hub-card">
+            <div className="vg-site-eyebrow m-0">The method</div>
+            <h3 className="m-0 text-2xl font-extrabold tracking-tight">Built with our own tools.</h3>
+            <p className="m-0 text-muted-foreground">
+              We use roadkeep to manage roadmaps, winwright to test Windows apps and commitclerk to support commits.
+              The applications are independent; the development method is shared.
+            </p>
+            <span className="mt-auto font-semibold" style={{ color: "var(--vg-brand)" }}>
+              Read the method →
+            </span>
+          </a>
+          <a href="/plugins/" className="hub-card">
+            <div className="vg-site-eyebrow m-0">Claude Code plugins</div>
+            <h3 className="m-0 text-2xl font-extrabold tracking-tight">Every plugin from one marketplace.</h3>
+            <code className="hub-code block">{marketplaceAdd}</code>
+            <p className="m-0 text-muted-foreground">{MARKETPLACE.plugins.map((p) => p.name).join(", ")}.</p>
+            <span className="mt-auto font-semibold" style={{ color: "var(--vg-brand)" }}>
+              See the plugins →
+            </span>
+          </a>
+        </div>
+      </section>
+
       <section className="vg-site-section" id="products">
         <div className="vg-site-wrap">
           <div className="hub-band">
@@ -128,39 +171,19 @@ export function Home() {
       <section className="vg-site-section">
         <div className="vg-site-wrap">
           <div className="hub-band">
-            <h2>Recently shipped</h2>
+            <h2 id="recent-updates">Recent updates</h2>
             <span>
               <a className="font-semibold text-foreground underline-offset-2 hover:underline" href="/changelog/">
                 Every product's changelog →
               </a>
             </span>
           </div>
-          <ShipList ships={shipsOf().slice(0, 6)} />
-        </div>
-      </section>
-
-      <section className="vg-site-section">
-        <div className="vg-site-wrap grid gap-4 md:grid-cols-2">
-          <a href="/method/" className="hub-card">
-            <div className="vg-site-eyebrow m-0">The method</div>
-            <h3 className="m-0 text-2xl font-extrabold tracking-tight">One way of working with coding agents, one tool per step.</h3>
-            <p className="m-0 text-muted-foreground">
-              roadkeep governs the backlog and its desktop app reads every one, commitclerk writes the commit and winwright
-              reports what a test observed.
-            </p>
-            <span className="mt-auto font-semibold" style={{ color: "var(--vg-brand)" }}>
-              Read the method →
-            </span>
-          </a>
-          <a href="/plugins/" className="hub-card">
-            <div className="vg-site-eyebrow m-0">Claude Code plugins</div>
-            <h3 className="m-0 text-2xl font-extrabold tracking-tight">Every plugin from one marketplace.</h3>
-            <code className="hub-code block">{marketplaceAdd}</code>
-            <p className="m-0 text-muted-foreground">{MARKETPLACE.plugins.map((p) => p.name).join(", ")}.</p>
-            <span className="mt-auto font-semibold" style={{ color: "var(--vg-brand)" }}>
-              See the plugins →
-            </span>
-          </a>
+          <ul className="m-0 grid list-none gap-3 p-0 md:grid-cols-3">
+            {homeUpdates().map((update) => <li key={update.project.id} className="hub-card text-sm">
+              <a className="font-bold underline underline-offset-2" href={`/changelog/${update.project.id}/`}>{update.project.name} updates ?</a>
+              {update.date ? <time className="text-muted-foreground" dateTime={update.date}>{update.date}</time> : <span className="text-muted-foreground">Read the project changelog</span>}
+            </li>)}
+          </ul>
         </div>
       </section>
 
