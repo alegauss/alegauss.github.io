@@ -59,6 +59,11 @@ check("AG17", read("index.md").includes(SITE.headline) && read("index.md").inclu
 check("AG24", home.indexOf('id="our-method"') < home.indexOf('id="products"') && home.indexOf('id="products"') < home.indexOf('id="recent-updates"'), "home discovery order is wrong")
 check("AG24", home.includes('id="ai-examples"') && !home.includes('class="hub-entry'), "home lacks application examples or still carries detailed task entries")
 check("AG24", read("index.md").indexOf("## Built with our own tools") < read("index.md").indexOf("## Recent updates"), "Markdown discovery order disagrees with HTML")
+// AG31 — check rendered navigation, not the source's character spelling.
+const updateLabels = [...home.matchAll(/<a[^>]*href="\/changelog\/[^"/]+\/"[^>]*>([^<]* updates[^<]*)<\/a>/g)].map((match) => match[1])
+check("AG31", updateLabels.length > 0 && updateLabels.every((label) => label.endsWith(" \u2192")), "recent-update links lost their navigation arrows")
+for (const name of ["Modelado", "Revelei"]) check("AG31", home.includes(`Explore ${name} \u2192`), `${name}'s Explore link lost its navigation arrow`)
+check("AG31", !/\]\([^\n]+\) \? \d{4}-\d{2}-\d{2}/.test(read("index.md")), "Markdown update dates have a corrupted separator")
 const published = JSON.parse(read("projects.json"))
 // AG20 — all cards remain visible once in the static catalogue before enhancement.
 check("AG20", (home.match(/data-catalogue-card=/g) || []).length === PROJECTS.length, "static catalogue is incomplete or duplicated")

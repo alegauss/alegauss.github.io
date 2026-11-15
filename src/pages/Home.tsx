@@ -121,7 +121,7 @@ export function Home() {
                 <div className="flex items-center gap-3"><ProjectTile project={p} /><h3 className="m-0 text-2xl font-bold">{p.name}</h3></div>
                 <p className="m-0 text-muted-foreground">{p.blurb}</p>
                 <AvailabilityBadge project={p} />
-                <span className="font-semibold">Explore {p.name} ?</span>
+                <span className="font-semibold">Explore {p.name} &rarr;</span>
               </a>
             })}
           </div>
@@ -180,7 +180,7 @@ export function Home() {
           </div>
           <ul className="m-0 grid list-none gap-3 p-0 md:grid-cols-3">
             {homeUpdates().map((update) => <li key={update.project.id} className="hub-card text-sm">
-              <a className="font-bold underline underline-offset-2" href={`/changelog/${update.project.id}/`}>{update.project.name} updates ?</a>
+              <a className="font-bold underline underline-offset-2" href={`/changelog/${update.project.id}/`}>{update.project.name} updates &rarr;</a>
               {update.date ? <time className="text-muted-foreground" dateTime={update.date}>{update.date}</time> : <span className="text-muted-foreground">Read the project changelog</span>}
             </li>)}
           </ul>

@@ -112,7 +112,7 @@ function body(path: string): string {
       "",
       "## Recent updates",
       "",
-      ...homeUpdates().map((s) => `- ${link(s.project.name + " updates", `/changelog/${s.project.id}/`)}${s.date ? ` ? ${s.date}` : ""}`),
+      ...homeUpdates().map((s) => `- ${link(s.project.name + " updates", `/changelog/${s.project.id}/`)}${s.date ? ` \u2014 ${s.date}` : ""}`),
       link("Every product's changelog", "/changelog/"),
       "",
       "## About",
