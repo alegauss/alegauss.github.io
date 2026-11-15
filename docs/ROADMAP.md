@@ -15,7 +15,6 @@
 - 📋 **AG28** (deps: —) **Repeated cards give the full catalogue almost the same visual weight as the selected product highlights** — Give selected highlights more visual emphasis and make the full catalogue easier to scan without losing filters or product access. → §AG28
 - 📋 **AG29** (deps: —) **Review dates, source labels and development evidence compete with product guidance on the detail pages** — Keep outcomes and the next action prominent while making provenance available through accessible secondary disclosure. → §AG29
 - 📋 **AG30** (deps: —) **The analytics consent panel occupies a large part of the mobile viewport and obscures product content** — Reduce the panel's mobile footprint with concise copy and layout while preserving clear choices and the existing consent behaviour. → §AG30
-- 🛠 **AG31** (deps: —) **Home page update and application links end in question marks instead of navigation arrows** — Restore the intended arrow characters in both homepage link labels and verify the rendered navigation text. → §AG31
 
 ## Done when — AG14
 
@@ -58,12 +57,5 @@
   panel is visibly shorter than the baseline; at 320px and 200% text zoom it remains
   readable with 44px targets; choices are equally clear; refusal persists, settings
   reopen, and analytics stays unloaded before consent and after refusal.
-
-## Done when — AG31
-
-- **Navigation arrows render without stray question marks** Built homepage Explore and
-  recent-update links end in an arrow and retain their destinations; the Markdown
-  update/date separator is an em dash; legitimate question marks are preserved; tests,
-  typecheck and built-page verification pass.
 
 ## Non-goals

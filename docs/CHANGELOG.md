@@ -47,3 +47,5 @@
 
 ## Block E — Visual hierarchy and first-visit confidence
 
+- ✅ **AG31** **Home page update and application links end in question marks instead of navigation arrows** — Homepage update and Explore links render navigation arrows again, and Markdown dates use the intended separator, with built-page checks preventing the regression.
+  checked **Navigation arrows render without stray question marks** Built homepage Explore and recent-update links end in an arrow and retain their destinations; the Markdown update/date separator is an em dash; legitimate question marks are preserved; tests, typecheck and built-page verification pass.

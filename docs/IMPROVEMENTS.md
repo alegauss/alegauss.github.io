@@ -150,19 +150,3 @@ Compare banner height at the same 360- and 390-pixel widths before and after. Ve
 320-pixel width, text zoom and keyboard access without clipping or horizontal overflow.
 Keep touch targets at least 44 CSS pixels, and confirm no analytics request before
 consent or after a stored refusal.
-
-### §AG31 Restore corrupted homepage navigation characters
-
-The user supplied a production screenshot where recent-update links end in a question
-mark. Home.tsx contains literal question marks in both the recent-update and Explore
-labels; twin.ts also contains one in the date separator introduced with AG24. This is
-content corruption, not a missing font or an intentional help indicator.
-
-Restore navigation arrows in the two homepage labels using an ASCII-safe JSX entity, and
-restore the Markdown date separator with a Unicode escape. Preserve destinations, layout
-and legitimate question marks in headings or conditional expressions. Add built-page
-checks for the actual rendered labels and the Markdown separator so a future encoding
-mistake fails verification.
-
-Validate the existing tests, TypeScript, prerender and built-page verifier before
-shipping. Keep this correction separate from the open visual-design tasks.
