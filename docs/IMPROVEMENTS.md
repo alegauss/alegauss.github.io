@@ -34,19 +34,3 @@ that search runs on Viglet Turing.
 ## Block D — Independent AI products, built with our own tools
 
 ## Block E — Visual hierarchy and first-visit confidence
-
-### §AG33 Apply the latest consent choice on the current page
-
-The AG30 browser check reproduced an existing consent-state bug: allow analytics, reopen
-settings, decline, reopen settings and allow again. The stored choice becomes granted,
-but window['ga-disable-' + SITE.analytics] stays true because loadAnalytics returns
-immediately once its loaded flag is set. The visitor's latest choice is therefore not
-applied until a full page navigation.
-
-Clear the measurement-specific disable flag whenever analytics is explicitly enabled,
-before the already-loaded guard. Preserve script deduplication, no request before
-consent, stored refusal, and revocation. Add a maintained browser regression that
-exercises the real built site and the full grant/revoke/grant sequence, intercepting the
-analytics script rather than sending tracking data. Include refusal across a reload and
-reopening settings. Keep this functional correction separate from the compact banner
-layout.

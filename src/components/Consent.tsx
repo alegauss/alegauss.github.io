@@ -21,6 +21,8 @@ function readChoice(): Choice | null {
 
 let loaded = false
 function loadAnalytics() {
+  const privacyWindow = window as unknown as Record<string, boolean>
+  privacyWindow[`ga-disable-${SITE.analytics}`] = false
   if (loaded) return
   loaded = true
   const w = window as unknown as { dataLayer: unknown[]; gtag: (...args: unknown[]) => void }
