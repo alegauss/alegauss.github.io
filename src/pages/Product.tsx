@@ -212,6 +212,10 @@ export function Product({ project }: { project: Project }) {
                 <a href={project.repo}>Source on GitHub →</a>
               </div>
             </dl>
+            <div className="hub-card mt-4 text-sm">
+              <h2 className="m-0 text-base font-bold">Technical details</h2>
+              <ul className="m-0 list-disc space-y-1 pl-5 text-muted-foreground">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
+            </div>
             <p className="mx-1 mt-3 text-xs leading-relaxed text-muted-foreground">
               A summary. {site ? "The product site stays the canonical page for its own content." : "This is the product's fullest page."}
             </p>

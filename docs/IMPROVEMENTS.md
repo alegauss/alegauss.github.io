@@ -33,23 +33,6 @@ that search runs on Viglet Turing.
 
 ## Block D — Independent AI products, built with our own tools
 
-### §AG21 Cards that help a visitor choose
-
-ProjectCard currently renders project.kind, a blurb and the unrestricted tags array.
-Tags include runtimes, dependency counts and implementation technologies alongside
-availability and Windows versions. Review every card so the first sentence states the
-user problem or result and the next metadata identifies purpose, platform and maturity.
-
-Move framework names, runtime versions and technical detail to the existing product page
-where they help installation or compatibility decisions. Keep concise requirements on
-the card only when they materially affect selection, such as Windows-only support or
-local hardware needs. Preserve each product's existing logo and colour, using shared
-card structure and design-system tokens.
-
-This is an editorial refinement of the existing cards, not a new visual identity or a
-second product catalogue. Check narrow layouts and ensure card labels agree with the
-filter data and product detail.
-
 ### §AG22 The Method demonstrated through the owner's actual workflow
 
 AG11 and AG16 already delivered /method/, shared tools and tracks for Windows apps,

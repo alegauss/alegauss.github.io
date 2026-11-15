@@ -60,6 +60,8 @@ const published = JSON.parse(read("projects.json"))
 check("AG20", (home.match(/data-catalogue-card=/g) || []).length === PROJECTS.length, "static catalogue is incomplete or duplicated")
 check("AG20", home.includes('data-island="catalogue-filters"'), "catalogue filter enhancement is absent")
 for (const p of PROJECTS) {
+  const card = home.match(new RegExp(`<article[^>]*data-catalogue-card="${p.id}"[^>]*>[\\s\\S]*?</article>`))?.[0] || ""
+  check("AG21", card.includes(html(p.blurb)) && !card.includes(".NET 10") && !card.includes("ONNX Runtime"), `${p.name}'s card does not prioritise the outcome`)
   check("AG3", home.includes(html(p.name)), `the home page HTML lacks ${p.name}`)
   check("AG3", home.includes(html(p.blurb)), `the home page HTML lacks ${p.name}'s blurb`)
   check("AG3", home.includes(`href="${app.productPath(p)}"`), `the home page HTML lacks a link to ${p.name}`)
