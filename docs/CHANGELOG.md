@@ -10,6 +10,7 @@
 - ✅ **AG6** **The sitemap is written by hand and there is no llms.txt, so new pages wait to be found** — The sitemap, robots.txt, llms.txt, a Markdown twin per page and an OG card per route are written at build from the route table, so a new project lands in each.
 - ✅ **AG7** **sync-sponsor.mjs writes markup into every site, and each one styles the sponsor block again** — The hub renders the sponsor with the design system's SiteSponsor and no CSS of its own; sync-sponsor.mjs serves only the plain pages and can emit that same markup.
 - ✅ **AG15** **Nothing on the hub says the author of every product is one person who also builds Viglet and Cursarei** — The home page carries a Person with the author's six profiles, Viglet and Japode in its JSON-LD, every product author points at it by @id, and About and index.md name Viglet and Cursarei.
+- ✅ **AG34** **The catalogue still names PPortal, whose site path, repository and ledger moved when the product became Transmiti** — The catalogue names Transmiti, and its page, banner, logo, site, docs and changelog follow alegauss/transmiti and alegauss.com/transmiti/.
 
 ## Block B — Proof from the projects' own records
 

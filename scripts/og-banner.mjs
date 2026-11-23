@@ -36,7 +36,7 @@ const gitRoot = resolve(here, "..", "..")   // the directory holding all the rep
    build, so their og.png is never committed; the three Python repos serve docs/ straight
    to Pages, so theirs has to be. */
 const MANIFEST = [
-  { slug: "pportal",               svg: "pportal/site/public/og.svg" },
+  { slug: "transmiti",             svg: "pportal/site/public/og.svg" },  // the checkout folder kept its old name
   { slug: "freeharbor",             svg: "freeharbor/site/scripts/og-card.svg" },
   { slug: "claude-tray",           svg: "claude-tray/site/public/og.svg" },
   { slug: "winwright",             svg: "winwright/site/public/og.svg" },
@@ -49,7 +49,7 @@ const MANIFEST = [
 export const W = 1200, H = 630
 /* The frame every card is laid out on: 90px gutters, so 1020px of usable width, and the
    URL line is right-anchored at 1110. The left bound is checked at 80 rather than 90
-   because two marks are optically aligned instead of boxed — PPortal's ring reaches 81,
+   because two marks are optically aligned instead of boxed — Transmiti's ring reaches 81,
    mini-gpt's mark 88, both deliberate. */
 const GUTTER_L = 80, GUTTER_R = 1110, SLACK = 3
 export const FRAME = GUTTER_R - 90
